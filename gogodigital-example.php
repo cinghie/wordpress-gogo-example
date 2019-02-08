@@ -17,14 +17,23 @@ if ( !defined( 'ABSPATH' ) ) {
 
 require_once 'WpGogodigitalExample.php';
 
+/**
+ * Register all input settings
+ */
 function gogodigital_example_register_settings()
 {
+	/** Add input option */
 	add_option( 'gogodigital-example-input');
+
+	/** Register input option */
 	register_setting( 'gogodigital_example_options_group', 'gogodigital-example-input', 'gogodigital_example_callback' );
 }
 
 add_action( 'admin_init', 'gogodigital_example_register_settings' );
 
+/**
+ * Create Plugin Page
+ */
 if( is_admin() ) {
 	$importer_page = new WpGogodigitalExample();
 }
