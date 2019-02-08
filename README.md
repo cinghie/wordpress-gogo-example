@@ -34,6 +34,6 @@ Edit plugin information in gogodigital-example.php
  
  - 'gogodigital-example-input' to 'your-input-name'
  - inputExample to inputYourName
- - 'Example' to Sidebar Menu Title
+ - 'Example' to 'Sidebar Menu Title'
  - 'Gogodigital Plugin Example Admin' to 'Your Plugin Page Title'
  
