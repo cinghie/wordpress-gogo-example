@@ -85,7 +85,7 @@ class WpGogodigitalExample
 					</tr>
 				</table>
 				<div style="margin-top: 15px;">
-					<input type="submit" name="save_apikey" value="Salva Impostazioni" class="button-primary" />
+					<input type="submit" name="save" value="<?php echo __( 'Save Settings', 'gogodigital-example' ) ?>" class="button-primary" />
 				</div>
 			</form>
 
