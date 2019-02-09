@@ -68,5 +68,5 @@ add_filter( 'plugin_action_links', 'gogodigital_example_action_links', 10, 2);
  * Create Plugin Page
  */
 if( is_admin() ) {
-	$plugin_page = new WpGogodigitalExample($menuSlug,$menuTitle,$pageTitle);
+	$pluginPage = new WpGogodigitalExample($menuSlug,$menuTitle,$pageTitle);
 }
