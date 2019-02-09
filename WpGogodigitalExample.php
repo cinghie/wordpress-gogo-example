@@ -25,9 +25,6 @@ class WpGogodigitalExample
 	/** @var int  */
 	private $inputExample;
 
-	/** @var $options  */
-	private $options;
-
 	/**
 	 * Class Constructor
 	 *
@@ -73,7 +70,7 @@ class WpGogodigitalExample
 
 			<div style="border-right: 1px solid #ddd; float: left; padding-right: 2%;  width: 100%">
                 <h1><?php echo $this->pageTitle ?></h1>
-                <p>Example Plugin for Wordpress just a simple example plugin to develop new plugin</p>
+                <p><?php echo __( 'Example Plugin for Wordpress just a simple example plugin to develop new plugin', 'gogodigital-example' ) ?></p>
 			</div>
 			<br/><br/>
 
@@ -82,7 +79,7 @@ class WpGogodigitalExample
 				<table class="form-table">
 					<tr valign="top">
 						<td >
-							<label style="margin-right: 25px;">Example Input</label>
+							<label style="margin-right: 25px;"><?php echo __( 'Example Input', 'gogodigital-example' ) ?></label>
 							<input class="form-control" style="width:250px; padding: 6px;" type="text" id="gogodigital-example-input" name="gogodigital-example-input"  value="<?php echo $this->inputExample ?>" >
 						</td>
 					</tr>

@@ -55,7 +55,7 @@ function gogodigital_example_action_links($links, $file)
 	}
 
 	if ($file === $this_plugin) {
-		$settings_link = '<a href="options-general.php?page=gogodigital-example-plugin">' . __( 'Settings', 'gogodigital-cookie-consent' ) . '</a>';
+		$settings_link = '<a href="options-general.php?page=gogodigital-example-plugin">' . __( 'Settings', 'gogodigital-example' ) . '</a>';
 		array_unshift( $links, $settings_link );
 	}
 
