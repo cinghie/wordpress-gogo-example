@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Plugin Name: Gogodigital Example Plugin
- * Description: Gogodigital Example Plugin just a simple example plugin to develop a new Wordpress Plugin
+ * Plugin Name: Gogodigital Example
+ * Description: Gogodigital Example plugin just a simple example to develop a new Wordpress Plugin
  * Author: Gogodigital S.r.l.s.
  * Author URI: https://www.gogodigital.it
  * Version: 1.0.0

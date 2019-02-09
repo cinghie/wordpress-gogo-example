@@ -70,7 +70,7 @@ class WpGogodigitalExample
 
 			<div style="border-right: 1px solid #ddd; float: left; padding-right: 2%;  width: 100%">
                 <h1><?php echo $this->pageTitle ?></h1>
-                <p><?php echo __( 'Gogodigital Example Plugin just a simple example plugin to develop a new Wordpress Plugin', 'gogodigital-example' ) ?></p>
+                <p><?php echo __( 'Gogodigital Example plugin just a simple example to develop a new Wordpress Plugin', 'gogodigital-example' ) ?></p>
 			</div>
 			<br/><br/>
 
