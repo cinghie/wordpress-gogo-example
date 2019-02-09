@@ -14,6 +14,12 @@ if ( !defined( 'ABSPATH' ) ) {
 class WpGogodigitalExample
 {
 	/** @var string */
+	private $pluginPath;
+
+	/** @var string */
+	private $pluginUrl;
+
+	/** @var string */
 	private $menuSlug;
 
 	/** @var string */
@@ -34,15 +40,21 @@ class WpGogodigitalExample
 	 */
 	public function __construct($menuSlug,$menuTitle,$pageTitle)
 	{
+		$this->pluginPath = trailingslashit( plugin_dir_path( __FILE__ ) );
+		$this->pluginUrl  = trailingslashit( plugin_dir_url( __FILE__ ) );
+
 		$this->menuSlug  = $menuSlug;
 		$this->menuTitle = $menuTitle;
 		$this->pageTitle = $pageTitle;
 
-		/** Add Plugin Page */
-		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
-
-		/** Set input settings values */
+		/** Set Settings values */
 		$this->inputExample = get_option('gogodigital-example-input');
+
+		/** Register Settings */
+		add_action( 'admin_init', array($this,'gogodigital_example_register_settings') );
+
+		/** Add Plugin Page */
+		add_action( 'admin_menu', array($this,'add_plugin_page') );
 	}
 
 	/**
@@ -57,6 +69,18 @@ class WpGogodigitalExample
 			$this->menuSlug,
 			array( $this, 'create_admin_page' )
 		);
+	}
+
+	/**
+	 * Register all input settings
+	 */
+    public function gogodigital_example_register_settings()
+	{
+		/** Add input option */
+		add_option( 'gogodigital-example-input');
+
+		/** Register input option */
+		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-input', 'gogodigital_example_callback' );
 	}
 
 	/**
