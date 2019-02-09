@@ -22,7 +22,7 @@ require_once 'WpGogodigitalExample.php';
  */
 $menuSlug  = 'gogodigital-example-plugin';
 $menuTitle = __( 'Example', 'gogodigital-example' );
-$pageTitle = __( 'Gogodigital Example Plugin', 'gogodigital-example' );
+$pageTitle = __( 'Gogodigital Example', 'gogodigital-example' );
 
 /**
  * Register all input settings

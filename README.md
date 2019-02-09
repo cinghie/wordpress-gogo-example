@@ -19,7 +19,7 @@ Edit plugin information in gogodigital-example.php
 
 ```
 /**
- * Plugin Name: Gogodigital Example Plugin
+ * Plugin Name: Gogodigital Example
  * Description: Example Plugin for Wordpress
  * Author: Gogodigital S.r.l.s.
  * Author URI: https://www.gogodigital.it
@@ -35,5 +35,5 @@ Edit plugin information in gogodigital-example.php
  - 'gogodigital-example-input' to 'your-input-name'
  - inputExample to inputYourName
  - 'Example' to 'Sidebar Menu Title'
- - 'Gogodigital Example Plugin' to 'Your Plugin Page Title'
+ - 'Gogodigital Example' to 'Your Plugin Page Title'
  
