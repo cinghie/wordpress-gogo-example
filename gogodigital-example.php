@@ -65,6 +65,26 @@ function gogodigital_example_action_links($links, $file)
 add_filter( 'plugin_action_links', 'gogodigital_example_action_links', 10, 2);
 
 /**
+ * Add the field to the checkout page
+ */
+function customise_checkout_field($checkout)
+{
+	echo '<div id="customise_checkout_field">';
+	woocommerce_form_field('sdi', array(
+		'type' => 'text',
+		'class' => array(
+			'sdi-class form-row-wide'
+		) ,
+		'label' => __('Codice SDI') ,
+		'placeholder' => __('SDI') ,
+		'required' => true,
+	) , $checkout->get_value('customised_field_name'));
+	echo '</div>';
+}
+
+add_action('woocommerce_after_checkout_billing_form', 'customise_checkout_field');
+
+/**
  * Create Plugin Page
  */
 if( is_admin() ) {
