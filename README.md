@@ -43,6 +43,5 @@ and at line 58 change gogodigital-example-plugin with Menu Slug
  
 ### 4. Update languages
 
-
-
- 
+ - Change text-domain 'gogodigital-example' in all files
+ - Change words in all files
