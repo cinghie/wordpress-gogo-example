@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Gogodigital Example Plugin
- * Description: Example Plugin for Wordpress
+ * Description: Example Plugin for Wordpress just a simple example plugin to develop new plugin
  * Author: Gogodigital S.r.l.s.
  * Author URI: https://www.gogodigital.it
  * Version: 1.0.0
@@ -16,6 +16,13 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 require_once 'WpGogodigitalExample.php';
+
+/**
+ * Modify this plugin params
+ */
+$menuSlug  = 'gogodigital-example-plugin';
+$menuTitle = 'Example';
+$pageTitle = 'Gogodigital Plugin Example Admin';
 
 /**
  * Register all input settings
@@ -32,8 +39,34 @@ function gogodigital_example_register_settings()
 add_action( 'admin_init', 'gogodigital_example_register_settings' );
 
 /**
+ * Settings Button on Plugins Panel
+ *
+ * @param $links
+ * @param $file
+ *
+ * @return string
+ */
+function gogodigital_example_action_links($links, $file)
+{
+	static $this_plugin;
+
+	if (!$this_plugin) {
+		$this_plugin = plugin_basename( __FILE__ );
+	}
+
+	if ($file === $this_plugin) {
+		$settings_link = '<a href="options-general.php?page=gogodigital-example-plugin">' . __( 'Settings', 'gogodigital-cookie-consent' ) . '</a>';
+		array_unshift( $links, $settings_link );
+	}
+
+	return $links;
+}
+
+add_filter( 'plugin_action_links', 'gogodigital_example_action_links', 10, 2);
+
+/**
  * Create Plugin Page
  */
 if( is_admin() ) {
-	$importer_page = new WpGogodigitalExample();
+	$importer_page = new WpGogodigitalExample($menuSlug,$menuTitle,$pageTitle);
 }

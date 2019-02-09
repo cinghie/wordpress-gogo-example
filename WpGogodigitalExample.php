@@ -13,6 +13,15 @@ if ( !defined( 'ABSPATH' ) ) {
 
 class WpGogodigitalExample
 {
+	/** @var string */
+	private $menuSlug;
+
+	/** @var string */
+	private $menuTitle;
+
+	/** @var string */
+	private $pageTitle;
+
 	/** @var int  */
 	private $inputExample;
 
@@ -20,10 +29,18 @@ class WpGogodigitalExample
 	private $options;
 
 	/**
-	 * Start up
+	 * Class Constructor
+	 *
+	 * @param string $menuSlug
+	 * @param string $menuTitle
+	 * @param string $pageTitle
 	 */
-	public function __construct()
+	public function __construct($menuSlug,$menuTitle,$pageTitle)
 	{
+		$this->menuSlug  = $menuSlug;
+		$this->menuTitle = $menuTitle;
+		$this->pageTitle = $pageTitle;
+
 		/** Add Plugin Page */
 		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
 
@@ -37,10 +54,10 @@ class WpGogodigitalExample
 	public function add_plugin_page()
 	{
 		add_menu_page(
-			'Gogodigital Plugin Example Admin',
-			'Example',
+			$this->pageTitle,
+			$this->menuTitle,
 			'manage_options',
-			'gogodigital-example-plugin',
+			$this->menuSlug,
 			array( $this, 'create_admin_page' )
 		);
 	}
@@ -55,16 +72,17 @@ class WpGogodigitalExample
 		<div class="wrap" style="overflow: hidden;">
 
 			<div style="border-right: 1px solid #ddd; float: left; padding-right: 2%;  width: 100%">
-				<h1>Gogodigital Plugin Example</h1>
+                <h1><?php echo $this->pageTitle ?></h1>
+                <p>Example Plugin for Wordpress just a simple example plugin to develop new plugin</p>
 			</div>
 			<br/><br/>
 
 			<form method="post" action="options.php">
 				<?php settings_fields( 'gogodigital_example_options_group' ); ?>
-				<table>
+				<table class="form-table">
 					<tr valign="top">
 						<td >
-							<h4>Example Input</h4>
+							<label style="margin-right: 25px;">Example Input</label>
 							<input class="form-control" style="width:250px; padding: 6px;" type="text" id="gogodigital-example-input" name="gogodigital-example-input"  value="<?php echo $this->inputExample ?>" >
 						</td>
 					</tr>
