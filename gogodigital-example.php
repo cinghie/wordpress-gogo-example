@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Gogodigital Example Plugin
- * Description: Example Plugin for Wordpress just a simple example plugin to develop new plugin
+ * Description: Gogodigital Example Plugin just a simple example plugin to develop a new Wordpress Plugin
  * Author: Gogodigital S.r.l.s.
  * Author URI: https://www.gogodigital.it
  * Version: 1.0.0
