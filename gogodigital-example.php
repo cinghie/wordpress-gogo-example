@@ -39,7 +39,7 @@ function gogodigital_example_register_settings()
 add_action( 'admin_init', 'gogodigital_example_register_settings' );
 
 /**
- * Settings Button on Plugins Panel
+ * Settings Button on Plugins Page
  *
  * @param $links
  * @param $file
