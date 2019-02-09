@@ -21,8 +21,8 @@ require_once 'WpGogodigitalExample.php';
  * Modify this plugin params
  */
 $menuSlug  = 'gogodigital-example-plugin';
-$menuTitle = 'Example';
-$pageTitle = 'Gogodigital Plugin Example Admin';
+$menuTitle = __( 'Example', 'gogodigital-example' );
+$pageTitle = __( 'Gogodigital Plugin Example Admin', 'gogodigital-example' );
 
 /**
  * Register all input settings
