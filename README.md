@@ -11,9 +11,7 @@ git clone https://github.com/cinghie/wordpress-gogo-example.git gogodigital-exam
 
 ## Implement your plugin
 
-
 ### 1. Rename information
-
 
 Edit plugin information in gogodigital-example.php
 
@@ -28,12 +26,23 @@ Edit plugin information in gogodigital-example.php
  **/
  ```
  
- ### 2. Rename default input
+### 2. Set default params
  
- Rename on all files
+Set at line 23 in gogodigital-example.php
+
+ - Menu Slug 
+ - Menu Title
+ - Page Title
  
- - 'gogodigital-example-input' to 'your-input-name'
- - inputExample to inputYourName
- - 'Example' to 'Sidebar Menu Title'
- - 'Gogodigital Example' to 'Your Plugin Page Title'
+and at line 58 change gogodigital-example-plugin with Menu Slug 
+
+### 3. Set form input
+
+ - Register settings at line 30 in gogodigital-example.php
+ - Update settings at __construct and add_plugin_page in WPGogodigitalExample
+ 
+### 4. Update languages
+
+
+
  
