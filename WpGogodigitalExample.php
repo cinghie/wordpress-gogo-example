@@ -13,6 +13,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 class WpGogodigitalExample
 {
+
 	/** @var string */
 	private $pluginPath;
 
@@ -28,7 +29,7 @@ class WpGogodigitalExample
 	/** @var string */
 	private $pageTitle;
 
-	/** @var int  */
+	/** @var string */
 	private $inputExample;
 
 	/**
@@ -119,4 +120,5 @@ class WpGogodigitalExample
 
 		<?php
 	}
+
 }

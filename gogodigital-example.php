@@ -2,9 +2,12 @@
 
 /**
  * Plugin Name: Gogodigital Example
+ * Plugin URI: https://github.com/cinghie/wordpress-gogo-example
  * Description: Gogodigital Example plugin just a simple example to develop a new Wordpress Plugin
  * Author: Gogodigital S.r.l.s.
  * Author URI: https://www.gogodigital.it
+ * License: GPL3
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Version: 1.0.0
  * Text Domain: gogodigital-example
  **/
