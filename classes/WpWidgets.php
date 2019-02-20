@@ -35,6 +35,19 @@ class WpWidgets
 	}
 
 	/**
+	 * Get Submit Button
+	 *
+	 * @param $name
+	 * @param $value
+	 *
+	 * @return string
+	 */
+	public static function getSubmitButton($name,$value)
+	{
+		return '<input type="submit" name="'.$name.'" value="'.$value.'" class="button-primary" />';
+	}
+
+	/**
 	 * Get Simple Input Widget
 	 *
 	 * @param string $name

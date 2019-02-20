@@ -138,7 +138,7 @@ class WpGogodigitalExample
 					</tr>
                     <tr valign="top">
                         <th scope="row">
-                            <label for="gogodigital-example-select"><?php echo __( 'Example Select', 'gogodigital-example' ) ?></label>
+	                        <?php echo $widgetClass::getLabelWidget('gogodigital-example-select',__( 'Example Select', 'gogodigital-example' )) ?>
                         </th>
                         <td>
                             <select class="form-control" id="gogodigital-example-select" name="gogodigital-example-select" style="min-width: 250px; padding: 3px;">
@@ -150,7 +150,7 @@ class WpGogodigitalExample
                     </tr>
                     <tr valign="top">
                         <th scope="row">
-                            <label for="gogodigital-example-select"><?php echo __( 'Example Radio', 'gogodigital-example' ) ?></label>
+	                        <?php echo $widgetClass::getLabelWidget('gogodigital-example-input',__( 'Example Radio', 'gogodigital-example' )) ?>
                         </th>
                         <td>
                             <p>
@@ -169,7 +169,7 @@ class WpGogodigitalExample
                     </tr>
 				</table>
 				<div style="margin-top: 15px;">
-					<input type="submit" name="save" value="<?php echo __( 'Save Settings', 'gogodigital-example' ) ?>" class="button-primary" />
+					<?php echo $widgetClass::getSubmitButton('save',__( 'Save Settings', 'gogodigital-example' )) ?>
 				</div>
 			</form>
 
