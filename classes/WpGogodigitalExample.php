@@ -18,7 +18,6 @@ require_once 'WpWidgets.php';
  */
 class WpGogodigitalExample
 {
-
 	/** @var string */
 	private $pluginPath;
 
@@ -179,5 +178,4 @@ class WpGogodigitalExample
 
 		<?php
 	}
-
 }

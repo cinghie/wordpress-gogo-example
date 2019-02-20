@@ -20,7 +20,6 @@ if ( !defined( 'ABSPATH' ) ) {
 
 class WpWidgets
 {
-
 	/**
 	 * Get Label Widget
 	 *
@@ -61,5 +60,4 @@ class WpWidgets
 	{
 		return '<input class="'.$class.'" type="text" id="'.$name.'" name="'.$name.'" value="'.$value.'" style="'.$style.'"';
 	}
-
 }
