@@ -18,7 +18,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-require_once 'WpGogodigitalExample.php';
+require_once 'classes/WpGogodigitalExample.php';
 
 /**
  * Modify this plugin params

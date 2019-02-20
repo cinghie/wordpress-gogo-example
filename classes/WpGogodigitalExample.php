@@ -11,6 +11,11 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once 'WpWidgets.php';
+
+/**
+ * Class WpGogodigitalExample
+ */
 class WpGogodigitalExample
 {
 
@@ -47,8 +52,8 @@ class WpGogodigitalExample
 	 */
 	public function __construct($menuSlug,$menuTitle,$pageTitle)
 	{
-		$this->pluginPath = trailingslashit( plugin_dir_path( __FILE__ ) );
-		$this->pluginUrl  = trailingslashit( plugin_dir_url( __FILE__ ) );
+		$this->pluginPath  = trailingslashit( plugin_dir_path( __FILE__ ) );
+		$this->pluginUrl   = trailingslashit( plugin_dir_url( __FILE__ ) );
 
 		$this->menuSlug  = $menuSlug;
 		$this->menuTitle = $menuTitle;
@@ -109,6 +114,8 @@ class WpGogodigitalExample
 	 */
 	public function create_admin_page()
 	{
+		$widgetClass = new WpWidgets();
+
 		?>
 
 		<div class="wrap" style="overflow: hidden;">
@@ -123,10 +130,10 @@ class WpGogodigitalExample
 				<table class="form-table">
 					<tr valign="top">
                         <th scope="row">
-                            <label for="gogodigital-example-input"><?php echo __( 'Example Input', 'gogodigital-example' ) ?></label>
+	                        <?php echo $widgetClass::getLabelWidget('gogodigital-example-input',__( 'Example Input', 'gogodigital-example' )) ?>
                         </th>
 						<td>
-							<input class="form-control" type="text" id="gogodigital-example-input" name="gogodigital-example-input" value="<?php echo $this->inputExample ?>" style="min-width: 250px; padding: 6px;">
+							<?php echo $widgetClass::getInputWidget('gogodigital-example-input',$this->inputExample) ?>
 						</td>
 					</tr>
                     <tr valign="top">
