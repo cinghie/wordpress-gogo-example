@@ -18,8 +18,24 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Class WpWidgets
+ */
 class WpWidgets
 {
+	/**
+	 * Get Submit Button
+	 *
+	 * @param string $name
+	 * @param string $value
+	 *
+	 * @return string
+	 */
+	public static function getSubmitButton($name,$value)
+	{
+		return '<input type="submit" name="'.$name.'" value="'.$value.'" class="button-primary" />';
+	}
+
 	/**
 	 * Get Label Widget
 	 *
@@ -34,19 +50,6 @@ class WpWidgets
 	}
 
 	/**
-	 * Get Submit Button
-	 *
-	 * @param $name
-	 * @param $value
-	 *
-	 * @return string
-	 */
-	public static function getSubmitButton($name,$value)
-	{
-		return '<input type="submit" name="'.$name.'" value="'.$value.'" class="button-primary" />';
-	}
-
-	/**
 	 * Get Simple Input Widget
 	 *
 	 * @param string $name
@@ -58,6 +61,31 @@ class WpWidgets
 	 */
 	public static function getInputWidget($name, $value, $class = 'form-control', $style = 'min-width: 250px; padding: 6px;')
 	{
-		return '<input class="'.$class.'" type="text" id="'.$name.'" name="'.$name.'" value="'.$value.'" style="'.$style.'"';
+		return '<input class="'.$class.'" type="text" id="'.$name.'" name="'.$name.'" value="'.$value.'" style="'.$style.'" />';
+	}
+
+	/**
+	 * Get Radio Widget
+	 *
+	 * @param string $name
+	 * @param array $values
+	 * @param string $currentValue
+	 *
+	 * @return string
+	 */
+	public static function getRadioWidget($name,$currentValue,$values)
+	{
+		$html = '';
+
+		foreach($values as $key => $value)
+		{
+			$checked = $currentValue === $value ? ' checked' : '';
+			$html .= '<p>';
+			$html .= '<input type="radio" id="'.$name.'" name="'.$name.'" value="'.$value.'" '.$checked.' />';
+			$html .= '<label for="'.$name.'">'.$key.'</label>';
+			$html .= '</p>';
+		}
+
+		return $html;
 	}
 }

@@ -149,21 +149,14 @@ class WpGogodigitalExample
                     </tr>
                     <tr valign="top">
                         <th scope="row">
-	                        <?php echo $widgetClass::getLabelWidget('gogodigital-example-input',__( 'Example Radio', 'gogodigital-example' )) ?>
+							<?php echo $widgetClass::getLabelWidget('gogodigital-example-input',__( 'Example Radio', 'gogodigital-example' )) ?>
                         </th>
                         <td>
-                            <p>
-                                <input type="radio" id="gogodigital-example-radio" name="gogodigital-example-radio" value="radiovalue1"<?php if ( $this->radioExample === 'radiovalue1' ) echo ' checked'; ?> />
-                                <label for="gogodigital-example-radio">Radio Value 1</label>
-                            </p>
-                            <p>
-                                <input type="radio" id="gogodigital-example-radio" name="gogodigital-example-radio" value="radiovalue2"<?php if ( $this->radioExample === 'radiovalue2' ) echo ' checked'; ?> />
-                                <label for="gogodigital-example-radio">Radio Value 2</label>
-                            </p>
-                            <p>
-                                <input type="radio" id="gogodigital-example-radio" name="ogodigital-example-radio" value="radiovalue3"<?php if ( $this->radioExample === 'radiovalue3' ) echo ' checked'; ?> />
-                                <label for="gogodigital-example-radio">Radio Value 3</label>
-                            </p>
+                            <?php echo $widgetClass::getRadioWidget('gogodigital-example-radio',$this->radioExample,[
+                                'Radio Value 1' => 'radiovalue1',
+                                'Radio Value 2' => 'radiovalue2',
+                                'Radio Value 3' => 'radiovalue3'
+                            ]) ?>
                         </td>
                     </tr>
 				</table>
