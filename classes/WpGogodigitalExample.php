@@ -140,11 +140,11 @@ class WpGogodigitalExample
 	                        <?php echo $widgetClass::getLabelWidget('gogodigital-example-select',__( 'Example Select', 'gogodigital-example' )) ?>
                         </th>
                         <td>
-                            <select class="form-control" id="gogodigital-example-select" name="gogodigital-example-select" style="min-width: 250px; padding: 3px;">
-                                <option value='1' <?php if ($this->selectExample === '1') { echo 'selected'; } else { echo ''; } ?>>Select Value 1</option>
-                                <option value='2' <?php if ($this->selectExample === '2') { echo 'selected'; } else { echo ''; } ?>>Select Value 2</option>
-                                <option value='3' <?php if ($this->selectExample === '3') { echo 'selected'; } else { echo ''; } ?>>Select Value 3</option>
-                            </select>
+	                        <?php echo $widgetClass::getSelectWidget('gogodigital-example-select',$this->selectExample,[
+		                        'Select Value 1' => 'selectvalue1',
+		                        'Select Value 2' => 'selectvalue2',
+		                        'Select Value 3' => 'selectvalue3'
+	                        ]) ?>
                         </td>
                     </tr>
                     <tr valign="top">

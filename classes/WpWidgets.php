@@ -65,6 +65,30 @@ class WpWidgets
 	}
 
 	/**
+	 * Get Select Widget
+	 *
+	 * @param string $name
+	 * @param array $values
+	 * @param string $currentValue
+	 *
+	 * @return string
+	 */
+	public static function getSelectWidget($name,$currentValue,$values)
+	{
+		$html = '<select class="form-control" id="'.$name.'" name="'.$name.'" style="min-width: 250px; padding: 2px;">';
+
+		foreach($values as $key => $value)
+		{
+			$selected = $currentValue === $value ? 'selected' : '';
+			$html .= '<option value="'.$value.'" '.$selected.'>'.$key.'</option>';
+		}
+
+		$html .= '</select>';
+
+		return $html;
+	}
+
+	/**
 	 * Get Radio Widget
 	 *
 	 * @param string $name
@@ -81,7 +105,7 @@ class WpWidgets
 		{
 			$checked = $currentValue === $value ? ' checked' : '';
 			$html .= '<p>';
-			$html .= '<input type="radio" id="'.$name.'" name="'.$name.'" value="'.$value.'" '.$checked.' />';
+			$html .= '<input type="radio" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$checked.' />';
 			$html .= '<label for="'.$name.'">'.$key.'</label>';
 			$html .= '</p>';
 		}
