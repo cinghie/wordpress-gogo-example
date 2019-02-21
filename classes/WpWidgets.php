@@ -31,9 +31,22 @@ class WpWidgets
 	 *
 	 * @return string
 	 */
-	public static function getLabelWidget($name,$value)
+	public static function getLabelWidget($name, $value)
 	{
 		return '<label for="'.$name.'">'.$value.'</label>';
+	}
+
+	/**
+	 * Get Field Description Widget
+	 *
+	 * @param string $name
+	 * @param string $description
+	 *
+	 * @return string
+	 */
+	public static function getFieldDescription($name, $description)
+	{
+		return $description ? '<p class="description" id="'.$name.'-description">'.$description.'</p>' : '';
 	}
 
 	/**
@@ -55,14 +68,18 @@ class WpWidgets
 	 *
 	 * @param string $name
 	 * @param string $value
+	 * @param string $description
 	 * @param string $class
 	 * @param string $style
 	 *
 	 * @return string
 	 */
-	public static function getInputWidget($name, $value, $class = 'form-control', $style = 'min-width: 250px; padding: 6px;')
+	public static function getInputWidget($name, $value, $description = '', $class = 'form-control', $style = 'min-width: 250px; padding: 6px;')
 	{
-		return '<input class="'.$class.'" type="text" id="'.$name.'" name="'.$name.'" value="'.$value.'" style="'.$style.'" />';
+		$html = '<input class="'.$class.'" type="text" id="'.$name.'" name="'.$name.'" value="'.$value.'" style="'.$style.'" />';
+		$html .= self::getFieldDescription($name,$description);
+
+		return $html;
 	}
 
 	/**
@@ -71,12 +88,13 @@ class WpWidgets
 	 * @param string $name
 	 * @param array $values
 	 * @param string $currentValue
+	 * @param string $description
 	 * @param string $class
 	 * @param string $style
 	 *
 	 * @return string
 	 */
-	public static function getSelectWidget($name, $currentValue, $values, $class = 'form-control', $style = 'min-width: 250px; padding: 3px;')
+	public static function getSelectWidget($name, $currentValue, $values, $description = '', $class = 'form-control', $style = 'min-width: 250px; padding: 3px;')
 	{
 		$html = '<select class="'.$class.'" id="'.$name.'" name="'.$name.'" style="'.$style.'">';
 
@@ -87,6 +105,7 @@ class WpWidgets
 		}
 
 		$html .= '</select>';
+		$html .= self::getFieldDescription($name,$description);
 
 		return $html;
 	}
@@ -97,10 +116,11 @@ class WpWidgets
 	 * @param string $name
 	 * @param array $values
 	 * @param string $currentValue
+	 * @param string $description
 	 *
 	 * @return string
 	 */
-	public static function getRadioWidget($name,$currentValue,$values)
+	public static function getRadioWidget($name, $currentValue, $values, $description = '')
 	{
 		$html = '';
 
@@ -112,6 +132,8 @@ class WpWidgets
 			$html .= '<label for="'.$name.'">'.$key.'</label>';
 			$html .= '</p>';
 		}
+
+		$html .= self::getFieldDescription($name,$description);
 
 		return $html;
 	}

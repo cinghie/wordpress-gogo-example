@@ -98,6 +98,9 @@ class WpGogodigitalExample
 		/** Add Example Select Option */
 		add_option( 'gogodigital-example-select');
 
+		/** Add Example Select Option */
+		add_option( 'gogodigital-example-checkbox');
+
 		/** Register Example Input Option */
 		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-input', 'gogodigital_example_callback' );
 
@@ -106,6 +109,9 @@ class WpGogodigitalExample
 
 		/** Register Example Select Optio */
 		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select', 'gogodigital_example_callback' );
+
+		/** Register Example Select Optio */
+		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-checkbox', 'gogodigital_example_callback' );
 	}
 
 	/**
@@ -132,7 +138,7 @@ class WpGogodigitalExample
 	                        <?php echo $widgetClass::getLabelWidget('gogodigital-example-input',__( 'Example Input', 'gogodigital-example' )) ?>
                         </th>
 						<td>
-							<?php echo $widgetClass::getInputWidget('gogodigital-example-input',$this->inputExample) ?>
+							<?php echo $widgetClass::getInputWidget('gogodigital-example-input',$this->inputExample,__( 'Example Input Description', 'gogodigital-example' )) ?>
 						</td>
 					</tr>
                     <tr valign="top">
@@ -144,19 +150,19 @@ class WpGogodigitalExample
 		                        'Select Value 1' => 'selectvalue1',
 		                        'Select Value 2' => 'selectvalue2',
 		                        'Select Value 3' => 'selectvalue3'
-	                        ]) ?>
+	                        ],__( 'Example Select Description', 'gogodigital-example' )) ?>
                         </td>
                     </tr>
                     <tr valign="top">
                         <th scope="row">
-							<?php echo $widgetClass::getLabelWidget('gogodigital-example-input',__( 'Example Radio', 'gogodigital-example' )) ?>
+							<?php echo $widgetClass::getLabelWidget('gogodigital-example-radio',__( 'Example Radio', 'gogodigital-example' )) ?>
                         </th>
                         <td>
                             <?php echo $widgetClass::getRadioWidget('gogodigital-example-radio',$this->radioExample,[
                                 'Radio Value 1' => 'radiovalue1',
                                 'Radio Value 2' => 'radiovalue2',
                                 'Radio Value 3' => 'radiovalue3'
-                            ]) ?>
+                            ],__( 'Example Radio Description', 'gogodigital-example' )) ?>
                         </td>
                     </tr>
 				</table>
