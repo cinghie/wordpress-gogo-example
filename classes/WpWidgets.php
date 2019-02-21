@@ -37,6 +37,20 @@ class WpWidgets
 	}
 
 	/**
+	 * Get Submit Button
+	 *
+	 * @param string $name
+	 * @param string $value
+	 * @param string $class
+	 *
+	 * @return string
+	 */
+	public static function getSubmitButton($name, $value, $class = 'button-primary')
+	{
+		return '<input class="'.$class.'" type="submit" name="'.$name.'" value="'.$value.'" />';
+	}
+
+	/**
 	 * Get Field Description Widget
 	 *
 	 * @param string $name
@@ -50,17 +64,25 @@ class WpWidgets
 	}
 
 	/**
-	 * Get Submit Button
+	 * Get Checkbox Widget
 	 *
 	 * @param string $name
 	 * @param string $value
-	 * @param string $class
+	 * @param string $label
+	 * @param string $description
 	 *
 	 * @return string
 	 */
-	public static function getSubmitButton($name, $value, $class = 'button-primary')
+	public static function getCheckboxWidget($name, $value, $label, $description = '')
 	{
-		return '<input class="'.$class.'" type="submit" name="'.$name.'" value="'.$value.'" />';
+		$checked = get_option($name) ? 'checked="checked"' : '';
+
+		$html = '<fieldset><label for="users_can_register">';
+		$html .= '<input type="checkbox" id="'.$name.'" name="'.$name.'" value="'.$value.'" '.$checked.' />';
+		$html .= $label.'</label></fieldset>';
+		$html .= self::getFieldDescription($name,$description);
+
+		return $html;
 	}
 
 	/**

@@ -155,7 +155,10 @@ class WpGogodigitalExample
                     </tr>
                     <tr valign="top">
                         <th scope="row">
-							<?php echo $widgetClass::getLabelWidget('gogodigital-example-radio',__( 'Example Radio', 'gogodigital-example' )) ?>
+							<?php echo $widgetClass::getLabelWidget(
+							        'gogodigital-example-radio',
+                                    __( 'Example Radio', 'gogodigital-example' )
+                            ) ?>
                         </th>
                         <td>
                             <?php echo $widgetClass::getRadioWidget('gogodigital-example-radio',$this->radioExample,[
@@ -165,9 +168,28 @@ class WpGogodigitalExample
                             ],__( 'Example Radio Description', 'gogodigital-example' )) ?>
                         </td>
                     </tr>
+                    <tr valign="top">
+                        <th scope="row">
+							<?php echo $widgetClass::getLabelWidget(
+							        'gogodigital-example-checkbox',
+                                    __( 'Example Checkbox', 'gogodigital-example' )
+                            ) ?>
+                        </th>
+                        <td>
+                            <?php echo $widgetClass::getCheckboxWidget(
+                                    'gogodigital-example-checkbox',
+                                    1,
+	                                __( 'Example Checkbox', 'gogodigital-example' ),
+                                    __( 'Example Checkbox Description', 'gogodigital-example' )
+                            ) ?>
+                        </td>
+                    </tr>
 				</table>
 				<div style="margin-top: 15px;">
-					<?php echo $widgetClass::getSubmitButton('save',__( 'Save Settings', 'gogodigital-example' )) ?>
+					<?php echo $widgetClass::getSubmitButton(
+					        'save',
+                            __( 'Save Settings', 'gogodigital-example' )
+                    ) ?>
 				</div>
 			</form>
 
