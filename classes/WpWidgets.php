@@ -24,19 +24,6 @@ if ( !defined( 'ABSPATH' ) ) {
 class WpWidgets
 {
 	/**
-	 * Get Submit Button
-	 *
-	 * @param string $name
-	 * @param string $value
-	 *
-	 * @return string
-	 */
-	public static function getSubmitButton($name,$value)
-	{
-		return '<input type="submit" name="'.$name.'" value="'.$value.'" class="button-primary" />';
-	}
-
-	/**
 	 * Get Label Widget
 	 *
 	 * @param string $name
@@ -47,6 +34,20 @@ class WpWidgets
 	public static function getLabelWidget($name,$value)
 	{
 		return '<label for="'.$name.'">'.$value.'</label>';
+	}
+
+	/**
+	 * Get Submit Button
+	 *
+	 * @param string $name
+	 * @param string $value
+	 * @param string $class
+	 *
+	 * @return string
+	 */
+	public static function getSubmitButton($name, $value, $class = 'button-primary')
+	{
+		return '<input class="'.$class.'" type="submit" name="'.$name.'" value="'.$value.'" />';
 	}
 
 	/**
@@ -70,12 +71,14 @@ class WpWidgets
 	 * @param string $name
 	 * @param array $values
 	 * @param string $currentValue
+	 * @param string $class
+	 * @param string $style
 	 *
 	 * @return string
 	 */
-	public static function getSelectWidget($name,$currentValue,$values)
+	public static function getSelectWidget($name, $currentValue, $values, $class = 'form-control', $style = 'min-width: 250px; padding: 3px;')
 	{
-		$html = '<select class="form-control" id="'.$name.'" name="'.$name.'" style="min-width: 250px; padding: 2px;">';
+		$html = '<select class="'.$class.'" id="'.$name.'" name="'.$name.'" style="'.$style.'">';
 
 		foreach($values as $key => $value)
 		{
