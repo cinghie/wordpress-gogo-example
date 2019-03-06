@@ -79,8 +79,9 @@ class WpWidgets
 
 		$html = '<fieldset><label for="users_can_register">';
 		$html .= '<input type="checkbox" id="'.$name.'" name="'.$name.'" value="'.$value.'" '.$checked.' />';
-		$html .= $label.'</label></fieldset>';
+		$html .= $label.'</label>';
 		$html .= self::getFieldDescription($name,$description);
+		$html .= '</fieldset>';
 
 		return $html;
 	}
