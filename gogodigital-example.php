@@ -18,7 +18,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-require_once 'classes/WpGogodigitalExample.php';
+require_once 'classes/WpGogodigitalExampleSettings.php';
 
 /**
  * Modify this plugin params
@@ -57,5 +57,5 @@ add_filter( 'plugin_action_links', 'gogodigital_example_action_links', 10, 2);
  * Create Plugin Page
  */
 if( is_admin() ) {
-	$pluginPage = new WpGogodigitalExample($menuSlug,$menuTitle,$pageTitle);
+	$pluginPage = new WpGogodigitalExampleSettings($menuSlug,$menuTitle,$pageTitle);
 }
