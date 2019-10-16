@@ -18,6 +18,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once 'classes/WpGogodigitalExample.php';
 require_once 'classes/WpGogodigitalExampleSettings.php';
 
 /**
@@ -57,5 +58,12 @@ add_filter( 'plugin_action_links', 'gogodigital_example_action_links', 10, 2);
  * Create Plugin Page
  */
 if( is_admin() ) {
+
 	$pluginPage = new WpGogodigitalExampleSettings($menuSlug,$menuTitle,$pageTitle);
+
+} else {
+
+	$helloWorld = new WpGogodigitalExample();
+
+	add_shortcode( 'togglemenu', array($helloWorld,'gogodigital_hello_world_shortcode') );
 }

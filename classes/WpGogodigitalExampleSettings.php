@@ -11,7 +11,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-require_once 'WpWidgets.php';
+require_once 'WpGogodigitalExampleWidgets.php';
 
 /**
  * Class WpGogodigitalExampleSettings
@@ -119,10 +119,9 @@ class WpGogodigitalExampleSettings
 	 */
 	public function create_admin_page()
 	{
-		$widgetClass = new WpWidgets();
-
+		$widgetClass = new WpGogodigitalExampleWidgets();
 		$active_tab  = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'settings';
-		?>
+	?>
 
 		<div class="wrap" style="overflow: hidden;">
 
@@ -138,6 +137,9 @@ class WpGogodigitalExampleSettings
             <h2 class="nav-tab-wrapper">
                 <a href="?page=<?php echo $this->menuSlug ?>&tab=settings" class="nav-tab <?php echo $active_tab === 'settings' ? 'nav-tab-active' : ''; ?>">
                     <?php echo __( 'Settings', 'gogodigital-example' ) ?>
+                </a>
+                <a href="?page=<?php echo $this->menuSlug ?>&tab=shortcode" class="nav-tab <?php echo $active_tab === 'shortcode' ? 'nav-tab-active' : ''; ?>">
+		            <?php echo __( 'Shortcode', 'gogodigital-example' ) ?>
                 </a>
                 <a href="?page=<?php echo $this->menuSlug ?>&tab=about" class="nav-tab <?php echo $active_tab === 'about' ? 'nav-tab-active' : ''; ?>">
                     <?php echo __( 'About', 'gogodigital-example' ) ?>
@@ -203,6 +205,12 @@ class WpGogodigitalExampleSettings
                             </td>
                         </tr>
                     </table>
+
+                <?php elseif($active_tab === 'shortcode'): ?>
+
+                    <h3><?php echo __( 'Shortcode', 'gogodigital-example' )?></h3>
+
+                    <pre style="padding: 16px 10px; overflow: auto; line-height: 1.45; background-color: #f6f8fa; border-radius: 3px;">echo do_shortcode('[helloworld]');</pre>
 
 				<?php elseif($active_tab === 'about'): ?>
 

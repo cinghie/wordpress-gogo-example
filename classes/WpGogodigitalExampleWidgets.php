@@ -19,9 +19,9 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class WpWidgets
+ * Class WpGogodigitalExampleWidgets
  */
-class WpWidgets
+class WpGogodigitalExampleWidgets
 {
 	/**
 	 * Get Label Widget
