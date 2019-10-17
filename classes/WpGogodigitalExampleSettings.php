@@ -19,9 +19,6 @@ require_once 'WpGogodigitalExampleWidgets.php';
 class WpGogodigitalExampleSettings
 {
 	/** @var string */
-	private $pluginBaseName;
-
-	/** @var string */
 	private $pluginPath;
 
 	/** @var string */
@@ -51,14 +48,12 @@ class WpGogodigitalExampleSettings
 	/**
 	 * Class Constructor
 	 *
-	 * @param string $baseName
 	 * @param string $menuSlug
 	 * @param string $menuTitle
 	 * @param string $pageTitle
 	 */
-	public function __construct($baseName,$menuSlug,$menuTitle,$pageTitle)
+	public function __construct($menuSlug = '', $menuTitle = '', $pageTitle ='')
 	{
-		$this->pluginBaseName = $baseName;
 		$this->pluginPath = trailingslashit( plugin_dir_path( __FILE__ ) );
 		$this->pluginUrl  = trailingslashit( plugin_dir_url( __FILE__ ) );
 
@@ -72,52 +67,8 @@ class WpGogodigitalExampleSettings
 		$this->selectExample = get_option('gogodigital-example-select');
 		$this->selectPostTypesExample = get_option('gogodigital-example-select-post-type');
 
-		/** Add Plugin Settings Link on Plugin Page  */
-		add_filter( 'plugin_action_links', array($this,'gogodigital_example_action_links'), 10, 2);
-
-		/** Add Plugin Page Menu */
-		add_action( 'admin_menu', array($this,'add_plugin_page') );
-
 		/** Register Settings */
 		add_action( 'admin_init', array($this,'gogodigital_example_register_settings') );
-	}
-
-	/**
-	 * Settings Button on Plugins Page
-	 *
-	 * @param $links
-	 * @param $file
-	 *
-	 * @return string
-	 */
-	function gogodigital_example_action_links($links, $file)
-	{
-		static $this_plugin;
-
-		if (!$this_plugin) {
-			$this_plugin = $this->pluginBaseName;
-		}
-
-		if ($file === $this_plugin) {
-			$settings_link = '<a href="options-general.php?page=gogodigital-example-plugin">' . __( 'Settings', 'gogodigital-example' ) . '</a>';
-			array_unshift( $links, $settings_link );
-		}
-
-		return $links;
-	}
-
-	/**
-	 * Add Sidebar Menu options page
-	 */
-	public function add_plugin_page()
-	{
-		add_menu_page(
-			$this->pageTitle,
-			$this->menuTitle,
-			'manage_options',
-			$this->menuSlug,
-			array( $this, 'create_admin_page' )
-		);
 	}
 
 	/**
@@ -150,7 +101,7 @@ class WpGogodigitalExampleSettings
 		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-checkbox', 'gogodigital_example_callback' );
 
 		/** Register Example Select Post Types Option */
-		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select-post-types', 'gogodigital_example_callback' );
+		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select-post-type', 'gogodigital_example_callback' );
 	}
 
 	/**
@@ -254,10 +205,10 @@ class WpGogodigitalExampleSettings
                     <table class="form-table">
                         <tr>
                             <th scope="row">
-				                <?php echo $widgetClass::getLabelWidget('gogodigital-example-select-post-types',__( 'Post Types Select', 'gogodigital-example' )) ?>
+				                <?php echo $widgetClass::getLabelWidget('gogodigital-example-select-post-type',__( 'Post Types Select', 'gogodigital-example' )) ?>
                             </th>
                             <td>
-		                        <?php echo $widgetClass::getSelectPostTypesWidget('gogodigital-example-select-post-types',$this->selectPostTypesExample) ?>
+		                        <?php echo $widgetClass::getSelectPostTypesWidget('gogodigital-example-select-post-type',$this->selectPostTypesExample) ?>
                             </td>
                         </tr>
                     </table>
