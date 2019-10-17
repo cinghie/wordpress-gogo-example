@@ -117,7 +117,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getSelectWidget($name, $currentValue, $values, $description = '', $class = 'form-control', $style = 'min-width: 250px; padding: 3px;')
+	public static function getSelectWidget($name, $currentValue, $values, $description = '', $class = 'form-control', $style = 'min-width: 150px; padding: 3px;')
 	{
 		$html = '<select class="'.$class.'" id="'.$name.'" name="'.$name.'" style="'.$style.'">';
 
@@ -156,6 +156,35 @@ class WpGogodigitalExampleWidgets
 			$html .= '</p>';
 		}
 
+		$html .= self::getFieldDescription($name,$description);
+
+		return $html;
+	}
+
+	/**
+	 * Get Select Widget
+	 *
+	 * @param string $name
+	 * @param string $currentValue
+	 * @param string $description
+	 * @param string $class
+	 * @param string $style
+	 *
+	 * @return string
+	 */
+	public static function getSelectPostTypesWidget($name, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 150px; padding: 3px;')
+	{
+		$html = '<select class="'.$class.'" id="'.$name.'" name="'.$name.'" style="'.$style.'">';
+
+		$values = get_post_types('');
+
+		foreach($values as $key => $value)
+		{
+			$selected = $currentValue === $value ? 'selected' : '';
+			$html .= '<option value="'.$value.'" '.$selected.'>'.ucfirst($key).'</option>';
+		}
+
+		$html .= '</select>';
 		$html .= self::getFieldDescription($name,$description);
 
 		return $html;

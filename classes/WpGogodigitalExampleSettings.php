@@ -45,6 +45,9 @@ class WpGogodigitalExampleSettings
 	/** @var string */
 	private $selectExample;
 
+	/** @var string */
+	private $selectPostTypesExample;
+
 	/**
 	 * Class Constructor
 	 *
@@ -67,6 +70,7 @@ class WpGogodigitalExampleSettings
 		$this->inputExample = get_option('gogodigital-example-input');
 		$this->radioExample = get_option('gogodigital-example-radio');
 		$this->selectExample = get_option('gogodigital-example-select');
+		$this->selectPostTypesExample = get_option('gogodigital-example-select-post-type');
 
 		/** Add Plugin Settings Link on Plugin Page  */
 		add_filter( 'plugin_action_links', array($this,'gogodigital_example_action_links'), 10, 2);
@@ -139,11 +143,14 @@ class WpGogodigitalExampleSettings
 		/** Register Example Input Option */
 		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-radio', 'gogodigital_example_callback' );
 
-		/** Register Example Select Optio */
+		/** Register Example Select Option */
 		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select', 'gogodigital_example_callback' );
 
-		/** Register Example Select Optio */
+		/** Register Example Checkbox Option */
 		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-checkbox', 'gogodigital_example_callback' );
+
+		/** Register Example Select Post Types Option */
+		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select-post-types', 'gogodigital_example_callback' );
 	}
 
 	/**
@@ -183,6 +190,8 @@ class WpGogodigitalExampleSettings
                 <?php if($active_tab === 'settings'): ?>
 
                     <?php settings_fields( 'gogodigital_example_options_group' ); ?>
+
+                    <h2>Input Widgets</h2>
 
                     <table class="form-table">
                         <tr>
@@ -234,6 +243,21 @@ class WpGogodigitalExampleSettings
                                     __( 'Example Checkbox', 'gogodigital-example' ),
                                     __( 'Example Checkbox Description', 'gogodigital-example' )
                                 ) ?>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <hr style="border-bottom: 1px solid #ccc;">
+
+                    <h2>Posts Widgets</h2>
+
+                    <table class="form-table">
+                        <tr>
+                            <th scope="row">
+				                <?php echo $widgetClass::getLabelWidget('gogodigital-example-select-post-types',__( 'Post Types Select', 'gogodigital-example' )) ?>
+                            </th>
+                            <td>
+		                        <?php echo $widgetClass::getSelectPostTypesWidget('gogodigital-example-select-post-types',$this->selectPostTypesExample) ?>
                             </td>
                         </tr>
                     </table>
