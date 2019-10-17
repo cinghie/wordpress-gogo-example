@@ -24,7 +24,6 @@ require_once 'classes/WpGogodigitalExampleSettings.php';
 /**
  * Modify this plugin params
  */
-$baseName  = plugin_basename( __FILE__ );
 $menuSlug  = 'gogodigital-example-plugin';
 $menuTitle = __( 'Example', 'gogodigital-example' );
 $pageTitle = __( 'Gogodigital Example', 'gogodigital-example' );
@@ -54,15 +53,22 @@ if( is_admin() ) {
  */
 function add_plugin_page()
 {
-	global $pageTitle, $menuSlug, $menuTitle;
+	global $admin_page_hooks,$pageTitle, $menuSlug, $menuTitle;
 
-	add_menu_page(
-		$pageTitle,
-		$menuTitle,
-		'manage_options',
-		$menuSlug,
-		array( new WpGogodigitalExampleSettings(), 'create_admin_page' )
-	);
+	if ( !isset( $admin_page_hooks[ 'gogodigital_plugin_panel' ] ) )
+	{
+		add_menu_page(
+			$pageTitle,
+			'Gogodigital',
+			'manage_options',
+			$menuSlug,
+			array( new WpGogodigitalExampleSettings($menuSlug,$menuTitle,$pageTitle), 'create_admin_page' ),
+			gogodigital_plugin_get_logo(),
+			apply_filters( 'gogodigital_plugins_menu_item_position', '62' )
+		);
+	}
+
+	//add_submenu_page( $menuSlug, $pageTitle, $menuTitle, 'manage_options', $menuSlug, array( new WpGogodigitalExampleSettings(), 'create_admin_page' ) );
 }
 
 /**
@@ -87,4 +93,14 @@ function gogodigital_example_action_links($links, $file)
 	}
 
 	return $links;
+}
+
+/**
+ * Get Gogodigital SVG logo
+ *
+ * @return string
+ */
+function gogodigital_plugin_get_logo()
+{
+	return untrailingslashit( plugins_url( '/', __FILE__ ) . '/assets/img/gogodigital-icon.svg');
 }
