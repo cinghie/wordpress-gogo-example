@@ -68,7 +68,7 @@ function add_plugin_page()
 		);
 	}
 
-	//add_submenu_page( $menuSlug, $pageTitle, $menuTitle, 'manage_options', $menuSlug, array( new WpGogodigitalExampleSettings(), 'create_admin_page' ) );
+	add_submenu_page( $menuSlug, $pageTitle, $menuTitle, 'manage_options', $menuSlug, array( new WpGogodigitalExampleSettings(), 'create_admin_page' ) );
 }
 
 /**
