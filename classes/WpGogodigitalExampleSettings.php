@@ -45,6 +45,9 @@ class WpGogodigitalExampleSettings
 	/** @var string */
 	private $selectPostTypesExample;
 
+	/** @var string */
+	private $selectCategoriesExample;
+
 	/**
 	 * Class Constructor
 	 *
@@ -66,6 +69,7 @@ class WpGogodigitalExampleSettings
 		$this->radioExample = get_option('gogodigital-example-radio');
 		$this->selectExample = get_option('gogodigital-example-select');
 		$this->selectPostTypesExample = get_option('gogodigital-example-select-post-type');
+		$this->selectCategoriesExample = get_option('gogodigital-example-select-category');
 
 		/** Register Settings */
 		add_action( 'admin_init', array($this,'gogodigital_example_register_settings') );
@@ -102,6 +106,9 @@ class WpGogodigitalExampleSettings
 
 		/** Register Example Select Post Types Option */
 		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select-post-type', 'gogodigital_example_callback' );
+
+		/** Register Example Select Categories Option */
+		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select-category', 'gogodigital_example_callback' );
 	}
 
 	/**
@@ -209,6 +216,14 @@ class WpGogodigitalExampleSettings
                             </th>
                             <td>
 		                        <?php echo $widgetClass::getSelectPostTypesWidget('gogodigital-example-select-post-type',$this->selectPostTypesExample) ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+			                    <?php echo $widgetClass::getLabelWidget('gogodigital-example-select-category',__( 'Post Categories', 'gogodigital-example' )) ?>
+                            </th>
+                            <td>
+			                    <?php echo $widgetClass::getSelectCategoriesWidget('','gogodigital-example-select-category',$this->selectCategoriesExample) ?>
                             </td>
                         </tr>
                     </table>

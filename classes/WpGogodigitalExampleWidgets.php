@@ -123,7 +123,7 @@ class WpGogodigitalExampleWidgets
 
 		foreach($values as $key => $value)
 		{
-			$selected = $currentValue === $value ? 'selected' : '';
+			$selected = $currentValue == $value ? 'selected' : '';
 			$html .= '<option value="'.$value.'" '.$selected.'>'.$key.'</option>';
 		}
 
@@ -162,7 +162,7 @@ class WpGogodigitalExampleWidgets
 	}
 
 	/**
-	 * Get Select Widget
+	 * Get Select Post Types Widget
 	 *
 	 * @param string $name
 	 * @param string $currentValue
@@ -174,19 +174,34 @@ class WpGogodigitalExampleWidgets
 	 */
 	public static function getSelectPostTypesWidget($name, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 150px; padding: 3px;')
 	{
-		$html = '<select class="'.$class.'" id="'.$name.'" name="'.$name.'" style="'.$style.'">';
-
 		$values = get_post_types('');
 
-		foreach($values as $key => $value)
+		return self::getSelectWidget($name, $currentValue, $values, $description = '', $class = 'form-control', $style = 'min-width: 150px; padding: 3px;');
+	}
+
+	/**
+	 * Get Select Categories Widget
+	 *
+	 * @param string|array $args
+	 * @param string $name
+	 * @param string $currentValue
+	 * @param string $description
+	 * @param string $class
+	 * @param string $style
+	 *
+	 * @return string
+	 */
+	public static function getSelectCategoriesWidget($args, $name, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 150px; padding: 3px;')
+	{
+		$values = [];
+		$categories = get_categories($args);
+
+		foreach($categories as $category)
 		{
-			$selected = $currentValue === $value ? 'selected' : '';
-			$html .= '<option value="'.$value.'" '.$selected.'>'.ucfirst($key).'</option>';
+			/** @var WP_Term $category */
+			$values[$category->name] = $category->term_id;
 		}
 
-		$html .= '</select>';
-		$html .= self::getFieldDescription($name,$description);
-
-		return $html;
+		return self::getSelectWidget($name, $currentValue, $values, $description, $class, $style);
 	}
 }
