@@ -223,7 +223,7 @@ class WpGogodigitalExampleSettings
 			                    <?php echo $widgetClass::getLabelWidget('gogodigital-example-select-category',__( 'Post Categories', 'gogodigital-example' )) ?>
                             </th>
                             <td>
-			                    <?php echo $widgetClass::getSelectCategoriesWidget('','gogodigital-example-select-category',$this->selectCategoriesExample) ?>
+			                    <?php echo $widgetClass::getSelectCategoriesWidget('gogodigital-example-select-category',$this->selectCategoriesExample) ?>
                             </td>
                         </tr>
                     </table>

@@ -191,7 +191,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getSelectCategoriesWidget($args, $name, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 150px; padding: 3px;')
+	public static function getSelectCategoriesWidget($name, $currentValue, $args = ['taxonomy' => 'category','hide_empty' => 0],$description = '', $class = 'form-control', $style = 'min-width: 150px; padding: 3px;')
 	{
 		$values = [];
 		$categories = get_categories($args);
