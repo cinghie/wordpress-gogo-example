@@ -61,14 +61,14 @@ function add_plugin_page()
 			$pageTitle,
 			'Gogodigital',
 			'manage_options',
-			$menuSlug,
+			'gogodigital-panel',
 			array( new WpGogodigitalExampleSettings($menuSlug,$menuTitle,$pageTitle), 'create_admin_page' ),
 			gogodigital_plugin_get_logo(),
 			apply_filters( 'gogodigital_plugins_menu_item_position', '62' )
 		);
 	}
 
-	add_submenu_page( $menuSlug, $pageTitle, $menuTitle, 'manage_options', $menuSlug, array( new WpGogodigitalExampleSettings(), 'create_admin_page' ) );
+	add_submenu_page( 'gogodigital-panel', $pageTitle, $menuTitle, 'manage_options', $menuSlug, array( new WpGogodigitalExampleSettings(), 'create_admin_page' ) );
 }
 
 /**
