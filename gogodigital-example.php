@@ -34,7 +34,7 @@ $pageTitle = __( 'Gogodigital Example', 'gogodigital-example' );
 if( is_admin() ) {
 
 	/** Add Plugin Page Menu */
-	add_action('admin_menu', 'add_plugin_page');
+	add_action('admin_menu', 'add_example_plugin_page');
 
 	/** Add Plugin Settings Link on Plugin Page  */
 	add_filter('plugin_action_links', 'gogodigital_example_action_links', 10, 2);
@@ -51,7 +51,7 @@ if( is_admin() ) {
 /**
  * Add Sidebar Menu options page
  */
-function add_plugin_page()
+function add_example_plugin_page()
 {
 	global $admin_page_hooks,$pageTitle, $menuSlug, $menuTitle;
 
@@ -60,12 +60,14 @@ function add_plugin_page()
 		add_menu_page(
 			$pageTitle,
 			'Gogodigital',
-			'manage_options',
+			'nosuchcapability',
 			'gogodigital-panel',
-			array( new WpGogodigitalExampleSettings($menuSlug,$menuTitle,$pageTitle), 'create_admin_page' ),
+			null,
 			gogodigital_plugin_get_logo(),
 			apply_filters( 'gogodigital_plugins_menu_item_position', '62' )
 		);
+
+		$admin_page_hooks[ 'gogodigital_plugin_panel' ] = 'gogodigital-plugins';
 	}
 
 	add_submenu_page( 'gogodigital-panel', $pageTitle, $menuTitle, 'manage_options', $menuSlug, array( new WpGogodigitalExampleSettings($menuSlug,$menuTitle,$pageTitle), 'create_admin_page' ) );
@@ -101,7 +103,10 @@ function gogodigital_example_action_links($links, $file)
  *
  * @return string
  */
-function gogodigital_plugin_get_logo()
+if(!function_exists('gogodigital_plugin_get_logo'))
 {
-	return untrailingslashit( plugins_url( '/', __FILE__ ) . '/assets/img/gogodigital-icon.svg');
+	function gogodigital_plugin_get_logo()
+	{
+		return untrailingslashit( plugins_url( '/', __FILE__ ) . '/assets/img/gogodigital-icon.svg');
+	}
 }
