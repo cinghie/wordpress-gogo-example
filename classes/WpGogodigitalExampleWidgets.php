@@ -1,15 +1,8 @@
 <?php
 
 /**
- * Plugin Name: Gogodigital Example
- * Plugin URI: https://github.com/cinghie/wordpress-gogo-example
- * Description: Gogodigital Example plugin just a simple example to develop a new Wordpress Plugin
  * Author: Gogodigital S.r.l.s.
  * Author URI: https://www.gogodigital.it
- * License: GPL3
- * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * Version: 1.0.0
- * Text Domain: gogodigital-example
  **/
 
 if ( !defined( 'ABSPATH' ) ) {
@@ -176,7 +169,7 @@ class WpGogodigitalExampleWidgets
 	{
 		$values = get_post_types('');
 
-		return self::getSelectWidget($name, $currentValue, $values, $description = '', $class = 'form-control', $style = 'min-width: 150px; padding: 3px;');
+		return self::getSelectWidget($name, $currentValue, $values, $description, $class, $style);
 	}
 
 	/**

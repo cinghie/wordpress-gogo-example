@@ -60,9 +60,9 @@ class WpGogodigitalExampleSettings
 		$this->pluginPath = trailingslashit( plugin_dir_path( __FILE__ ) );
 		$this->pluginUrl  = trailingslashit( plugin_dir_url( __FILE__ ) );
 
-		$this->menuSlug  = $exampleMenuSlug;
-		$this->menuTitle = $exampleMenuTitle;
-		$this->pageTitle = $examplePageTitle;
+		$this->exampleMenuSlug  = $exampleMenuSlug;
+		$this->exampleMenuTitle = $exampleMenuTitle;
+		$this->examplePageTitle = $examplePageTitle;
 
 		/** Set Settings values */
 		$this->inputExample = get_option('gogodigital-example-input');
@@ -123,7 +123,7 @@ class WpGogodigitalExampleSettings
 		<div class="wrap" style="overflow: hidden;">
 
 			<div>
-                <h1><?php echo $this->pageTitle ?></h1>
+                <h1><?php echo $this->examplePageTitle ?></h1>
                 <p><?php echo __( 'Gogodigital Example plugin just a simple example to develop a new Wordpress Plugin', 'gogodigital-example' ) ?></p>
 			</div>
 
@@ -132,13 +132,13 @@ class WpGogodigitalExampleSettings
             </div>
 
             <h2 class="nav-tab-wrapper">
-                <a href="?page=<?php echo $this->menuSlug ?>&tab=settings" class="nav-tab <?php echo $active_tab === 'settings' ? 'nav-tab-active' : ''; ?>">
+                <a href="?page=<?php echo $this->exampleMenuSlug ?>&tab=settings" class="nav-tab <?php echo $active_tab === 'settings' ? 'nav-tab-active' : ''; ?>">
                     <?php echo __( 'Settings', 'gogodigital-example' ) ?>
                 </a>
-                <a href="?page=<?php echo $this->menuSlug ?>&tab=shortcode" class="nav-tab <?php echo $active_tab === 'shortcode' ? 'nav-tab-active' : ''; ?>">
+                <a href="?page=<?php echo $this->exampleMenuSlug ?>&tab=shortcode" class="nav-tab <?php echo $active_tab === 'shortcode' ? 'nav-tab-active' : ''; ?>">
 		            <?php echo __( 'Shortcode', 'gogodigital-example' ) ?>
                 </a>
-                <a href="?page=<?php echo $this->menuSlug ?>&tab=about" class="nav-tab <?php echo $active_tab === 'about' ? 'nav-tab-active' : ''; ?>">
+                <a href="?page=<?php echo $this->exampleMenuSlug ?>&tab=about" class="nav-tab <?php echo $active_tab === 'about' ? 'nav-tab-active' : ''; ?>">
                     <?php echo __( 'About', 'gogodigital-example' ) ?>
                 </a>
             </h2>
