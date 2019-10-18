@@ -24,9 +24,9 @@ require_once 'classes/WpGogodigitalExampleSettings.php';
 /**
  * Modify this plugin params
  */
-$menuSlug  = 'gogodigital-example-plugin';
-$menuTitle = __( 'Example', 'gogodigital-example' );
-$pageTitle = __( 'Gogodigital Example', 'gogodigital-example' );
+$exampleMenuSlug  = 'gogodigital-example-plugin';
+$exampleMenuTitle = __( 'Example', 'gogodigital-example' );
+$examplePageTitle = __( 'Gogodigital Example', 'gogodigital-example' );
 
 /**
  * Create Plugin Page
@@ -39,13 +39,13 @@ if( is_admin() ) {
 	/** Add Plugin Settings Link on Plugin Page  */
 	add_filter('plugin_action_links', 'gogodigital_example_action_links', 10, 2);
 
-	$pluginPage = new WpGogodigitalExampleSettings($menuSlug,$menuTitle,$pageTitle);
+	$pluginPage = new WpGogodigitalExampleSettings($exampleMenuSlug,$exampleMenuTitle,$examplePageTitle);
 
 } else {
 
 	$helloWorld = new WpGogodigitalExample();
 
-	add_shortcode( 'togglemenu', array($helloWorld,'gogodigital_hello_world_shortcode') );
+	add_shortcode( 'helloworld', array($helloWorld,'gogodigital_hello_world_shortcode') );
 }
 
 /**
@@ -53,12 +53,12 @@ if( is_admin() ) {
  */
 function add_example_plugin_page()
 {
-	global $admin_page_hooks,$pageTitle, $menuSlug, $menuTitle;
+	global $admin_page_hooks,$examplePageTitle, $exampleMenuSlug, $exampleMenuTitle;
 
 	if ( !isset( $admin_page_hooks[ 'gogodigital_plugin_panel' ] ) )
 	{
 		add_menu_page(
-			$pageTitle,
+			$examplePageTitle,
 			'Gogodigital',
 			'nosuchcapability',
 			'gogodigital-panel',
@@ -70,7 +70,7 @@ function add_example_plugin_page()
 		$admin_page_hooks[ 'gogodigital_plugin_panel' ] = 'gogodigital-plugins';
 	}
 
-	add_submenu_page( 'gogodigital-panel', $pageTitle, $menuTitle, 'manage_options', $menuSlug, array( new WpGogodigitalExampleSettings($menuSlug,$menuTitle,$pageTitle), 'create_admin_page' ) );
+	add_submenu_page( 'gogodigital-panel', $examplePageTitle, $exampleMenuTitle, 'manage_options', $exampleMenuSlug, array( new WpGogodigitalExampleSettings($exampleMenuSlug,$exampleMenuTitle,$examplePageTitle), 'create_admin_page' ) );
 	remove_submenu_page( 'gogodigital-panel', 'gogodigital-panel' );
 }
 

@@ -25,13 +25,13 @@ class WpGogodigitalExampleSettings
 	private $pluginUrl;
 
 	/** @var string */
-	private $menuSlug;
+	private $exampleMenuSlug;
 
 	/** @var string */
-	private $menuTitle;
+	private $exampleMenuTitle;
 
 	/** @var string */
-	private $pageTitle;
+	private $examplePageTitle;
 
 	/** @var string */
 	private $inputExample;
@@ -51,18 +51,18 @@ class WpGogodigitalExampleSettings
 	/**
 	 * Class Constructor
 	 *
-	 * @param string $menuSlug
-	 * @param string $menuTitle
-	 * @param string $pageTitle
+	 * @param string $exampleMenuSlug
+	 * @param string $exampleMenuTitle
+	 * @param string $examplePageTitle
 	 */
-	public function __construct($menuSlug = '', $menuTitle = '', $pageTitle ='')
+	public function __construct($exampleMenuSlug = '', $exampleMenuTitle = '', $examplePageTitle ='')
 	{
 		$this->pluginPath = trailingslashit( plugin_dir_path( __FILE__ ) );
 		$this->pluginUrl  = trailingslashit( plugin_dir_url( __FILE__ ) );
 
-		$this->menuSlug  = $menuSlug;
-		$this->menuTitle = $menuTitle;
-		$this->pageTitle = $pageTitle;
+		$this->menuSlug  = $exampleMenuSlug;
+		$this->menuTitle = $exampleMenuTitle;
+		$this->pageTitle = $examplePageTitle;
 
 		/** Set Settings values */
 		$this->inputExample = get_option('gogodigital-example-input');
