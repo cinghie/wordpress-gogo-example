@@ -68,7 +68,8 @@ function add_plugin_page()
 		);
 	}
 
-	add_submenu_page( 'gogodigital-panel', $pageTitle, $menuTitle, 'manage_options', $menuSlug, array( new WpGogodigitalExampleSettings(), 'create_admin_page' ) );
+	add_submenu_page( 'gogodigital-panel', $pageTitle, $menuTitle, 'manage_options', $menuSlug, array( new WpGogodigitalExampleSettings($menuSlug,$menuTitle,$pageTitle), 'create_admin_page' ) );
+	remove_submenu_page( 'gogodigital-panel', 'gogodigital-panel' );
 }
 
 /**
