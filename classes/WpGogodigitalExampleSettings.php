@@ -25,6 +25,9 @@ class WpGogodigitalExampleSettings
 	private $pluginUrl;
 
 	/** @var string */
+	private $exampleDescription;
+
+	/** @var string */
 	private $exampleMenuSlug;
 
 	/** @var string */
@@ -43,6 +46,9 @@ class WpGogodigitalExampleSettings
 	private $selectExample;
 
 	/** @var string */
+	private $checkboxExample;
+
+	/** @var string */
 	private $selectPostTypesExample;
 
 	/** @var string */
@@ -54,20 +60,23 @@ class WpGogodigitalExampleSettings
 	 * @param string $exampleMenuSlug
 	 * @param string $exampleMenuTitle
 	 * @param string $examplePageTitle
+	 * @param string $exampleDescription
 	 */
-	public function __construct($exampleMenuSlug = '', $exampleMenuTitle = '', $examplePageTitle ='')
+	public function __construct($exampleMenuSlug = '', $exampleMenuTitle = '', $examplePageTitle ='', $exampleDescription ='')
 	{
 		$this->pluginPath = trailingslashit( plugin_dir_path( __FILE__ ) );
 		$this->pluginUrl  = trailingslashit( plugin_dir_url( __FILE__ ) );
 
-		$this->exampleMenuSlug  = $exampleMenuSlug;
-		$this->exampleMenuTitle = $exampleMenuTitle;
-		$this->examplePageTitle = $examplePageTitle;
+		$this->exampleMenuSlug    = $exampleMenuSlug;
+		$this->exampleMenuTitle   = $exampleMenuTitle;
+		$this->examplePageTitle   = $examplePageTitle;
+		$this->exampleDescription = $exampleDescription;
 
 		/** Set Settings values */
 		$this->inputExample = get_option('gogodigital-example-input');
 		$this->radioExample = get_option('gogodigital-example-radio');
 		$this->selectExample = get_option('gogodigital-example-select');
+		$this->checkboxExample = get_option('gogodigital-example-checkbox');
 		$this->selectPostTypesExample = get_option('gogodigital-example-select-post-type');
 		$this->selectCategoriesExample = get_option('gogodigital-example-select-category');
 
@@ -197,7 +206,7 @@ class WpGogodigitalExampleSettings
                             <td>
                                 <?php echo $widgetClass::getCheckboxWidget(
                                     'gogodigital-example-checkbox',
-                                    1,
+	                                $this->checkboxExample,
                                     __( 'Example Checkbox', 'gogodigital-example' ),
                                     __( 'Example Checkbox Description', 'gogodigital-example' )
                                 ) ?>

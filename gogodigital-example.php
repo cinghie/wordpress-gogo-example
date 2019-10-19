@@ -27,6 +27,7 @@ require_once 'classes/WpGogodigitalExampleSettings.php';
 $exampleMenuSlug  = 'gogodigital-example-plugin';
 $exampleMenuTitle = __( 'Example', 'gogodigital-example' );
 $examplePageTitle = __( 'Gogodigital Example', 'gogodigital-example' );
+$exampleDescription = __( 'Gogodigital Example plugin just a simple example to develop a new Wordpress Plugin', 'gogodigital-woocommerce-checkout-fields' );
 
 /**
  * Create Plugin Page
@@ -38,8 +39,6 @@ if( is_admin() ) {
 
 	/** Add Plugin Settings Link on Plugin Page  */
 	add_filter('plugin_action_links', 'gogodigital_example_action_links', 10, 2);
-
-	$pluginPage = new WpGogodigitalExampleSettings($exampleMenuSlug,$exampleMenuTitle,$examplePageTitle);
 
 } else {
 
@@ -53,7 +52,7 @@ if( is_admin() ) {
  */
 function add_example_plugin_page()
 {
-	global $admin_page_hooks,$examplePageTitle, $exampleMenuSlug, $exampleMenuTitle;
+	global $admin_page_hooks, $examplePageTitle, $exampleMenuSlug, $exampleMenuTitle, $exampleDescription;
 
 	if ( !isset( $admin_page_hooks[ 'gogodigital_plugin_panel' ] ) )
 	{
@@ -70,7 +69,7 @@ function add_example_plugin_page()
 		$admin_page_hooks[ 'gogodigital_plugin_panel' ] = 'gogodigital-plugins';
 	}
 
-	add_submenu_page( 'gogodigital-panel', $examplePageTitle, $exampleMenuTitle, 'manage_options', $exampleMenuSlug, array( new WpGogodigitalExampleSettings($exampleMenuSlug,$exampleMenuTitle,$examplePageTitle), 'create_admin_page' ) );
+	add_submenu_page( 'gogodigital-panel', $examplePageTitle, $exampleMenuTitle, 'manage_options', $exampleMenuSlug, array( new WpGogodigitalExampleSettings($exampleMenuSlug,$exampleMenuTitle,$examplePageTitle,$exampleDescription), 'create_admin_page' ) );
 	remove_submenu_page( 'gogodigital-panel', 'gogodigital-panel' );
 }
 
