@@ -64,9 +64,11 @@ class WpGogodigitalExampleSettings
 	 */
 	public function __construct($exampleMenuSlug = '', $exampleMenuTitle = '', $examplePageTitle ='', $exampleDescription ='')
 	{
+		/** Set Plugin info */
 		$this->pluginPath = trailingslashit( plugin_dir_path( __FILE__ ) );
 		$this->pluginUrl  = trailingslashit( plugin_dir_url( __FILE__ ) );
 
+		/** Set Plugin values */
 		$this->exampleMenuSlug    = $exampleMenuSlug;
 		$this->exampleMenuTitle   = $exampleMenuTitle;
 		$this->examplePageTitle   = $examplePageTitle;
