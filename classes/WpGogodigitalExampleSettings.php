@@ -101,6 +101,12 @@ class WpGogodigitalExampleSettings
 		/** Add Example Select Option */
 		add_option( 'gogodigital-example-checkbox');
 
+		/** Add Slider Select Post Type Option */
+		add_option( 'gogodigital-example-select-post-type');
+
+		/** Add Slider Select Category Option */
+		add_option( 'gogodigital-example-select-category');
+
 		/** Register Example Input Option */
 		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-input', 'gogodigital_example_callback' );
 
