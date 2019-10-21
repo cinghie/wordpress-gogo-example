@@ -60,18 +60,17 @@ class WpGogodigitalExampleWidgets
 	 * Get Checkbox Widget
 	 *
 	 * @param string $name
-	 * @param string $value
 	 * @param string $label
 	 * @param string $description
 	 *
 	 * @return string
 	 */
-	public static function getCheckboxWidget($name, $value, $label, $description = '')
+	public static function getCheckboxWidget($name, $label, $description = '')
 	{
 		$checked = get_option($name) ? 'checked="checked"' : '';
 
 		$html = '<fieldset><label for="users_can_register">';
-		$html .= '<input type="checkbox" id="'.$name.'" name="'.$name.'" value="'.$value.'" '.$checked.' />';
+		$html .= '<input type="checkbox" id="'.$name.'" name="'.$name.'" value="1" '.$checked.' />';
 		$html .= $label.'</label>';
 		$html .= self::getFieldDescription($name,$description);
 		$html .= '</fieldset>';

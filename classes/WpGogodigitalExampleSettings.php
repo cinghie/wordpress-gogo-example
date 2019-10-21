@@ -79,6 +79,7 @@ class WpGogodigitalExampleSettings
 		$this->radioExample = get_option('gogodigital-example-radio');
 		$this->selectExample = get_option('gogodigital-example-select');
 		$this->checkboxExample = get_option('gogodigital-example-checkbox');
+
 		$this->selectPostTypesExample = get_option('gogodigital-example-select-post-type');
 		$this->selectCategoriesExample = get_option('gogodigital-example-select-category');
 
@@ -171,22 +172,36 @@ class WpGogodigitalExampleSettings
                     <table class="form-table">
                         <tr>
                             <th scope="row">
-                                <?php echo $widgetClass::getLabelWidget('gogodigital-example-input',__( 'Example Input', 'gogodigital-example' )) ?>
+                                <?php echo $widgetClass::getLabelWidget(
+                                    'gogodigital-example-input',
+                                    __( 'Example Input', 'gogodigital-example' )
+                                ) ?>
                             </th>
                             <td>
-                                <?php echo $widgetClass::getInputWidget('gogodigital-example-input',$this->inputExample,__( 'Example Input Description', 'gogodigital-example' )) ?>
+                                <?php echo $widgetClass::getInputWidget(
+                                    'gogodigital-example-input',
+                                    $this->inputExample,
+                                    __( 'Example Input Description', 'gogodigital-example' )
+                                ) ?>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">
-                                <?php echo $widgetClass::getLabelWidget('gogodigital-example-select',__( 'Example Select', 'gogodigital-example' )) ?>
+                                <?php echo $widgetClass::getLabelWidget(
+                                    'gogodigital-example-select',
+                                    __( 'Example Select', 'gogodigital-example' )
+                                ) ?>
                             </th>
                             <td>
-                                <?php echo $widgetClass::getSelectWidget('gogodigital-example-select',$this->selectExample,[
-                                    'Select Value 1' => 'selectvalue1',
-                                    'Select Value 2' => 'selectvalue2',
-                                    'Select Value 3' => 'selectvalue3'
-                                ], __( 'Example Select Description', 'gogodigital-example' )) ?>
+                                <?php echo $widgetClass::getSelectWidget(
+                                    'gogodigital-example-select',
+                                    $this->selectExample,
+                                    [
+                                        'Select Value 1' => 'selectvalue1',
+                                        'Select Value 2' => 'selectvalue2',
+                                        'Select Value 3' => 'selectvalue3'
+                                    ],
+                                    __( 'Example Select Description', 'gogodigital-example' )) ?>
                             </td>
                         </tr>
                         <tr>
@@ -197,11 +212,16 @@ class WpGogodigitalExampleSettings
                                 ) ?>
                             </th>
                             <td>
-                                <?php echo $widgetClass::getRadioWidget('gogodigital-example-radio',$this->radioExample,[
-                                    'Radio Value 1' => 'radiovalue1',
-                                    'Radio Value 2' => 'radiovalue2',
-                                    'Radio Value 3' => 'radiovalue3'
-                                ], __( 'Example Radio Description', 'gogodigital-example' )) ?>
+                                <?php echo $widgetClass::getRadioWidget(
+                                    'gogodigital-example-radio',
+                                    $this->radioExample,
+                                    [
+                                        'Radio Value 1' => 'radiovalue1',
+                                        'Radio Value 2' => 'radiovalue2',
+                                        'Radio Value 3' => 'radiovalue3'
+                                    ],
+                                    __( 'Example Radio Description', 'gogodigital-example' )
+                                ) ?>
                             </td>
                         </tr>
                         <tr>
@@ -214,7 +234,6 @@ class WpGogodigitalExampleSettings
                             <td>
                                 <?php echo $widgetClass::getCheckboxWidget(
                                     'gogodigital-example-checkbox',
-	                                $this->checkboxExample,
                                     __( 'Example Checkbox', 'gogodigital-example' ),
                                     __( 'Example Checkbox Description', 'gogodigital-example' )
                                 ) ?>
@@ -229,18 +248,30 @@ class WpGogodigitalExampleSettings
                     <table class="form-table">
                         <tr>
                             <th scope="row">
-				                <?php echo $widgetClass::getLabelWidget('gogodigital-example-select-post-type',__( 'Post Types Select', 'gogodigital-example' )) ?>
+				                <?php echo $widgetClass::getLabelWidget(
+				                    'gogodigital-example-select-post-type',
+                                    __( 'Post Types Select', 'gogodigital-example' )
+                                ) ?>
                             </th>
                             <td>
-		                        <?php echo $widgetClass::getSelectPostTypesWidget('gogodigital-example-select-post-type',$this->selectPostTypesExample) ?>
+		                        <?php echo $widgetClass::getSelectPostTypesWidget(
+		                            'gogodigital-example-select-post-type',
+                                    $this->selectPostTypesExample
+                                ) ?>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">
-			                    <?php echo $widgetClass::getLabelWidget('gogodigital-example-select-category',__( 'Post Categories', 'gogodigital-example' )) ?>
+			                    <?php echo $widgetClass::getLabelWidget(
+			                        'gogodigital-example-select-category',
+                                    __( 'Post Categories', 'gogodigital-example' )
+                                ) ?>
                             </th>
                             <td>
-			                    <?php echo $widgetClass::getSelectCategoriesWidget('gogodigital-example-select-category',$this->selectCategoriesExample) ?>
+			                    <?php echo $widgetClass::getSelectCategoriesWidget(
+			                        'gogodigital-example-select-category',
+                                    $this->selectCategoriesExample
+                                ) ?>
                             </td>
                         </tr>
                     </table>
