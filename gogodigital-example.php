@@ -98,23 +98,6 @@ function gogodigital_example_action_links($links, $file)
 }
 
 /**
- * Get Slider plugin url
- *
- * @return string
- */
-if(!function_exists('gogodigital_get_plugin_url'))
-{
-	function gogodigital_get_plugin_url()
-	{
-		if ( !function_exists('plugins_url') ) {
-			return get_option('siteurl') . '/wp-content/plugins/' . plugin_basename(__DIR__);
-		}
-
-		return plugins_url(plugin_basename(__DIR__));
-	}
-}
-
-/**
  * Get Gogodigital SVG logo
  *
  * @return string
