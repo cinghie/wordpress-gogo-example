@@ -52,7 +52,13 @@ class WpGogodigitalExampleSettings
 	private $selectPostTypesExample;
 
 	/** @var string */
+	private $selectMultiplePostTypesExample;
+
+	/** @var string */
 	private $selectCategoriesExample;
+
+	/** @var string */
+	private $selectMultipleCategoriesExample;
 
 	/**
 	 * Class Constructor
@@ -81,7 +87,9 @@ class WpGogodigitalExampleSettings
 		$this->checkboxExample = get_option('gogodigital-example-checkbox');
 
 		$this->selectPostTypesExample = get_option('gogodigital-example-select-post-type');
+		$this->selectMultiplePostTypesExample = get_option('gogodigital-example-select-multiple-post-type');
 		$this->selectCategoriesExample = get_option('gogodigital-example-select-category');
+		$this->selectMultipleCategoriesExample = get_option('gogodigital-example-select-multiple-category');
 
 		/** Register Settings */
 		add_action( 'admin_init', array($this,'gogodigital_example_register_settings') );
@@ -107,8 +115,14 @@ class WpGogodigitalExampleSettings
 		/** Add Slider Select Post Type Option */
 		add_option( 'gogodigital-example-select-post-type');
 
+		/** Add Slider Select Post Type Option */
+		add_option( 'gogodigital-example-select-multiple-post-type');
+
 		/** Add Slider Select Category Option */
 		add_option( 'gogodigital-example-select-category');
+
+		/** Add Slider Select Category Option */
+		add_option( 'gogodigital-example-select-multiple-category');
 
 		/** Register Example Input Option */
 		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-input', 'gogodigital_example_callback' );
@@ -125,8 +139,14 @@ class WpGogodigitalExampleSettings
 		/** Register Example Select Post Types Option */
 		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select-post-type', 'gogodigital_example_callback' );
 
+		/** Register Example Select Multiple Post Types Option */
+		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select-multiple-post-type', 'gogodigital_example_callback' );
+
 		/** Register Example Select Categories Option */
 		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select-category', 'gogodigital_example_callback' );
+
+		/** Register Example Select Multiple Categories Option */
+		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select-multiple-category', 'gogodigital_example_callback' );
 	}
 
 	/**
@@ -262,15 +282,43 @@ class WpGogodigitalExampleSettings
                         </tr>
                         <tr>
                             <th scope="row">
-			                    <?php echo $widgetClass::getLabelWidget(
-			                        'gogodigital-example-select-category',
-                                    __( 'Post Categories', 'gogodigital-example' )
+				                <?php echo $widgetClass::getLabelWidget(
+				                    'gogodigital-example-select-multiple-post-type',
+                                    __( 'Post Types Multiple Select', 'gogodigital-example' )
                                 ) ?>
                             </th>
                             <td>
-			                    <?php echo $widgetClass::getSelectCategoriesWidget(
+		                        <?php $widgetClass::getSelectMultipleCategoriesWidget(
+		                            'gogodigital-example-select-multiple-post-type',
+                                    $this->selectMultiplePostTypesExample
+                                ) ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+			                    <?php echo $widgetClass::getLabelWidget(
+			                        'gogodigital-example-select-category',
+                                    __( 'Post Categories Select', 'gogodigital-example' )
+                                ) ?>
+                            </th>
+                            <td>
+			                    <?php $widgetClass::getSelectCategoriesWidget(
 			                        'gogodigital-example-select-category',
                                     $this->selectCategoriesExample
+                                ) ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+			                    <?php echo $widgetClass::getLabelWidget(
+			                        'gogodigital-example-select-multiple-category',
+                                    __( 'Post Categories Multiple Select', 'gogodigital-example' )
+                                ) ?>
+                            </th>
+                            <td>
+			                    <?php $widgetClass::getSelectMultipleCategoriesWidget(
+			                        'gogodigital-example-select-multiple-category',
+                                    $this->selectMultipleCategoriesExample
                                 ) ?>
                             </td>
                         </tr>
