@@ -33,8 +33,7 @@ Set at line 23 in gogodigital-example.php
  - Menu Slug 
  - Menu Title
  - Page Title
- 
-and at line 58 change gogodigital-example-plugin with Menu Slug 
+ - Description
 
 ### 3. Set form input
 

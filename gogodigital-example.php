@@ -83,6 +83,7 @@ function add_example_plugin_page()
  */
 function gogodigital_example_action_links($links, $file)
 {
+    global $exampleMenuSlug;
 	static $this_plugin;
 
 	if (!$this_plugin) {
@@ -90,7 +91,7 @@ function gogodigital_example_action_links($links, $file)
 	}
 
 	if ($file === $this_plugin) {
-		$settings_link = '<a href="options-general.php?page=gogodigital-example-plugin">' . __( 'Settings', 'gogodigital-example' ) . '</a>';
+		$settings_link = '<a href="admin.php?page='.$exampleMenuSlug.'">' . __( 'Settings', 'gogodigital-example' ) . '</a>';
 		array_unshift( $links, $settings_link );
 	}
 
