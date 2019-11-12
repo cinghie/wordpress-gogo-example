@@ -45,3 +45,9 @@ and at line 58 change gogodigital-example-plugin with Menu Slug
 
  - Change text-domain 'gogodigital-example' in all files
  - Change words in all files
+ 
+## Resources
+
+https://developer.wordpress.org/plugins/settings/custom-settings-page/
+https://code.tutsplus.com/tutorials/the-wordpress-settings-api-part-4-on-theme-options--wp-24902  
+https://code.tutsplus.com/tutorials/the-wordpress-settings-api-part-5-tabbed-navigation-for-settings--wp-24971
