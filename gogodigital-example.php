@@ -18,6 +18,14 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( !defined( 'GOGODIGITAL_EXAMPLE_PATH' ) ) {
+    define( 'GOGODIGITAL_EXAMPLE_PATH', plugin_dir_path( __FILE__ ) );
+}
+
+if ( !defined( 'GOGODIGITAL_EXAMPLE_BASENAME' ) ) {
+    define( 'GOGODIGITAL_EXAMPLE_BASENAME', plugin_basename( __FILE__ ) );
+}
+
 require_once 'classes/WpGogodigitalExample.php';
 require_once 'classes/WpGogodigitalExampleSettings.php';
 
