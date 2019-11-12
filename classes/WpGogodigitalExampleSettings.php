@@ -91,9 +91,19 @@ class WpGogodigitalExampleSettings
 		$this->selectCategoriesExample = get_option('gogodigital-example-select-category');
 		$this->selectMultipleCategoriesExample = get_option('gogodigital-example-select-multiple-category');
 
+		/** Adding Translations */
+        add_action( 'init', array( $this, 'load_textdomain' ) );
+
 		/** Register Settings */
 		add_action( 'admin_init', array($this,'gogodigital_example_register_settings') );
 	}
+
+    /**
+     * Load translations
+     */
+    public function load_textdomain() {
+        load_plugin_textdomain('gogodigital-example', false, basename( __DIR__ ).'/languages' );
+    }
 
 	/**
 	 * Register all input settings
