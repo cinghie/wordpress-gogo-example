@@ -115,7 +115,7 @@ class WpGogodigitalExampleWidgets
 
 		foreach($values as $key => $value)
 		{
-			$selected = $currentValue == $value ? 'selected' : '';
+			$selected = (string)$currentValue === (string)$value ? 'selected' : '';
 			$html .= '<option value="'.$value.'" '.$selected.'>'.$key.'</option>';
 		}
 
@@ -193,7 +193,6 @@ class WpGogodigitalExampleWidgets
 	 */
 	public static function getSelectCategoriesWidget($name, $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], $description = '', $class = 'form-control')
 	{
-
 		$args = [
 			'class' => $class,
 			'hide_empty' => $options['hide_empty'],
@@ -264,7 +263,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string|string[]|null
 	 */
-	function dropdown_style_filter( $output )
+	public function dropdown_style_filter($output )
 	{
 		$output = preg_replace( '/<select (.*?) >/', '<select style="min-width: 200px; padding: 3px 5px;">', $output);
 
@@ -280,14 +279,14 @@ class WpGogodigitalExampleWidgets
 	 * @return string|string[]|null
 	 * @see https://wordpress.stackexchange.com/questions/216070/wp-dropdown-categories-with-multiple-select
 	 */
-	function dropdown_multiple_filter( $output, $r )
+	public function dropdown_multiple_filter( $output, $r )
 	{
 		if( isset( $r['multiple'] ) && $r['multiple'] )
 		{
 			$output = preg_replace( '/^<select/i', '<select size="6" style="min-width: 200px; padding: 3px 5px;" multiple', $output );
 			$output = str_replace( "name='{$r['name']}'", "name='{$r['name']}[]'", $output );
 
-			$selected = is_array($r['selected']) ? $r['selected'] : explode( ",", $r['selected'] );
+			$selected = is_array($r['selected']) ? $r['selected'] : explode( ',', $r['selected'] );
 
 			foreach ( array_map( 'trim', $selected ) as $value ) {
 				$output = str_replace( "value=\"{$value}\"", "value=\"{$value}\" selected", $output );
