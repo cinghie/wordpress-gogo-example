@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Gogodigital Example
- * Plugin URI: https://github.com/cinghie/wordpress-gogo-example
+ * Plugin URI: https://www.gogodigital.it
  * Description: Gogodigital Example plugin just a simple example to develop a new Wordpress Plugin
  * Author: Gogodigital S.r.l.s.
  * Author URI: https://www.gogodigital.it
