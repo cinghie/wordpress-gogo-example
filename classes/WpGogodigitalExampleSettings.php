@@ -54,6 +54,15 @@ class WpGogodigitalExampleSettings
 	/** @var string */
 	private $selectMultipleCategoriesExample;
 
+    /** @var array */
+    private $settingsOptions;
+
+    /** @var array */
+    private $postsOptions;
+
+    /** @var WpGogodigitalExampleWidgets */
+    private $widgetClass;
+
 	/**
 	 * Class Constructor
 	 *
@@ -70,16 +79,23 @@ class WpGogodigitalExampleSettings
 		$this->examplePageTitle   = $examplePageTitle;
 		$this->exampleDescription = $exampleDescription;
 
-		/** Set Settings values */
-		$this->inputExample = get_option('gogodigital-example-input');
-		$this->radioExample = get_option('gogodigital-example-radio');
-		$this->selectExample = get_option('gogodigital-example-select');
-		$this->checkboxExample = get_option('gogodigital-example-checkbox');
+        /** Set Options */
+        $this->settingsOptions = get_option('gogodigital_example_settings_options');
+        $this->postsOptions = get_option('gogodigital_example_post_fields_options');
 
-		$this->selectPostTypesExample = get_option('gogodigital-example-select-post-type');
-		$this->selectMultiplePostTypesExample = get_option('gogodigital-example-select-multiple-post-type');
-		$this->selectCategoriesExample = get_option('gogodigital-example-select-category');
-		$this->selectMultipleCategoriesExample = get_option('gogodigital-example-select-multiple-category');
+        /** Set WidgetClass */
+        $this->widgetClass = new WpGogodigitalExampleWidgets();
+
+		/** Set Settings values */
+		$this->inputExample = $this->settingsOptions['gogodigital-example-input'];
+		$this->radioExample = $this->settingsOptions['gogodigital-example-radio'];
+		$this->selectExample = $this->settingsOptions['gogodigital-example-select'];
+		$this->checkboxExample = $this->settingsOptions['gogodigital-example-checkbox'];
+
+		$this->selectPostTypesExample = $this->postsOptions['gogodigital-example-select-post-type'];
+		$this->selectMultiplePostTypesExample = $this->postsOptions['gogodigital-example-select-multiple-post-type'];
+		$this->selectCategoriesExample = $this->postsOptions['gogodigital-example-select-category'];
+		$this->selectMultipleCategoriesExample = $this->postsOptions['gogodigital-example-select-multiple-category'];
 
 		/** Adding Translations */
         add_action( 'init', array( $this, 'load_textdomain' ) );
@@ -100,53 +116,236 @@ class WpGogodigitalExampleSettings
 	 */
     public function gogodigital_example_register_settings()
 	{
-		/** Add Example Input Option */
-		add_option( 'gogodigital-example-input');
+        /**
+         * Register Simple Fields Options
+         */
+        register_setting(
+            'gogodigital_example_settings_options',
+            'gogodigital_example_settings_options',
+            'gogodigital_example_settings_sanitize'
+        );
 
-		/** Add Example Radio Option */
-		add_option( 'gogodigital-example-radio');
+        add_settings_section(
+            'gogodigital_example_settings_section',
+            '',
+            '',
+            'gogodigital_example_settings_options'
+        );
 
-		/** Add Example Select Option */
-		add_option( 'gogodigital-example-select');
+        add_settings_field(
+            'gogodigital-example-input',
+            __( 'Example Input', 'gogodigital-example' ),
+            array($this,'gogodigital_example_settings_input_callback'),
+            'gogodigital_example_settings_options',
+            'gogodigital_example_settings_section'
+        );
 
-		/** Add Example Select Option */
-		add_option( 'gogodigital-example-checkbox');
+        add_settings_field(
+            'gogodigital-example-select',
+            __( 'Example Select', 'gogodigital-example' ),
+            array($this,'gogodigital_example_settings_select_callback'),
+            'gogodigital_example_settings_options',
+            'gogodigital_example_settings_section'
+        );
 
-		/** Add Slider Select Post Type Option */
-		add_option( 'gogodigital-example-select-post-type');
+        add_settings_field(
+            'gogodigital-example-radio',
+            __( 'Example Radio', 'gogodigital-example' ),
+            array($this,'gogodigital_example_settings_radio_callback'),
+            'gogodigital_example_settings_options',
+            'gogodigital_example_settings_section'
+        );
 
-		/** Add Slider Select Post Type Option */
-		add_option( 'gogodigital-example-select-multiple-post-type');
+        add_settings_field(
+            'gogodigital-example-checkbox',
+            __( 'Example Select', 'gogodigital-example' ),
+            array($this,'gogodigital_example_settings_checkbox_callback'),
+            'gogodigital_example_settings_options',
+            'gogodigital_example_settings_section'
+        );
 
-		/** Add Slider Select Category Option */
-		add_option( 'gogodigital-example-select-category');
+		/**
+		 * Register Post Fields Options
+		 */
+		register_setting(
+			'gogodigital_example_post_fields_options',
+			'gogodigital_example_post_fields_options',
+			'gogodigital_example_post_fields_sanitize'
+		);
 
-		/** Add Slider Select Category Option */
-		add_option( 'gogodigital-example-select-multiple-category');
+		add_settings_section(
+			'gogodigital_example_post_fields_section',
+			'',
+			'',
+			'gogodigital_example_post_fields_options'
+		);
 
-		/** Register Example Input Option */
-		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-input', 'gogodigital_example_callback' );
+		add_settings_field(
+			'gogodigital-example-select-post-type',
+			__( 'Post Types Select', 'gogodigital-example' ),
+			array($this,'gogodigital_example_post_fields_select_post_type_callback'),
+			'gogodigital_example_post_fields_options',
+			'gogodigital_example_post_fields_section'
+		);
 
-		/** Register Example Input Option */
-		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-radio', 'gogodigital_example_callback' );
+		add_settings_field(
+			'gogodigital-example-select-multiple-post-type',
+			__( 'Post Types Multiple Select', 'gogodigital-example' ),
+			array($this,'gogodigital_example_post_fields_select_multiple_post_type_callback'),
+			'gogodigital_example_post_fields_options',
+			'gogodigital_example_post_fields_section'
+		);
 
-		/** Register Example Select Option */
-		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select', 'gogodigital_example_callback' );
+		add_settings_field(
+			'gogodigital-example-select-category',
+			__( 'Post Categories Select', 'gogodigital-example' ),
+			array($this,'gogodigital_example_post_fields_select_category_callback'),
+			'gogodigital_example_post_fields_options',
+			'gogodigital_example_post_fields_section'
+		);
 
-		/** Register Example Checkbox Option */
-		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-checkbox', 'gogodigital_example_callback' );
+		add_settings_field(
+			'gogodigital-example-select-multiple-category',
+			__( 'Post Categories Multiple Select', 'gogodigital-example' ),
+			array($this,'gogodigital_example_post_fields_select_category_multiple_callback'),
+			'gogodigital_example_post_fields_options',
+			'gogodigital_example_post_fields_section'
+		);
+	}
 
-		/** Register Example Select Post Types Option */
-		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select-post-type', 'gogodigital_example_callback' );
+    /**
+     * Input Callback
+     */
+    public function gogodigital_example_settings_input_callback()
+    {
+        echo $this->widgetClass::getInputWidget(
+            'gogodigital_example_settings_options[gogodigital-example-input]',
+            $this->inputExample,
+            __( 'Example Input Description', 'gogodigital-example' )
+        );
+    }
 
-		/** Register Example Select Multiple Post Types Option */
-		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select-multiple-post-type', 'gogodigital_example_callback' );
+    /**
+     * Radio Callback
+     */
+    public function gogodigital_example_settings_radio_callback()
+    {
+        echo $this->widgetClass::getRadioWidget(
+            'gogodigital_example_settings_options[gogodigital-example-radio]',
+            $this->radioExample,
+            [
+                'Radio Value 1' => 'radiovalue1',
+                'Radio Value 2' => 'radiovalue2',
+                'Radio Value 3' => 'radiovalue3'
+            ],
+            __( 'Example Radio Description', 'gogodigital-example' )
+        );
+    }
 
-		/** Register Example Select Categories Option */
-		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select-category', 'gogodigital_example_callback' );
+    /**
+     * Select Callback
+     */
+    public function gogodigital_example_settings_select_callback()
+    {
+        echo $this->widgetClass::getSelectWidget(
+            'gogodigital_example_settings_options[gogodigital-example-select]',
+            $this->selectExample,
+            [
+                'Select Value 1' => 'selectvalue1',
+                'Select Value 2' => 'selectvalue2',
+                'Select Value 3' => 'selectvalue3'
+            ],
+            __( 'Example Select Description', 'gogodigital-example' )
+        );
+    }
 
-		/** Register Example Select Multiple Categories Option */
-		register_setting( 'gogodigital_example_options_group', 'gogodigital-example-select-multiple-category', 'gogodigital_example_callback' );
+    /**
+     * Checkbox Callback
+     */
+    public function gogodigital_example_settings_checkbox_callback()
+    {
+        echo $this->widgetClass::getCheckboxWidget(
+            'gogodigital_example_settings_options[gogodigital-example-checkbox]',
+            $this->checkboxExample,
+            __( 'Example Checkbox', 'gogodigital-example' ),
+            __( 'Example Checkbox Description', 'gogodigital-example' )
+        );
+    }
+
+	/**
+	 * Simple Inputs Sanitize
+	 *
+	 * @param $input
+	 *
+	 * @return array
+	 */
+	public function gogodigital_example_settings_sanitize($input)
+	{
+		$output = array();
+
+		if( isset( $input['gogodigital-example-input'] ) ) {
+			$new_input['gogodigital-example-input'] = sanitize_text_field( $input['gogodigital-example-input'] );
+		}
+
+		return $output;
+	}
+
+    /**
+     * Select PostTypes Callback
+     */
+    public function gogodigital_example_post_fields_select_post_type_callback()
+    {
+        echo $this->widgetClass::getSelectPostTypesWidget(
+            'gogodigital_example_post_fields_options[gogodigital-example-select-post-type]',
+            $this->selectPostTypesExample
+        );
+    }
+
+    /**
+     * Select Multiple PostTypes Callback
+     */
+    public function gogodigital_example_post_fields_select_multiple_post_type_callback()
+    {
+        $this->widgetClass::getSelectMultipleCategoriesWidget(
+            'gogodigital_example_post_fields_options[gogodigital-example-select-multiple-post-type]',
+            $this->selectMultiplePostTypesExample
+        );
+    }
+
+	/**
+	 * Select PostTypes Callback
+	 */
+	public function gogodigital_example_post_fields_select_category_callback()
+	{
+		echo $this->widgetClass::getSelectPostTypesWidget(
+			'gogodigital_example_post_fields_options[gogodigital-example-select-category]',
+			$this->selectCategoriesExample
+		);
+	}
+
+	/**
+	 * Select Multiple PostTypes Callback
+	 */
+	public function gogodigital_example_post_fields_select_category_multiple_callback()
+	{
+		$this->widgetClass::getSelectMultipleCategoriesWidget(
+			'gogodigital_example_post_fields_options[gogodigital-example-select-multiple-category]',
+			$this->selectMultipleCategoriesExample
+		);
+	}
+
+	/**
+	 * Post Fields Sanitize
+	 *
+	 * @param $input
+	 *
+	 * @return array
+	 */
+	public function gogodigital_example_post_fields_sanitize($input)
+	{
+		$output = array();
+
+		return $output;
 	}
 
 	/**
@@ -154,8 +353,7 @@ class WpGogodigitalExampleSettings
 	 */
 	public function create_admin_page()
 	{
-		$widgetClass = new WpGogodigitalExampleWidgets();
-		$active_tab  = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'settings';
+		$active_tab  = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'inputs';
 	?>
 
 		<div class="wrap" style="overflow: hidden;">
@@ -170,8 +368,17 @@ class WpGogodigitalExampleSettings
             </div>
 
             <h2 class="nav-tab-wrapper">
-                <a href="?page=<?php echo $this->exampleMenuSlug ?>&tab=settings" class="nav-tab <?php echo $active_tab === 'settings' ? 'nav-tab-active' : ''; ?>">
-                    <?php echo __( 'Settings', 'gogodigital-example' ) ?>
+                <a href="?page=<?php echo $this->exampleMenuSlug ?>&tab=inputs" class="nav-tab <?php echo $active_tab === 'inputs' ? 'nav-tab-active' : ''; ?>">
+                    <?php echo __( 'Simple Fields', 'gogodigital-example' ) ?>
+                </a>
+                <a href="?page=<?php echo $this->exampleMenuSlug ?>&tab=posts" class="nav-tab <?php echo $active_tab === 'posts' ? 'nav-tab-active' : ''; ?>">
+                    <?php echo __( 'Post Fields', 'gogodigital-example' ) ?>
+                </a>
+                <a href="?page=<?php echo $this->exampleMenuSlug ?>&tab=woocommerce" class="nav-tab <?php echo $active_tab === 'woocommerce' ? 'nav-tab-active' : ''; ?>">
+		            <?php echo __( 'Woocommerce Fields', 'gogodigital-example' ) ?>
+                </a>
+                <a href="?page=<?php echo $this->exampleMenuSlug ?>&tab=users" class="nav-tab <?php echo $active_tab === 'users' ? 'nav-tab-active' : ''; ?>">
+		            <?php echo __( 'Users Fields', 'gogodigital-example' ) ?>
                 </a>
                 <a href="?page=<?php echo $this->exampleMenuSlug ?>&tab=shortcode" class="nav-tab <?php echo $active_tab === 'shortcode' ? 'nav-tab-active' : ''; ?>">
 		            <?php echo __( 'Shortcode', 'gogodigital-example' ) ?>
@@ -183,146 +390,19 @@ class WpGogodigitalExampleSettings
 
 			<form class="form-table" method="post" action="options.php">
 
-                <?php if($active_tab === 'settings'): ?>
+                <?php if($active_tab === 'inputs'): ?>
 
-                    <?php settings_fields( 'gogodigital_example_options_group' ); ?>
+                    <?php
+                        settings_fields( 'gogodigital_example_settings_options' );
+                        do_settings_sections( 'gogodigital_example_settings_options' );
+                    ?>
 
-                    <h2>Input Widgets</h2>
+                <?php elseif($active_tab === 'posts'): ?>
 
-                    <table class="form-table">
-                        <tr>
-                            <th scope="row">
-                                <?php echo $widgetClass::getLabelWidget(
-                                    'gogodigital-example-input',
-                                    __( 'Example Input', 'gogodigital-example' )
-                                ) ?>
-                            </th>
-                            <td>
-                                <?php echo $widgetClass::getInputWidget(
-                                    'gogodigital-example-input',
-                                    $this->inputExample,
-                                    __( 'Example Input Description', 'gogodigital-example' )
-                                ) ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <?php echo $widgetClass::getLabelWidget(
-                                    'gogodigital-example-select',
-                                    __( 'Example Select', 'gogodigital-example' )
-                                ) ?>
-                            </th>
-                            <td>
-                                <?php echo $widgetClass::getSelectWidget(
-                                    'gogodigital-example-select',
-                                    $this->selectExample,
-                                    [
-                                        'Select Value 1' => 'selectvalue1',
-                                        'Select Value 2' => 'selectvalue2',
-                                        'Select Value 3' => 'selectvalue3'
-                                    ],
-                                    __( 'Example Select Description', 'gogodigital-example' )) ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <?php echo $widgetClass::getLabelWidget(
-                                    'gogodigital-example-radio',
-                                    __( 'Example Radio', 'gogodigital-example' )
-                                ) ?>
-                            </th>
-                            <td>
-                                <?php echo $widgetClass::getRadioWidget(
-                                    'gogodigital-example-radio',
-                                    $this->radioExample,
-                                    [
-                                        'Radio Value 1' => 'radiovalue1',
-                                        'Radio Value 2' => 'radiovalue2',
-                                        'Radio Value 3' => 'radiovalue3'
-                                    ],
-                                    __( 'Example Radio Description', 'gogodigital-example' )
-                                ) ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <?php echo $widgetClass::getLabelWidget(
-                                    'gogodigital-example-checkbox',
-                                    __( 'Example Checkbox', 'gogodigital-example' )
-                                ) ?>
-                            </th>
-                            <td>
-                                <?php echo $widgetClass::getCheckboxWidget(
-                                    'gogodigital-example-checkbox',
-                                    __( 'Example Checkbox', 'gogodigital-example' ),
-                                    __( 'Example Checkbox Description', 'gogodigital-example' )
-                                ) ?>
-                            </td>
-                        </tr>
-                    </table>
-
-                    <hr style="border-bottom: 1px solid #ccc;">
-
-                    <h2>Posts Widgets</h2>
-
-                    <table class="form-table">
-                        <tr>
-                            <th scope="row">
-				                <?php echo $widgetClass::getLabelWidget(
-				                    'gogodigital-example-select-post-type',
-                                    __( 'Post Types Select', 'gogodigital-example' )
-                                ) ?>
-                            </th>
-                            <td>
-		                        <?php echo $widgetClass::getSelectPostTypesWidget(
-		                            'gogodigital-example-select-post-type',
-                                    $this->selectPostTypesExample
-                                ) ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-				                <?php echo $widgetClass::getLabelWidget(
-				                    'gogodigital-example-select-multiple-post-type',
-                                    __( 'Post Types Multiple Select', 'gogodigital-example' )
-                                ) ?>
-                            </th>
-                            <td>
-		                        <?php $widgetClass::getSelectMultipleCategoriesWidget(
-		                            'gogodigital-example-select-multiple-post-type',
-                                    $this->selectMultiplePostTypesExample
-                                ) ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-			                    <?php echo $widgetClass::getLabelWidget(
-			                        'gogodigital-example-select-category',
-                                    __( 'Post Categories Select', 'gogodigital-example' )
-                                ) ?>
-                            </th>
-                            <td>
-			                    <?php $widgetClass::getSelectCategoriesWidget(
-			                        'gogodigital-example-select-category',
-                                    $this->selectCategoriesExample
-                                ) ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-			                    <?php echo $widgetClass::getLabelWidget(
-			                        'gogodigital-example-select-multiple-category',
-                                    __( 'Post Categories Multiple Select', 'gogodigital-example' )
-                                ) ?>
-                            </th>
-                            <td>
-			                    <?php $widgetClass::getSelectMultipleCategoriesWidget(
-			                        'gogodigital-example-select-multiple-category',
-                                    $this->selectMultipleCategoriesExample
-                                ) ?>
-                            </td>
-                        </tr>
-                    </table>
+                    <?php
+                        settings_fields( 'gogodigital_example_post_fields_options' );
+                        do_settings_sections( 'gogodigital_example_post_fields_options' );
+                    ?>
 
                 <?php elseif($active_tab === 'shortcode'): ?>
 
@@ -330,19 +410,14 @@ class WpGogodigitalExampleSettings
 
                     <pre style="padding: 16px 10px; overflow: auto; line-height: 1.45; background-color: #f6f8fa; border-radius: 3px;">echo do_shortcode('[helloworld]');</pre>
 
-				<?php elseif($active_tab === 'about'): ?>
+                <?php elseif($active_tab === 'about'): ?>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
 
                 <?php endif ?>
 
-				<div style="margin-top: 15px;">
-					<?php echo $widgetClass::getSubmitButton(
-					    'save',
-                        __( 'Save Settings', 'gogodigital-example' )
-                    ) ?>
-				</div>
+                <?php submit_button(__( 'Save', 'gogodigital-example' )) ?>
 
 			</form>
 

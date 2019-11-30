@@ -65,9 +65,9 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getCheckboxWidget($name, $label, $description = '')
+	public static function getCheckboxWidget($name, $value, $label, $description = '')
 	{
-		$checked = get_option($name) ? 'checked="checked"' : '';
+		$checked = $value ? 'checked="checked"' : '';
 
 		$html = '<fieldset><label for="users_can_register">';
 		$html .= '<input type="checkbox" id="'.$name.'" name="'.$name.'" value="1" '.$checked.' />';
