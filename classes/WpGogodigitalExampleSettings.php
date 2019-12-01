@@ -290,6 +290,28 @@ class WpGogodigitalExampleSettings
 		return $output;
 	}
 
+	/**
+	 * Select Category Callback
+	 */
+	public function gogodigital_example_post_fields_select_category_callback()
+	{
+		$this->widgetClass::getSelectCategoriesWidget(
+			'gogodigital_example_post_fields_options[gogodigital-example-select-category]',
+			$this->selectCategoriesExample
+		);
+	}
+
+	/**
+	 * Select Multiple Category Callback
+	 */
+	public function gogodigital_example_post_fields_select_category_multiple_callback()
+	{
+		$this->widgetClass::getSelectMultipleCategoriesWidget(
+			'gogodigital_example_post_fields_options[gogodigital-example-select-multiple-category]',
+			$this->selectMultipleCategoriesExample
+		);
+	}
+
     /**
      * Select PostTypes Callback
      */
@@ -311,28 +333,6 @@ class WpGogodigitalExampleSettings
             $this->selectMultiplePostTypesExample
         );
     }
-
-	/**
-	 * Select PostTypes Callback
-	 */
-	public function gogodigital_example_post_fields_select_category_callback()
-	{
-		echo $this->widgetClass::getSelectPostTypesWidget(
-			'gogodigital_example_post_fields_options[gogodigital-example-select-category]',
-			$this->selectCategoriesExample
-		);
-	}
-
-	/**
-	 * Select Multiple PostTypes Callback
-	 */
-	public function gogodigital_example_post_fields_select_category_multiple_callback()
-	{
-		$this->widgetClass::getSelectMultipleCategoriesWidget(
-			'gogodigital_example_post_fields_options[gogodigital-example-select-multiple-category]',
-			$this->selectMultipleCategoriesExample
-		);
-	}
 
 	/**
 	 * Post Fields Sanitize
