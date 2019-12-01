@@ -181,22 +181,6 @@ class WpGogodigitalExampleSettings
 		);
 
 		add_settings_field(
-			'gogodigital-example-select-post-type',
-			__( 'Post Types Select', 'gogodigital-example' ),
-			array($this,'gogodigital_example_post_fields_select_post_type_callback'),
-			'gogodigital_example_post_fields_options',
-			'gogodigital_example_post_fields_section'
-		);
-
-		add_settings_field(
-			'gogodigital-example-select-multiple-post-type',
-			__( 'Post Types Multiple Select', 'gogodigital-example' ),
-			array($this,'gogodigital_example_post_fields_select_multiple_post_type_callback'),
-			'gogodigital_example_post_fields_options',
-			'gogodigital_example_post_fields_section'
-		);
-
-		add_settings_field(
 			'gogodigital-example-select-category',
 			__( 'Post Categories Select', 'gogodigital-example' ),
 			array($this,'gogodigital_example_post_fields_select_category_callback'),
@@ -208,6 +192,22 @@ class WpGogodigitalExampleSettings
 			'gogodigital-example-select-multiple-category',
 			__( 'Post Categories Multiple Select', 'gogodigital-example' ),
 			array($this,'gogodigital_example_post_fields_select_category_multiple_callback'),
+			'gogodigital_example_post_fields_options',
+			'gogodigital_example_post_fields_section'
+		);
+
+		add_settings_field(
+			'gogodigital-example-select-post-type',
+			__( 'Post Types Select', 'gogodigital-example' ),
+			array($this,'gogodigital_example_post_fields_select_post_type_callback'),
+			'gogodigital_example_post_fields_options',
+			'gogodigital_example_post_fields_section'
+		);
+
+		add_settings_field(
+			'gogodigital-example-select-multiple-post-type',
+			__( 'Post Types Multiple Select', 'gogodigital-example' ),
+			array($this,'gogodigital_example_post_fields_select_multiple_post_type_callback'),
 			'gogodigital_example_post_fields_options',
 			'gogodigital_example_post_fields_section'
 		);
