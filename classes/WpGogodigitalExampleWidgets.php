@@ -57,6 +57,45 @@ class WpGogodigitalExampleWidgets
 	}
 
 	/**
+	 * Get Simple Input Widget
+	 *
+	 * @param string $name
+	 * @param string $value
+	 * @param string $description
+	 * @param string $class
+	 * @param string $style
+	 *
+	 * @return string
+	 */
+	public static function getInputWidget($name, $value, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 6px;')
+	{
+		$html = '<input class="'.$class.'" type="text" id="'.$name.'" name="'.$name.'" value="'.$value.'" style="'.$style.'" />';
+		$html .= self::getFieldDescription($name,$description);
+
+		return $html;
+	}
+
+	/**
+	 * Get Text Area Widget
+	 *
+	 * @param string $name
+	 * @param string $value
+	 * @param string $description
+	 * @param string $class
+	 *
+	 * @return string
+	 */
+	public static function getTextAreaWidget($name, $value, $description = '', $class = 'form-control', $cols = '100', $rows = '10')
+	{
+		$html = '<textarea class="'.$class.'" name="'.$name.'" cols="'.$cols.'" rows="'.$rows.'">';
+		$html .= $value;
+		$html .= '</textarea>';
+		$html .= self::getFieldDescription($name,$description);
+
+		return $html;
+	}
+
+	/**
 	 * Get Checkbox Widget
 	 *
 	 * @param string $name
@@ -74,25 +113,6 @@ class WpGogodigitalExampleWidgets
 		$html .= $label.'</label>';
 		$html .= self::getFieldDescription($name,$description);
 		$html .= '</fieldset>';
-
-		return $html;
-	}
-
-	/**
-	 * Get Simple Input Widget
-	 *
-	 * @param string $name
-	 * @param string $value
-	 * @param string $description
-	 * @param string $class
-	 * @param string $style
-	 *
-	 * @return string
-	 */
-	public static function getInputWidget($name, $value, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 6px;')
-	{
-		$html = '<input class="'.$class.'" type="text" id="'.$name.'" name="'.$name.'" value="'.$value.'" style="'.$style.'" />';
-		$html .= self::getFieldDescription($name,$description);
 
 		return $html;
 	}
