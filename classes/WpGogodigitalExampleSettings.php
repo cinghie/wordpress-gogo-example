@@ -43,16 +43,22 @@ class WpGogodigitalExampleSettings
 	private $checkboxExample;
 
 	/** @var string */
-	private $selectPostTypesExample;
+	private $selectPagesExample;
 
 	/** @var string */
-	private $selectMultiplePostTypesExample;
+	private $selectMultiplePagesExample;
 
 	/** @var string */
 	private $selectCategoriesExample;
 
 	/** @var string */
 	private $selectMultipleCategoriesExample;
+
+	/** @var string */
+	private $selectPostTypesExample;
+
+	/** @var string */
+	private $selectMultiplePostTypesExample;
 
     /** @var array */
     private $settingsOptions;
@@ -92,6 +98,8 @@ class WpGogodigitalExampleSettings
 		$this->selectExample = $this->settingsOptions['gogodigital-example-select'];
 		$this->checkboxExample = $this->settingsOptions['gogodigital-example-checkbox'];
 
+		$this->selectPagesExample = $this->postsOptions['gogodigital-example-select-pages'];
+		$this->selectMultiplePagesExample = $this->postsOptions['gogodigital-example-select-multiple-pages'];
 		$this->selectPostTypesExample = $this->postsOptions['gogodigital-example-select-post-type'];
 		$this->selectMultiplePostTypesExample = $this->postsOptions['gogodigital-example-select-multiple-post-type'];
 		$this->selectCategoriesExample = $this->postsOptions['gogodigital-example-select-category'];
@@ -178,6 +186,22 @@ class WpGogodigitalExampleSettings
 			'',
 			'',
 			'gogodigital_example_post_fields_options'
+		);
+
+		add_settings_field(
+			'gogodigital-example-select-pages',
+			__( 'Pages Select', 'gogodigital-example' ),
+			array($this,'gogodigital_example_post_fields_select_pages_callback'),
+			'gogodigital_example_post_fields_options',
+			'gogodigital_example_post_fields_section'
+		);
+
+		add_settings_field(
+			'gogodigital-example-select-multiple-pages',
+			__( 'Pages Multiple Select', 'gogodigital-example' ),
+			array($this,'gogodigital_example_post_fields_select_multiple_pages_callback'),
+			'gogodigital_example_post_fields_options',
+			'gogodigital_example_post_fields_section'
 		);
 
 		add_settings_field(
@@ -291,6 +315,28 @@ class WpGogodigitalExampleSettings
 	}
 
 	/**
+	 * Select Pages Callback
+	 */
+	public function gogodigital_example_post_fields_select_pages_callback()
+	{
+		$this->widgetClass::getSelectPagesWidget(
+			'gogodigital_example_post_fields_options[gogodigital-example-select-pages]',
+			$this->selectPagesExample
+		);
+	}
+
+	/**
+	 * Select Multiple Pages Callback
+	 */
+	public function gogodigital_example_post_fields_select_multiple_pages_callback()
+	{
+		$this->widgetClass::getSelectMultiplePagesWidget(
+			'gogodigital_example_post_fields_options[gogodigital-example-select-multiple-pages]',
+			$this->selectMultiplePagesExample
+		);
+	}
+
+	/**
 	 * Select Category Callback
 	 */
 	public function gogodigital_example_post_fields_select_category_callback()
@@ -328,7 +374,7 @@ class WpGogodigitalExampleSettings
      */
     public function gogodigital_example_post_fields_select_multiple_post_type_callback()
     {
-        $this->widgetClass::getSelectMultipleCategoriesWidget(
+        $this->widgetClass::getSelectMultipleTypesWidget(
             'gogodigital_example_post_fields_options[gogodigital-example-select-multiple-post-type]',
             $this->selectMultiplePostTypesExample
         );

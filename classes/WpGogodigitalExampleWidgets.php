@@ -174,6 +174,150 @@ class WpGogodigitalExampleWidgets
 	}
 
 	/**
+	 * @param string $name
+	 * @param string $currentValue
+	 * @param array $options
+	 * @param string $description
+	 * @param string $class
+	 *
+	 * @return string
+	 */
+	public static function getSelectPagesWidget($name, $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], $description = '', $class = 'form-control')
+	{
+		$args = [
+			'class' => $class,
+			'hide_empty' => $options['hide_empty'],
+			'id' => $name,
+			'multiple' => false,
+			'name' => $name,
+			'order' => $options['order'],
+			'orderby' => $options['orderby'],
+			'required' => $options['required'],
+			'selected' => $currentValue,
+			'show_option_none' => __('None','wordpress')
+		];
+
+		add_filter( 'wp_dropdown_cats', array( __CLASS__, 'dropdown_style_filter'), 10, 2 );
+
+		$html = wp_dropdown_pages($args);
+		$html .= self::getFieldDescription($name,$description);
+
+		remove_filter('wp_dropdown_pages', array( __CLASS__, 'dropdown_style_filter'));
+
+		return $html;
+	}
+
+	/**
+	 * @param string $name
+	 * @param string $currentValue
+	 * @param array $options
+	 * @param string $description
+	 * @param string $class
+	 *
+	 * @return string
+	 */
+	public static function getSelectMultiplePagesWidget($name, $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], $description = '', $class = 'form-control')
+	{
+		$args = [
+			'class' => $class,
+			'hide_empty' => $options['hide_empty'],
+			'id' => $name,
+			'multiple' => true,
+			'name' => $name,
+			'order' => $options['order'],
+			'orderby' => $options['orderby'],
+			'required' => $options['required'],
+			'selected' => $currentValue,
+			'show_option_none' => __('None','wordpress')
+		];
+
+		add_filter( 'wp_dropdown_pages', array( __CLASS__, 'dropdown_multiple_filter'), 10, 2 );
+
+		$html = wp_dropdown_pages($args);
+		$html .= self::getFieldDescription($name,$description);
+
+		remove_filter('wp_dropdown_pages', array( __CLASS__, 'dropdown_multiple_filter'));
+
+		return $html;
+	}
+
+	/**
+	 * Get Select Categories Widget
+	 *
+	 * @param string|array $options
+	 * @param string $name
+	 * @param string $currentValue
+	 * @param string $description
+	 * @param string $class
+	 *
+	 * @return string
+	 */
+	public static function getSelectCategoriesWidget($name, $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], $description = '', $class = 'form-control')
+	{
+		$args = [
+			'class' => $class,
+			'hide_empty' => $options['hide_empty'],
+			'hierarchical' => true,
+			'id' => $name,
+			'multiple' => false,
+			'name' => $name,
+			'order' => $options['order'],
+			'orderby' => $options['orderby'],
+			'required' => $options['required'],
+			'selected' => $currentValue,
+			'show_option_none' => __('None','wordpress'),
+			'taxonomy' => $options['taxonomy']
+		];
+
+		add_filter( 'wp_dropdown_cats', array( __CLASS__, 'dropdown_style_filter'), 10, 2 );
+
+		$html  = wp_dropdown_categories($args);
+		$html .= self::getFieldDescription($name,$description);
+
+		remove_filter('wp_dropdown_cats', array( __CLASS__, 'dropdown_style_filter'));
+
+		return $html;
+	}
+
+	/**
+	 * Get Select Categories Widget
+	 *
+	 * @param string|array $options
+	 * @param string $name
+	 * @param string $currentValue
+	 * @param string $description
+	 * @param string $class
+	 *
+	 * @return string
+	 */
+	public static function getSelectMultipleCategoriesWidget($name, $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], $description = '', $class = 'form-control')
+	{
+		$args = [
+			'class' => $class,
+			'hide_empty' => $options['hide_empty'],
+			'hierarchical' => true,
+			'id' => $name,
+			'multiple' => true,
+			'name' => $name,
+			'order' => $options['order'],
+			'orderby' => $options['orderby'],
+			'required' => $options['required'],
+			'selected' => $currentValue,
+			'show_option_none' => __('None','wordpress'),
+			'taxonomy' => $options['taxonomy']
+		];
+
+		add_filter( 'wp_dropdown_cats', array( __CLASS__, 'dropdown_multiple_filter'), 10, 2 );
+
+		$html  = wp_dropdown_categories( $args );
+		$html .= self::getFieldDescription($name,$description);
+
+		remove_filter( 'wp_dropdown_cats', array( __CLASS__, 'dropdown_multiple_filter') );
+
+		return $html;
+	}
+
+	/**
 	 * Get Select Post Types Widget
 	 *
 	 * @param string $name
@@ -211,45 +355,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getSelectCategoriesWidget($name, $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], $description = '', $class = 'form-control')
-	{
-		$args = [
-			'class' => $class,
-			'hide_empty' => $options['hide_empty'],
-			'hierarchical' => true,
-			'id' => $name,
-			'multiple' => false,
-			'name' => $name,
-			'order' => $options['order'],
-			'orderby' => $options['orderby'],
-			'required' => $options['required'],
-			'selected' => $currentValue,
-			'show_option_none' => __('None','wordpress'),
-			'taxonomy' => $options['taxonomy']
-		];
-
-		add_filter( 'wp_dropdown_cats', array( __CLASS__, 'dropdown_multiple_filter'), 10, 2 );
-
-		$html  = wp_dropdown_categories($args);
-		$html .= self::getFieldDescription($name,$description);
-
-		remove_filter('wp_dropdown_cats', array( __CLASS__, 'dropdown_style_filter'));
-
-		return $html;
-	}
-
-	/**
-	 * Get Select Categories Widget
-	 *
-	 * @param string|array $options
-	 * @param string $name
-	 * @param string $currentValue
-	 * @param string $description
-	 * @param string $class
-	 *
-	 * @return string
-	 */
-	public static function getSelectMultipleCategoriesWidget($name, $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], $description = '', $class = 'form-control')
+	public static function getSelectMultipleTypesWidget($name, $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], $description = '', $class = 'form-control')
 	{
 		$args = [
 			'class' => $class,
