@@ -18,12 +18,16 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( !defined( 'GOGODIGITAL_EXAMPLE_BASENAME' ) ) {
+	define( 'GOGODIGITAL_EXAMPLE_BASENAME', plugin_basename( __FILE__ ) );
+}
+
 if ( !defined( 'GOGODIGITAL_EXAMPLE_PATH' ) ) {
     define( 'GOGODIGITAL_EXAMPLE_PATH', plugin_dir_path( __FILE__ ) );
 }
 
-if ( !defined( 'GOGODIGITAL_EXAMPLE_BASENAME' ) ) {
-    define( 'GOGODIGITAL_EXAMPLE_BASENAME', plugin_basename( __FILE__ ) );
+if ( !defined( 'GOGODIGITAL_EXAMPLE_URL' ) ) {
+	define( 'GOGODIGITAL_EXAMPLE_URL', plugin_dir_url( __FILE__ ) );
 }
 
 require_once 'classes/WpGogodigitalExample.php';
@@ -92,13 +96,8 @@ function add_example_plugin_page()
 function gogodigital_example_action_links($links, $file)
 {
     global $exampleMenuSlug;
-	static $this_plugin;
 
-	if (!$this_plugin) {
-		$this_plugin = plugin_basename( __FILE__ );
-	}
-
-	if ($file === $this_plugin) {
+	if ($file === GOGODIGITAL_EXAMPLE_URL) {
 		$settings_link = '<a href="admin.php?page='.$exampleMenuSlug.'">' . __( 'Settings', 'gogodigital-example' ) . '</a>';
 		array_unshift( $links, $settings_link );
 	}

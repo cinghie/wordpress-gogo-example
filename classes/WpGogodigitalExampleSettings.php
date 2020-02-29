@@ -80,14 +80,14 @@ class WpGogodigitalExampleSettings
 	public function __construct($exampleMenuSlug = '', $exampleMenuTitle = '', $examplePageTitle ='', $exampleDescription ='')
 	{
 		/** Set Plugin values */
-		$this->exampleMenuSlug    = $exampleMenuSlug;
-		$this->exampleMenuTitle   = $exampleMenuTitle;
-		$this->examplePageTitle   = $examplePageTitle;
+		$this->exampleMenuSlug = $exampleMenuSlug;
+		$this->exampleMenuTitle = $exampleMenuTitle;
+		$this->examplePageTitle = $examplePageTitle;
 		$this->exampleDescription = $exampleDescription;
 
         /** Set Options */
-        $this->settingsOptions = get_option('gogodigital_example_settings_options');
-        $this->postsOptions = get_option('gogodigital_example_post_fields_options');
+        $this->settingsOptions = get_option('gogodigital_example_settings_options') ?: [];
+        $this->postsOptions = get_option('gogodigital_example_post_fields_options') ?: [];
 
         /** Set WidgetClass */
         $this->widgetClass = new WpGogodigitalExampleWidgets();
