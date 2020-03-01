@@ -59,12 +59,19 @@ class WpGogodigitalExampleSettings
 
 	/** @var string */
 	private $selectMultiplePostTypesExample;
+	/** @var string */
+	private $selectUserRolesExample;
+
+	/** @var string */
+	private $selectMultipleUserRolesExample;
 
     /** @var array */
     private $settingsOptions;
 
     /** @var array */
     private $postsOptions;
+    /** @var array */
+    private $usersOptions;
 
     /** @var WpGogodigitalExampleWidgets */
     private $widgetClass;
@@ -88,6 +95,7 @@ class WpGogodigitalExampleSettings
         /** Set Options */
         $this->settingsOptions = get_option('gogodigital_example_settings_options') ?: [];
         $this->postsOptions = get_option('gogodigital_example_post_fields_options') ?: [];
+        $this->usersOptions = get_option('gogodigital_example_users_fields_options') ?: [];
 
         /** Set WidgetClass */
         $this->widgetClass = new WpGogodigitalExampleWidgets();
@@ -104,6 +112,10 @@ class WpGogodigitalExampleSettings
 		$this->selectMultiplePostTypesExample = $this->postsOptions['gogodigital-example-select-multiple-post-type'];
 		$this->selectCategoriesExample = $this->postsOptions['gogodigital-example-select-category'];
 		$this->selectMultipleCategoriesExample = $this->postsOptions['gogodigital-example-select-multiple-category'];
+
+		/** Set Users values */
+		$this->selectUserRolesExample = $this->postsOptions['gogodigital-example-select-user-roles'];
+		$this->selectMultipleUserRolesExample = $this->postsOptions['gogodigital-example-select-multiple-users'];
 
 		/** Register Settings */
 		add_action( 'admin_init', array($this,'gogodigital_example_register_settings') );
@@ -224,6 +236,30 @@ class WpGogodigitalExampleSettings
 			array($this,'gogodigital_example_post_fields_select_multiple_post_type_callback'),
 			'gogodigital_example_post_fields_options',
 			'gogodigital_example_post_fields_section'
+		);
+
+		/**
+		 * Register Users Fields Options
+		 */
+		register_setting(
+			'gogodigital_example_user_roles_options',
+			'gogodigital_example_user_roles_options',
+			'gogodigital_example_user_roles_sanitize'
+		);
+
+		add_settings_section(
+			'gogodigital_example_user_roles_section',
+			'',
+			'',
+			'gogodigital_example_user_roles_options'
+		);
+
+		add_settings_field(
+			'gogodigital-example-select-user-roles',
+			__( 'User Roles Select', 'gogodigital-example' ),
+			array($this,'gogodigital_example_users_roles_select_callback'),
+			'gogodigital_example_user_roles_options',
+			'gogodigital_example_user_roles_section'
 		);
 	}
 
@@ -370,6 +406,17 @@ class WpGogodigitalExampleSettings
         );
     }
 
+    /**
+     * Select Multiple PostTypes Callback
+     */
+    public function gogodigital_example_users_roles_select_callback()
+    {
+        $this->widgetClass::getSelectUserRoles(
+            'gogodigital_example_user_roles_options[gogodigital-example-select-user-roles]',
+            $this->selectUserRolesExample
+        );
+    }
+
 	/**
 	 * Post Fields Sanitize
 	 *
@@ -455,6 +502,13 @@ class WpGogodigitalExampleSettings
                     <?php
                         settings_fields( 'gogodigital_example_post_fields_options' );
                         do_settings_sections( 'gogodigital_example_post_fields_options' );
+                    ?>
+
+                <?php elseif($active_tab === 'users'): ?>
+
+	                <?php
+                        settings_fields( 'gogodigital_example_user_roles_options' );
+                        do_settings_sections( 'gogodigital_example_user_roles_options' );
                     ?>
 
                 <?php elseif($active_tab === 'shortcode'): ?>

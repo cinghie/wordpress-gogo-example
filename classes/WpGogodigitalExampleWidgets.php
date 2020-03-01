@@ -383,6 +383,31 @@ class WpGogodigitalExampleWidgets
 	}
 
 	/**
+	 * Get Select User Roles Widget
+	 *
+	 * @param string $name
+	 * @param string $currentValue
+	 * @param string $description
+	 * @param string $class
+	 * @param string $style
+	 *
+	 * @return string
+	 */
+	public static function getSelectUserRoles($name, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 3px;')
+	{
+		global $wp_roles;
+
+		$values = [];
+		$roles  = $wp_roles->roles;
+
+		foreach($roles as $key => $value) {
+			$values['$value'] = $value;
+		}
+
+		return self::getSelectWidget($name, $currentValue, $values, $description, $class, $style);
+	}
+
+	/**
 	 * Style Dropdown Widget
 	 *
 	 * @param $output
