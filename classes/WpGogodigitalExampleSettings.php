@@ -105,19 +105,9 @@ class WpGogodigitalExampleSettings
 		$this->selectCategoriesExample = $this->postsOptions['gogodigital-example-select-category'];
 		$this->selectMultipleCategoriesExample = $this->postsOptions['gogodigital-example-select-multiple-category'];
 
-		/** Adding Translations */
-        add_action( 'init', array( $this, 'load_textdomain' ) );
-
 		/** Register Settings */
 		add_action( 'admin_init', array($this,'gogodigital_example_register_settings') );
 	}
-
-    /**
-     * Load translations
-     */
-    public function load_textdomain() {
-        load_plugin_textdomain('gogodigital-example', false, basename( __DIR__ ).'/languages' );
-    }
 
 	/**
 	 * Register all input settings
@@ -418,7 +408,7 @@ class WpGogodigitalExampleSettings
                     <?php echo __( 'Simple Fields', 'gogodigital-example' ) ?>
                 </a>
                 <a href="?page=<?php echo $this->exampleMenuSlug ?>&tab=posts" class="nav-tab <?php echo $active_tab === 'posts' ? 'nav-tab-active' : ''; ?>">
-                    <?php echo __( 'Post Fields', 'gogodigital-example' ) ?>
+                    <?php echo __( 'Post/Page Fields', 'gogodigital-example' ) ?>
                 </a>
                 <a href="?page=<?php echo $this->exampleMenuSlug ?>&tab=woocommerce" class="nav-tab <?php echo $active_tab === 'woocommerce' ? 'nav-tab-active' : ''; ?>">
 		            <?php echo __( 'Woocommerce Fields', 'gogodigital-example' ) ?>

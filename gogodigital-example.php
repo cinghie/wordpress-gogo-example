@@ -36,7 +36,7 @@ require_once 'classes/WpGogodigitalExampleSettings.php';
 /**
  * Modify this plugin params
  */
-$exampleMenuSlug  = 'gogodigital-example-plugin';
+$exampleMenuSlug = 'gogodigital-example-plugin';
 $exampleMenuTitle = __( 'Example', 'gogodigital-example' );
 $examplePageTitle = __( 'Gogodigital Example', 'gogodigital-example' );
 $exampleDescription = __( 'Gogodigital Example plugin just a simple example to develop a new Wordpress Plugin', 'gogodigital-woocommerce-checkout-fields' );
@@ -52,11 +52,21 @@ if( is_admin() ) {
 	/** Add Plugin Settings Link on Plugin Page  */
 	add_filter('plugin_action_links', 'gogodigital_example_action_links', 10, 2);
 
+	/** Load Translations */
+	add_action( 'plugins_loaded', 'gogodigital_example_load_textdomain' );
+
 } else {
 
 	$helloWorld = new WpGogodigitalExample();
 
 	add_shortcode( 'helloworld', array($helloWorld,'gogodigital_hello_world_shortcode') );
+}
+
+/**
+ * Load translations
+ */
+function gogodigital_example_load_textdomain() {
+	load_plugin_textdomain('gogodigital-example', false, dirname( GOGODIGITAL_EXAMPLE_BASENAME ).'/languages/' );
 }
 
 /**
@@ -97,7 +107,7 @@ function gogodigital_example_action_links($links, $file)
 {
     global $exampleMenuSlug;
 
-	if ($file === GOGODIGITAL_EXAMPLE_URL) {
+	if ($file === GOGODIGITAL_EXAMPLE_BASENAME) {
 		$settings_link = '<a href="admin.php?page='.$exampleMenuSlug.'">' . __( 'Settings', 'gogodigital-example' ) . '</a>';
 		array_unshift( $links, $settings_link );
 	}

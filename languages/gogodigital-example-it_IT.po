@@ -1,0 +1,139 @@
+# Blank WordPress Pot
+# Copyright 2014 ...
+# This file is distributed under the GNU General Public License v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Blank WordPress Pot v1.0.0\n"
+"Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
+"POT-Creation-Date: 2020-03-01 10:27+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Your Team <translations@example.com>\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
+"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,"
+"_nc:4c,1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: classes/WpGogodigitalExampleSettings.php:135
+msgid "Example Input"
+msgstr "Input di esempio"
+
+#: classes/WpGogodigitalExampleSettings.php:143
+#: classes/WpGogodigitalExampleSettings.php:159
+msgid "Example Select"
+msgstr "Select di esempio"
+
+#: classes/WpGogodigitalExampleSettings.php:151
+msgid "Example Radio"
+msgstr "Radio di esempio"
+
+#: classes/WpGogodigitalExampleSettings.php:183
+msgid "Pages Select"
+msgstr "Select di Pages"
+
+#: classes/WpGogodigitalExampleSettings.php:191
+msgid "Pages Multiple Select"
+msgstr "Select Multipla di Pages"
+
+#: classes/WpGogodigitalExampleSettings.php:199
+msgid "Post Categories Select"
+msgstr "Select di Post Categories"
+
+#: classes/WpGogodigitalExampleSettings.php:207
+msgid "Post Categories Multiple Select"
+msgstr "Select Multipla di Post Categories"
+
+#: classes/WpGogodigitalExampleSettings.php:215
+msgid "Post Types Select"
+msgstr "Select di Post Type"
+
+#: classes/WpGogodigitalExampleSettings.php:223
+msgid "Post Types Multiple Select"
+msgstr "Select Multipla di Post Type"
+
+#: classes/WpGogodigitalExampleSettings.php:238
+msgid "Example Input Description"
+msgstr "Descrizione Input"
+
+#: classes/WpGogodigitalExampleSettings.php:255
+msgid "Example Radio Description"
+msgstr "Descrizione Radio"
+
+#: classes/WpGogodigitalExampleSettings.php:272
+msgid "Example Select Description"
+msgstr "Descrizione Select"
+
+#: classes/WpGogodigitalExampleSettings.php:284
+msgid "Example Checkbox"
+msgstr "Checkbox"
+
+#: classes/WpGogodigitalExampleSettings.php:285
+msgid "Example Checkbox Description"
+msgstr "Descrizione Checkbox"
+
+#: classes/WpGogodigitalExampleSettings.php:399 gogodigital-example.php:42
+msgid ""
+"Gogodigital Example plugin just a simple example to develop a new Wordpress "
+"Plugin"
+msgstr ""
+"Gogodigital Example è un semplice plugin di esempio su come sviluppare un "
+"nuovo Plugin per Wordpress"
+
+#: classes/WpGogodigitalExampleSettings.php:408
+msgid "Simple Fields"
+msgstr "Campi di Esempio"
+
+#: classes/WpGogodigitalExampleSettings.php:411
+msgid "Post/Page Fields"
+msgstr "Campi Post/Page"
+
+#: classes/WpGogodigitalExampleSettings.php:414
+msgid "Woocommerce Fields"
+msgstr "Campi Woocommerce"
+
+#: classes/WpGogodigitalExampleSettings.php:417
+msgid "Users Fields"
+msgstr "Campi Utente"
+
+#: classes/WpGogodigitalExampleSettings.php:420
+#: classes/WpGogodigitalExampleSettings.php:445
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: classes/WpGogodigitalExampleSettings.php:423
+msgid "About"
+msgstr "About"
+
+#: classes/WpGogodigitalExampleSettings.php:456
+msgid "Save"
+msgstr "Salva"
+
+#: classes/WpGogodigitalExampleWidgets.php:197
+#: classes/WpGogodigitalExampleWidgets.php:231
+#: classes/WpGogodigitalExampleWidgets.php:268
+#: classes/WpGogodigitalExampleWidgets.php:306
+#: classes/WpGogodigitalExampleWidgets.php:371
+msgid "None"
+msgstr "Nessuno"
+
+#: gogodigital-example.php:40
+msgid "Example"
+msgstr "Esempio"
+
+#: gogodigital-example.php:41
+msgid "Gogodigital Example"
+msgstr "Gogodigital Example"
+
+#: gogodigital-example.php:111
+msgid "Settings"
+msgstr "Impostazioni"
