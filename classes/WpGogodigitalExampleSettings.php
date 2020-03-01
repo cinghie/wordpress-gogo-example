@@ -248,9 +248,9 @@ class WpGogodigitalExampleSettings
             'gogodigital_example_settings_options[gogodigital-example-radio]',
             $this->radioExample,
             [
-                'Radio Value 1' => 'radiovalue1',
-                'Radio Value 2' => 'radiovalue2',
-                'Radio Value 3' => 'radiovalue3'
+	            __( 'Radio Value 1', 'gogodigital-example' ) => 'radiovalue1',
+	            __( 'Radio Value 2', 'gogodigital-example' ) => 'radiovalue2',
+	            __( 'Radio Value 3', 'gogodigital-example' ) => 'radiovalue3'
             ],
             __( 'Example Radio Description', 'gogodigital-example' )
         );
@@ -265,9 +265,9 @@ class WpGogodigitalExampleSettings
             'gogodigital_example_settings_options[gogodigital-example-select]',
             $this->selectExample,
             [
-                'Select Value 1' => 'selectvalue1',
-                'Select Value 2' => 'selectvalue2',
-                'Select Value 3' => 'selectvalue3'
+                __( 'Select Value 1', 'gogodigital-example' ) => 'selectvalue1',
+                __( 'Select Value 2', 'gogodigital-example' ) => 'selectvalue2',
+                __( 'Select Value 3', 'gogodigital-example' ) => 'selectvalue3'
             ],
             __( 'Example Select Description', 'gogodigital-example' )
         );
@@ -391,6 +391,16 @@ class WpGogodigitalExampleSettings
 	{
 		$active_tab  = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'inputs';
 	?>
+        <style>
+            .form-table tr {
+                border-bottom: 1px solid #f3f3f3;
+            }
+            .nav-tab-active {
+                border-bottom: 1px solid #f1f1f1;
+                background: #fff;
+                color: #000;
+            }
+        </style>
 
 		<div class="wrap" style="overflow: hidden;">
 
@@ -424,7 +434,7 @@ class WpGogodigitalExampleSettings
                 </a>
             </h2>
 
-			<form class="form-table" method="post" action="options.php">
+			<form class="form-table" method="post" action="options.php" style="background: #FFF; padding: 10px 25px;">
 
                 <?php if($active_tab === 'inputs'): ?>
 
