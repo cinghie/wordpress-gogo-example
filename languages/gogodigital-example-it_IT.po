@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blank WordPress Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2020-03-01 11:05+0100\n"
+"POT-Creation-Date: 2020-03-01 11:09+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Your Team <translations@example.com>\n"
@@ -105,7 +105,7 @@ msgstr "Checkbox"
 msgid "Example Checkbox Description"
 msgstr "Descrizione Checkbox"
 
-#: classes/WpGogodigitalExampleSettings.php:409 gogodigital-example.php:42
+#: classes/WpGogodigitalExampleSettings.php:410 gogodigital-example.php:42
 msgid ""
 "Gogodigital Example plugin just a simple example to develop a new Wordpress "
 "Plugin"
@@ -113,32 +113,32 @@ msgstr ""
 "Gogodigital Example è un semplice plugin di esempio su come sviluppare un "
 "nuovo Plugin per Wordpress"
 
-#: classes/WpGogodigitalExampleSettings.php:418
+#: classes/WpGogodigitalExampleSettings.php:419
 msgid "Simple Fields"
 msgstr "Campi di Esempio"
 
-#: classes/WpGogodigitalExampleSettings.php:421
+#: classes/WpGogodigitalExampleSettings.php:422
 msgid "Post/Page Fields"
 msgstr "Campi Post/Page"
 
-#: classes/WpGogodigitalExampleSettings.php:424
+#: classes/WpGogodigitalExampleSettings.php:425
 msgid "Woocommerce Fields"
 msgstr "Campi Woocommerce"
 
-#: classes/WpGogodigitalExampleSettings.php:427
+#: classes/WpGogodigitalExampleSettings.php:428
 msgid "Users Fields"
 msgstr "Campi Utente"
 
-#: classes/WpGogodigitalExampleSettings.php:430
-#: classes/WpGogodigitalExampleSettings.php:455
+#: classes/WpGogodigitalExampleSettings.php:431
+#: classes/WpGogodigitalExampleSettings.php:456
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: classes/WpGogodigitalExampleSettings.php:433
+#: classes/WpGogodigitalExampleSettings.php:434
 msgid "About"
 msgstr "About"
 
-#: classes/WpGogodigitalExampleSettings.php:466
+#: classes/WpGogodigitalExampleSettings.php:467
 msgid "Save"
 msgstr "Salva"
 

@@ -391,7 +391,14 @@ class WpGogodigitalExampleSettings
 	{
 		$active_tab  = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'inputs';
 	?>
+
         <style>
+            .wp-core-ui select, input {
+                padding-left: 8px!important;
+            }
+            .wp-core-ui .button-primary {
+                padding: 2px 10px!important;
+            }
             .form-table tr {
                 border-bottom: 1px solid #f3f3f3;
             }
