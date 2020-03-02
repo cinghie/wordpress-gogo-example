@@ -160,11 +160,16 @@ class WpGogodigitalExampleWidgets
 	 */
 	public static function getSelectMultipleFromArrayWidget($name, $array, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 3px 5px')
 	{
-		$html = '<select multiple class="'.$class.'" id="'.$name.'" name="'.$name.'"" style="'.$style.'">';
+		$html = '<select multiple class="'.$class.'" id="'.$name.'" name="'.$name.'[]" style="'.$style.'">';
 
 		foreach($array as $key => $value)
 		{
-			$selected = (string)$currentValue === (string)$value ? 'selected' : '';
+			if(is_array($currentValue)) {
+				$selected = in_array((string)$value,$currentValue) ? 'selected' : '';
+			} else {
+				$selected = '';
+			}
+
 			$html .= '<option value="'.$value.'" '.$selected.'>'.$key.'</option>';
 		}
 

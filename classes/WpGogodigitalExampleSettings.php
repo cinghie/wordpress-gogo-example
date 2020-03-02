@@ -115,7 +115,7 @@ class WpGogodigitalExampleSettings
 
 		/** Set Users values */
 		$this->selectUserRolesExample = $this->usersOptions['gogodigital-example-select-user-roles'];
-		$this->selectMultipleUserRolesExample = $this->usersOptions['gogodigital-example-select-multiple-users-roles'];
+		$this->selectMultipleUserRolesExample = $this->usersOptions['gogodigital-example-select-multiple-user-roles'];
 
 		/** Register Settings */
 		add_action( 'admin_init', array($this,'gogodigital_example_register_settings') );
