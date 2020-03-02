@@ -411,7 +411,7 @@ class WpGogodigitalExampleSettings
      */
     public function gogodigital_example_users_roles_select_callback()
     {
-        $this->widgetClass::getSelectUserRoles(
+        echo $this->widgetClass::getSelectUserRoles(
             'gogodigital_example_user_roles_options[gogodigital-example-select-user-roles]',
             $this->selectUserRolesExample
         );

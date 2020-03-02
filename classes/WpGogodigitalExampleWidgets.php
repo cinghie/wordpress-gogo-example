@@ -397,14 +397,35 @@ class WpGogodigitalExampleWidgets
 	{
 		global $wp_roles;
 
+		$values = [
+			__('None') => 'none'
+		];
+		$roles  = $wp_roles->roles;
+
+		foreach($roles as $key => $value) {
+			$values[$value['name']] = $key;
+		}
+
+		return self::getSelectWidget($name, $currentValue, $values, $description, $class, $style);
+	}
+
+	/**
+	 * @param string $name
+	 * @param string $currentValue
+	 * @param string $description
+	 * @param string $class
+	 * @param string $style
+	 */
+	public static function getSelectMultipleUserRoles($name, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 3px;')
+	{
+		global $wp_roles;
+
 		$values = [];
 		$roles  = $wp_roles->roles;
 
 		foreach($roles as $key => $value) {
-			$values['$value'] = $value;
+			$values[$value['name']] = $key;
 		}
-
-		return self::getSelectWidget($name, $currentValue, $values, $description, $class, $style);
 	}
 
 	/**
