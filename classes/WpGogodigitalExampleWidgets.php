@@ -435,9 +435,9 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string|string[]|null
 	 */
-	public function dropdown_style_filter($output )
+	public function dropdown_style_filter( $output )
 	{
-		$output = preg_replace( '/<select (.*?) >/', '<select style="min-width: 200px; padding: 3px 5px;">', $output);
+		$output = preg_replace( '/<select /', '<select style="min-width: 200px; padding: 3px 5px;" ', $output);
 
 		return $output;
 	}

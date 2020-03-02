@@ -511,6 +511,10 @@ class WpGogodigitalExampleSettings
                         do_settings_sections( 'gogodigital_example_user_roles_options' );
                     ?>
 
+                <?php elseif($active_tab === 'woocommerce'): ?>
+
+
+
                 <?php elseif($active_tab === 'shortcode'): ?>
 
                     <h3><?php echo __( 'Shortcode', 'gogodigital-example' )?></h3>
@@ -524,7 +528,7 @@ class WpGogodigitalExampleSettings
 
                 <?php endif ?>
 
-                <?php submit_button(__( 'Save', 'gogodigital-example' )) ?>
+                <?php submit_button( __( 'Save', 'gogodigital-example' ) ) ?>
 
 			</form>
 
