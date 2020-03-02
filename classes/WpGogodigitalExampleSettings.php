@@ -115,7 +115,7 @@ class WpGogodigitalExampleSettings
 
 		/** Set Users values */
 		$this->selectUserRolesExample = $this->usersOptions['gogodigital-example-select-user-roles'];
-		$this->selectMultipleUserRolesExample = $this->usersOptions['gogodigital-example-select-multiple-users'];
+		$this->selectMultipleUserRolesExample = $this->usersOptions['gogodigital-example-select-multiple-users-roles'];
 
 		/** Register Settings */
 		add_action( 'admin_init', array($this,'gogodigital_example_register_settings') );
@@ -258,6 +258,14 @@ class WpGogodigitalExampleSettings
 			'gogodigital-example-select-user-roles',
 			__( 'User Roles Select', 'gogodigital-example' ),
 			array($this,'gogodigital_example_users_roles_select_callback'),
+			'gogodigital_example_user_roles_options',
+			'gogodigital_example_user_roles_section'
+		);
+
+		add_settings_field(
+			'gogodigital-example-select-multiple-user-roles',
+			__( 'User Roles Select Multiple', 'gogodigital-example' ),
+			array($this,'gogodigital_example_users_roles_select_multiple_callback'),
 			'gogodigital_example_user_roles_options',
 			'gogodigital_example_user_roles_section'
 		);
@@ -406,6 +414,24 @@ class WpGogodigitalExampleSettings
         );
     }
 
+	/**
+	 * Simple Inputs Sanitize
+	 *
+	 * @param $input
+	 *
+	 * @return array
+	 */
+	public function gogodigital_example_post_fields_sanitize($input)
+	{
+		$output = array();
+
+		if( isset( $input['gogodigital-example-input'] ) ) {
+			$new_input['gogodigital-example-input'] = sanitize_text_field( $input['gogodigital-example-input'] );
+		}
+
+		return $output;
+	}
+
     /**
      * Select Multiple PostTypes Callback
      */
@@ -417,6 +443,17 @@ class WpGogodigitalExampleSettings
         );
     }
 
+    /**
+     * Select Multiple PostTypes Callback
+     */
+    public function gogodigital_example_users_roles_select_multiple_callback()
+    {
+        echo $this->widgetClass::getSelectMultipleUserRoles(
+            'gogodigital_example_user_roles_options[gogodigital-example-select-multiple-user-roles]',
+            $this->selectMultipleUserRolesExample
+        );
+    }
+
 	/**
 	 * Post Fields Sanitize
 	 *
@@ -424,9 +461,17 @@ class WpGogodigitalExampleSettings
 	 *
 	 * @return array
 	 */
-	public function gogodigital_example_post_fields_sanitize($input)
+	public function gogodigital_example_user_roles_sanitize($input)
 	{
 		$output = array();
+
+		if( isset( $input['gogodigital-example-select-user-roles'] ) ) {
+			$new_input['gogodigital-example-select-user-roles'] = sanitize_text_field( $input['gogodigital-example-select-user-roles'] );
+		}
+
+		if( isset( $input['gogodigital-example-select-multiple-user-roles'] ) ) {
+			$new_input['gogodigital-example-select-multiple-user-roles'] = sanitize_text_field( $input['gogodigital-example-select-multiple-user-roles'] );
+		}
 
 		return $output;
 	}

@@ -146,6 +146,35 @@ class WpGogodigitalExampleWidgets
 	}
 
 	/**
+	 * Get Select Multiple by Array Widget
+	 *
+	 * @param string $name
+	 * @param array  $array
+	 * @param array  $currentValue
+	 * @param string $description
+	 * @param string $class
+	 *
+	 * @param string $style
+	 *
+	 * @return string
+	 */
+	public static function getSelectMultipleFromArrayWidget($name, $array, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 3px 5px')
+	{
+		$html = '<select multiple class="'.$class.'" id="'.$name.'" name="'.$name.'"" style="'.$style.'">';
+
+		foreach($array as $key => $value)
+		{
+			$selected = (string)$currentValue === (string)$value ? 'selected' : '';
+			$html .= '<option value="'.$value.'" '.$selected.'>'.$key.'</option>';
+		}
+
+		$html .= '</select>';
+		$html .= self::getFieldDescription($name,$description);
+
+		return $html;
+	}
+
+	/**
 	 * Get Radio Widget
 	 *
 	 * @param string $name
@@ -411,22 +440,28 @@ class WpGogodigitalExampleWidgets
 	}
 
 	/**
+	 * Get Select Multiple User Roles
+	 *
 	 * @param string $name
-	 * @param string $currentValue
+	 * @param array  $currentValue
 	 * @param string $description
 	 * @param string $class
 	 * @param string $style
+	 *
+	 * @return string
 	 */
 	public static function getSelectMultipleUserRoles($name, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 3px;')
 	{
 		global $wp_roles;
 
-		$values = [];
-		$roles  = $wp_roles->roles;
+		$array = [];
+		$roles = $wp_roles->roles;
 
 		foreach($roles as $key => $value) {
-			$values[$value['name']] = $key;
+			$array[$value['name']] = $key;
 		}
+
+		return self::getSelectMultipleFromArrayWidget($name, $array, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 3px;');
 	}
 
 	/**
