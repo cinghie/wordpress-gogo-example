@@ -400,6 +400,7 @@ class WpGogodigitalExampleWidgets
 		$values = [
 			__('None') => 'none'
 		];
+
 		$roles  = $wp_roles->roles;
 
 		foreach($roles as $key => $value) {
