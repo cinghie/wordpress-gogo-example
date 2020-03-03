@@ -160,7 +160,7 @@ class WpGogodigitalExampleWidgets
 	 */
 	public static function getSelectMultipleFromArrayWidget($name, $array, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 3px 5px')
 	{
-		$html = '<select multiple class="'.$class.'" id="'.$name.'" name="'.$name.'[]" style="'.$style.'">';
+		$html = '<select multiple class="'.$class.'" id="'.$name.'" name="'.$name.'[]" size="10" style="'.$style.'">';
 
 		foreach($array as $key => $value)
 		{
@@ -435,7 +435,8 @@ class WpGogodigitalExampleWidgets
 			__('None') => 'none'
 		];
 
-		$roles  = $wp_roles->roles;
+		$roles = $wp_roles->roles;
+		ksort($roles);
 
 		foreach($roles as $key => $value) {
 			$values[$value['name']] = $key;
@@ -459,8 +460,9 @@ class WpGogodigitalExampleWidgets
 	{
 		global $wp_roles;
 
-		$array = [];
+		$array = [__('All') => 'all'];
 		$roles = $wp_roles->roles;
+		ksort($roles);
 
 		foreach($roles as $key => $value) {
 			$array[$value['name']] = $key;
