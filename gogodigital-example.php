@@ -39,7 +39,7 @@ require_once 'classes/WpGogodigitalExampleSettings.php';
 $exampleMenuSlug = 'gogodigital-example-plugin';
 $exampleMenuTitle = __( 'Example', 'gogodigital-example' );
 $examplePageTitle = __( 'Gogodigital Example', 'gogodigital-example' );
-$exampleDescription = __( 'Gogodigital Example plugin just a simple example to develop a new Wordpress Plugin', 'gogodigital-woocommerce-checkout-fields' );
+$exampleDescription = __( 'Gogodigital Example plugin just a simple example to develop a new Wordpress Plugin', 'gogodigital-example' );
 
 /**
  * Create Plugin Page
