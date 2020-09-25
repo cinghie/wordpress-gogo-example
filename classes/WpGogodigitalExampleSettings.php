@@ -505,7 +505,7 @@ class WpGogodigitalExampleSettings
 
 			<div>
                 <h1><?php echo $this->examplePageTitle ?></h1>
-                <p><?php echo __( 'Gogodigital Example plugin just a simple example to develop a new Wordpress Plugin', 'gogodigital-example' ) ?></p>
+                <p><?php echo $this->exampleDescription ?></p>
 			</div>
 
             <div class="settings-errors">
@@ -562,7 +562,11 @@ class WpGogodigitalExampleSettings
 
                 <?php elseif($active_tab === 'shortcode'): ?>
 
-                    <h3><?php echo __( 'Shortcode', 'gogodigital-example' )?></h3>
+                    <h3>Wordpress <?php echo __( 'Shortcode', 'gogodigital-example' )?></h3>
+
+                    <pre style="padding: 16px 10px; overflow: auto; line-height: 1.45; background-color: #f6f8fa; border-radius: 3px;">[helloworld]</pre>
+
+                    <h3>PHP <?php echo __( 'Shortcode', 'gogodigital-example' )?></h3>
 
                     <pre style="padding: 16px 10px; overflow: auto; line-height: 1.45; background-color: #f6f8fa; border-radius: 3px;">echo do_shortcode('[helloworld]');</pre>
 
