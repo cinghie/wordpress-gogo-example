@@ -11,6 +11,9 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Class WpGogodigitalExample
+ */
 class WpGogodigitalExample
 {
 	/**
