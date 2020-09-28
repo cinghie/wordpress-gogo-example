@@ -18,62 +18,104 @@ require_once 'WpGogodigitalExampleWidgets.php';
  */
 class WpGogodigitalExampleSettings
 {
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $exampleDescription;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $exampleMenuSlug;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $exampleMenuTitle;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $examplePageTitle;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $inputExample;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $radioExample;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $selectExample;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $checkboxExample;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $selectPagesExample;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $selectMultiplePagesExample;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $selectCategoriesExample;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $selectMultipleCategoriesExample;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $selectPostTypesExample;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $selectMultiplePostTypesExample;
-	/** @var string */
+
+	/**
+     * @var string
+     */
 	private $selectUserRolesExample;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $selectMultipleUserRolesExample;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     private $settingsOptions;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     private $postsOptions;
-    /** @var array */
+
+    /**
+     * @var array
+     */
     private $usersOptions;
 
-    /** @var WpGogodigitalExampleWidgets */
+    /**
+     * @var WpGogodigitalExampleWidgets
+     */
     private $widgetClass;
 
 	/**
