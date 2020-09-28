@@ -101,21 +101,21 @@ class WpGogodigitalExampleSettings
         $this->widgetClass = new WpGogodigitalExampleWidgets();
 
 		/** Set Settings values */
-		$this->inputExample = $this->settingsOptions['gogodigital-example-input'];
-		$this->radioExample = $this->settingsOptions['gogodigital-example-radio'];
-		$this->selectExample = $this->settingsOptions['gogodigital-example-select'];
-		$this->checkboxExample = $this->settingsOptions['gogodigital-example-checkbox'];
+		$this->inputExample = isset($this->settingsOptions['gogodigital-example-input']) ? $this->settingsOptions['gogodigital-example-input'] : '';
+		$this->radioExample = isset($this->settingsOptions['gogodigital-example-radio']) ? $this->settingsOptions['gogodigital-example-radio'] : '';
+		$this->selectExample = isset($this->settingsOptions['gogodigital-example-select']) ? $this->settingsOptions['gogodigital-example-select'] : '';
+		$this->checkboxExample = isset($this->settingsOptions['gogodigital-example-checkbox']) ? $this->settingsOptions['gogodigital-example-checkbox'] : '';
 
-		$this->selectPagesExample = $this->postsOptions['gogodigital-example-select-pages'];
-		$this->selectMultiplePagesExample = $this->postsOptions['gogodigital-example-select-multiple-pages'];
-		$this->selectPostTypesExample = $this->postsOptions['gogodigital-example-select-post-type'];
-		$this->selectMultiplePostTypesExample = $this->postsOptions['gogodigital-example-select-multiple-post-type'];
-		$this->selectCategoriesExample = $this->postsOptions['gogodigital-example-select-category'];
-		$this->selectMultipleCategoriesExample = $this->postsOptions['gogodigital-example-select-multiple-category'];
+		$this->selectPagesExample = isset($this->postsOptions['gogodigital-example-select-pages']) ? $this->postsOptions['gogodigital-example-select-pages'] : '';
+		$this->selectMultiplePagesExample = isset($this->postsOptions['gogodigital-example-select-multiple-pages']) ? $this->postsOptions['gogodigital-example-select-multiple-pages'] : '';
+		$this->selectPostTypesExample = isset($this->postsOptions['gogodigital-example-select-post-type']) ? $this->postsOptions['gogodigital-example-select-post-type'] : '';
+		$this->selectMultiplePostTypesExample = isset($this->postsOptions['gogodigital-example-select-multiple-post-type']) ? $this->postsOptions['gogodigital-example-select-multiple-post-type'] : '';
+		$this->selectCategoriesExample = isset($this->postsOptions['gogodigital-example-select-category']) ? $this->postsOptions['gogodigital-example-select-category'] : '';
+		$this->selectMultipleCategoriesExample = isset($this->postsOptions['gogodigital-example-select-multiple-category']) ? $this->postsOptions['gogodigital-example-select-multiple-category'] : '';
 
 		/** Set Users values */
-		$this->selectUserRolesExample = $this->usersOptions['gogodigital-example-select-user-roles'];
-		$this->selectMultipleUserRolesExample = $this->usersOptions['gogodigital-example-select-multiple-user-roles'];
+		$this->selectUserRolesExample = isset($this->usersOptions['gogodigital-example-select-user-roles']) ? $this->postsOptions['gogodigital-example-select-user-roles'] : '';
+		$this->selectMultipleUserRolesExample = isset($this->usersOptions['gogodigital-example-select-multiple-user-roles']) ? $this->postsOptions['gogodigital-example-select-multiple-user-roles'] : '';
 
 		/** Register Settings */
 		add_action( 'admin_init', array($this,'gogodigital_example_register_settings') );
