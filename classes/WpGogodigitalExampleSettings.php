@@ -536,6 +536,13 @@ class WpGogodigitalExampleSettings
             .form-table tr {
                 border-bottom: 1px solid #f3f3f3;
             }
+            .form-table th {
+                line-height: 2;
+            }
+            .form-table td {
+                padding: 8px;
+                line-height: 1;
+            }
             .nav-tab-active {
                 border-bottom: 1px solid #f1f1f1;
                 background: #fff;
