@@ -208,6 +208,8 @@ class WpGogodigitalExampleWidgets
 	}
 
 	/**
+	 * Get Select Pages Widget
+	 *
 	 * @param string $name
 	 * @param string $currentValue
 	 * @param array $options
@@ -242,6 +244,8 @@ class WpGogodigitalExampleWidgets
 	}
 
 	/**
+	 * Get Select Multiple Pages Widget
+	 *
 	 * @param string $name
 	 * @param string $currentValue
 	 * @param array $options
@@ -478,7 +482,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string|string[]|null
 	 */
-	public function dropdown_style_filter( $output )
+	public static function dropdown_style_filter( $output )
 	{
 		$output = preg_replace( '/<select /', '<select style="min-width: 200px; padding: 3px 5px;" ', $output);
 
@@ -494,7 +498,7 @@ class WpGogodigitalExampleWidgets
 	 * @return string|string[]|null
 	 * @see https://wordpress.stackexchange.com/questions/216070/wp-dropdown-categories-with-multiple-select
 	 */
-	public function dropdown_multiple_filter( $output, $r )
+	public static function dropdown_multiple_filter( $output, $r )
 	{
 		if( isset( $r['multiple'] ) && $r['multiple'] )
 		{
