@@ -61,6 +61,11 @@ class WpGogodigitalExampleSettings
 	/**
      * @var string
      */
+	private $mediaExample;
+
+	/**
+     * @var string
+     */
 	private $selectPagesExample;
 
 	/**
@@ -147,6 +152,7 @@ class WpGogodigitalExampleSettings
 		$this->radioExample = isset($this->settingsOptions['gogodigital-example-radio']) ? $this->settingsOptions['gogodigital-example-radio'] : '';
 		$this->selectExample = isset($this->settingsOptions['gogodigital-example-select']) ? $this->settingsOptions['gogodigital-example-select'] : '';
 		$this->checkboxExample = isset($this->settingsOptions['gogodigital-example-checkbox']) ? $this->settingsOptions['gogodigital-example-checkbox'] : '';
+		$this->mediaExample = isset($this->settingsOptions['gogodigital-example-media']) ? $this->settingsOptions['gogodigital-example-media'] : '';
 
 		$this->selectPagesExample = isset($this->postsOptions['gogodigital-example-select-pages']) ? $this->postsOptions['gogodigital-example-select-pages'] : '';
 		$this->selectMultiplePagesExample = isset($this->postsOptions['gogodigital-example-select-multiple-pages']) ? $this->postsOptions['gogodigital-example-select-multiple-pages'] : '';
@@ -212,6 +218,14 @@ class WpGogodigitalExampleSettings
             'gogodigital-example-checkbox',
             __( 'Example Select', 'gogodigital-example' ),
             array($this,'gogodigital_example_settings_checkbox_callback'),
+            'gogodigital_example_settings_options',
+            'gogodigital_example_settings_section'
+        );
+
+        add_settings_field(
+            'gogodigital-example-media',
+            __( 'Example Media', 'gogodigital-example' ),
+            array($this,'gogodigital_example_settings_media_callback'),
             'gogodigital_example_settings_options',
             'gogodigital_example_settings_section'
         );
@@ -369,6 +383,16 @@ class WpGogodigitalExampleSettings
             $this->checkboxExample,
             __( 'Example Checkbox', 'gogodigital-example' ),
             __( 'Example Checkbox Description', 'gogodigital-example' )
+        );
+    }
+
+    /**
+     * Media Callback
+     */
+    public function gogodigital_example_settings_media_callback()
+    {
+        echo $this->widgetClass::getMediaInput(
+            $this
         );
     }
 

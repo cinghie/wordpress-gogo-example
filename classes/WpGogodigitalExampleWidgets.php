@@ -82,6 +82,8 @@ class WpGogodigitalExampleWidgets
 	 * @param string $value
 	 * @param string $description
 	 * @param string $class
+	 * @param string $cols
+	 * @param string $rows
 	 *
 	 * @return string
 	 */
@@ -99,6 +101,7 @@ class WpGogodigitalExampleWidgets
 	 * Get Checkbox Widget
 	 *
 	 * @param string $name
+	 * @param string $value
 	 * @param string $label
 	 * @param string $description
 	 *
@@ -115,6 +118,96 @@ class WpGogodigitalExampleWidgets
 		$html .= '</fieldset>';
 
 		return $html;
+	}
+
+	/**
+	 * Get Media Windget
+	 *
+	 * @param $context
+     *
+     * @see https://jeroensormani.com/how-to-include-the-wordpress-media-selector-in-your-plugin/
+	 */
+	public static function getMediaInput($context)
+	{
+		add_action( 'admin_footer', array($context, 'media_selector_print_scripts') );
+
+		wp_enqueue_media();
+		self::media_selector_print_scripts();
+
+		?>
+		<div class='image-preview-wrapper'>
+			<img id='image-preview' src='' width='100' height='100' style='max-height: 100px; width: 100px;'>
+		</div>
+		<input id="upload_image_button" type="button" class="button" value="<?php _e( 'Upload image' ); ?>" />
+		<input type='hidden' name='image_attachment_id' id='image_attachment_id' value=''>
+		<?php
+	}
+
+	/**
+	 * Media Selector Script
+	 */
+    public static function media_selector_print_scripts()
+	{
+		$my_saved_attachment_post_id = get_option( 'media_selector_attachment_id', 0 );
+
+		?><script type='text/javascript'>
+
+            jQuery( document ).ready( function( $ ) {
+
+                // Uploading files
+                let attachment;
+                let file_frame;
+                let wp_media_post_id = wp.media.model.settings.post.id; // Store the old id
+                let set_to_post_id = <?php echo $my_saved_attachment_post_id; ?>; // Set this
+
+                jQuery('#upload_image_button').on('click', function( event )
+                {
+                    event.preventDefault();
+
+                    // If the media frame already exists, reopen it.
+                    if ( file_frame ) {
+                        // Set the post ID to what we want
+                        file_frame.uploader.uploader.param( 'post_id', set_to_post_id );
+                        // Open frame
+                        file_frame.open();
+                        return;
+                    } else {
+                        // Set the wp.media post id so the uploader grabs the ID we want when initialised
+                        wp.media.model.settings.post.id = set_to_post_id;
+                    }
+
+                    // Create the media frame.
+                    file_frame = wp.media.frames.file_frame = wp.media({
+                        title: 'Select a image to upload',
+                        button: {
+                            text: 'Use this image',
+                        },
+                        multiple: false	// Set to true to allow multiple files to be selected
+                    });
+
+                    // When an image is selected, run a callback.
+                    file_frame.on( 'select', function() {
+                        // We set multiple to false so only get one image from the uploader
+                        attachment = file_frame.state().get('selection').first().toJSON();
+
+                        // Do something with attachment.id and/or attachment.url here
+                        $( '#image-preview' ).attr( 'src', attachment.url ).css( 'width', 'auto' );
+                        $( '#image_attachment_id' ).val( attachment.id );
+
+                        // Restore the main post ID
+                        wp.media.model.settings.post.id = wp_media_post_id;
+                    });
+
+                    // Finally, open the modal
+                    file_frame.open();
+                });
+
+                // Restore the main ID when the add media button is pressed
+                jQuery( 'a.add_media' ).on( 'click', function() {
+                    wp.media.model.settings.post.id = wp_media_post_id;
+                });
+            });
+		</script><?php
 	}
 
 	/**
@@ -165,7 +258,7 @@ class WpGogodigitalExampleWidgets
 		foreach($array as $key => $value)
 		{
 			if(is_array($currentValue)) {
-				$selected = in_array((string)$value,$currentValue) ? 'selected' : '';
+				$selected = in_array((string) $value, $currentValue, false) ? 'selected' : '';
 			} else {
 				$selected = '';
 			}
@@ -453,7 +546,7 @@ class WpGogodigitalExampleWidgets
 	 * Get Select Multiple User Roles
 	 *
 	 * @param string $name
-	 * @param array  $currentValue
+	 * @param array $currentValue
 	 * @param string $description
 	 * @param string $class
 	 * @param string $style
@@ -472,7 +565,7 @@ class WpGogodigitalExampleWidgets
 			$array[$value['name']] = $key;
 		}
 
-		return self::getSelectMultipleFromArrayWidget($name, $array, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 3px;');
+		return self::getSelectMultipleFromArrayWidget($name, $array, $currentValue, $description, $class, $style);
 	}
 
 	/**
