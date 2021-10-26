@@ -125,29 +125,37 @@ class WpGogodigitalExampleWidgets
 	/**
 	 * Get Media Windget
 	 *
-	 * @param $context
+	 * @param string $mediaFieldName
+	 * @param string $mediaFieldId
+	 * @param string $mediaValue
      *
      * @see https://jeroensormani.com/how-to-include-the-wordpress-media-selector-in-your-plugin/
 	 */
-	public static function getMediaInput($context)
+	public static function getMediaInput($mediaFieldName, $mediaFieldId, $mediaValue)
 	{
+        self::media_selector_print_scripts($mediaFieldId, $mediaValue);
 		wp_enqueue_media();
+
+        $mediaSource = wp_get_attachment_url((int)$mediaValue) ?? '';
 
 		?>
 		<div class='image-preview-wrapper'>
-			<img id='image-preview' src='' width='100' height='100' style='max-height: 100px; width: 100px;'>
+			<img id='image-preview' src='<?php echo $mediaSource?>' width='100' height='100' style='max-height: 100px; width: 100px;'>
 		</div>
 		<input id="upload_image_button" type="button" class="button" value="<?php _e( 'Upload image' ); ?>" />
-		<input type='hidden' name='image_attachment_id' id='image_attachment_id' value=''>
+		<input type='hidden' name='<?php echo $mediaFieldName?>' id='<?php echo $mediaFieldId?>' value='<?php echo $mediaValue ?>'>
 		<?php
 	}
 
 	/**
 	 * Media Selector Script
+     *
+     * @param string $mediaFieldId
+     * @param string $mediaValue
 	 */
-    public static function media_selector_print_scripts()
+    public static function media_selector_print_scripts($mediaFieldId, $mediaValue)
 	{
-		$my_saved_attachment_post_id = get_option( 'media_selector_attachment_id', 0 );
+		$my_saved_attachment_post_id = (int)$mediaValue;
 
 		?><script type='text/javascript'>
 
@@ -191,7 +199,7 @@ class WpGogodigitalExampleWidgets
 
                         // Do something with attachment.id and/or attachment.url here
                         $( '#image-preview' ).attr( 'src', attachment.url ).css( 'width', 'auto' );
-                        $( '#image_attachment_id' ).val( attachment.id );
+                        $( '#<?php echo $mediaFieldId ?>' ).val( attachment.id );
 
                         // Restore the main post ID
                         wp.media.model.settings.post.id = wp_media_post_id;

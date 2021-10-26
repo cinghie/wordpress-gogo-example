@@ -152,7 +152,7 @@ class WpGogodigitalExampleSettings
 		$this->radioExample = isset($this->settingsOptions['gogodigital-example-radio']) ? $this->settingsOptions['gogodigital-example-radio'] : '';
 		$this->selectExample = isset($this->settingsOptions['gogodigital-example-select']) ? $this->settingsOptions['gogodigital-example-select'] : '';
 		$this->checkboxExample = isset($this->settingsOptions['gogodigital-example-checkbox']) ? $this->settingsOptions['gogodigital-example-checkbox'] : '';
-		$this->mediaExample = isset($this->settingsOptions['gogodigital-example-media']) ? $this->settingsOptions['gogodigital-example-media'] : '';
+		$this->mediaExample = isset($this->settingsOptions['gogodigital-example-media']) ? $this->settingsOptions['gogodigital-example-media'] : 0;
 
 		$this->selectPagesExample = isset($this->postsOptions['gogodigital-example-select-pages']) ? $this->postsOptions['gogodigital-example-select-pages'] : '';
 		$this->selectMultiplePagesExample = isset($this->postsOptions['gogodigital-example-select-multiple-pages']) ? $this->postsOptions['gogodigital-example-select-multiple-pages'] : '';
@@ -167,9 +167,6 @@ class WpGogodigitalExampleSettings
 
 		/** Register Settings */
 		add_action( 'admin_init', array($this,'gogodigital_example_register_settings') );
-
-        /** Add Media Script */
-        add_action( 'admin_footer', array($this->widgetClass,'media_selector_print_scripts') );
 	}
 
 	/**
@@ -395,7 +392,9 @@ class WpGogodigitalExampleSettings
     public function gogodigital_example_settings_media_callback()
     {
         echo $this->widgetClass::getMediaInput(
-            $this
+            'gogodigital_example_settings_options[gogodigital-example-media]',
+            'gogodigital-example-media',
+            $this->mediaExample
         );
     }
 
