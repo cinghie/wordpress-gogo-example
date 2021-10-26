@@ -167,6 +167,9 @@ class WpGogodigitalExampleSettings
 
 		/** Register Settings */
 		add_action( 'admin_init', array($this,'gogodigital_example_register_settings') );
+
+        /** Add Media Script */
+        add_action( 'admin_footer', array($this->widgetClass,'media_selector_print_scripts') );
 	}
 
 	/**

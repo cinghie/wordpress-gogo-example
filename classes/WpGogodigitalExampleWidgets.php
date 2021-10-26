@@ -13,6 +13,8 @@ if ( !defined( 'ABSPATH' ) ) {
 
 /**
  * Class WpGogodigitalExampleWidgets
+ *
+ * @see https://github.com/tareq1988/wordpress-settings-api-class/blob/master/src/class.settings-api.php
  */
 class WpGogodigitalExampleWidgets
 {
@@ -129,10 +131,7 @@ class WpGogodigitalExampleWidgets
 	 */
 	public static function getMediaInput($context)
 	{
-		add_action( 'admin_footer', array($context, 'media_selector_print_scripts') );
-
 		wp_enqueue_media();
-		self::media_selector_print_scripts();
 
 		?>
 		<div class='image-preview-wrapper'>
