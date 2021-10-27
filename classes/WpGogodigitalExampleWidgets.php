@@ -26,7 +26,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getLabelWidget($name, $value)
+	public static function getLabelWidget(string $name, string $value) : string
 	{
 		return '<label for="'.$name.'">'.$value.'</label>';
 	}
@@ -40,7 +40,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getSubmitButton($name, $value, $class = 'button-primary')
+	public static function getSubmitButton(string $name, string $value, string $class = 'button-primary') : string
 	{
 		return '<input class="'.$class.'" type="submit" name="'.$name.'" value="'.$value.'" />';
 	}
@@ -53,7 +53,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getFieldDescription($name, $description)
+	public static function getFieldDescription(string $name, string $description) : string
 	{
 		return $description ? '<p class="description" id="'.$name.'-description">'.$description.'</p>' : '';
 	}
@@ -69,7 +69,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getInputWidget($name, $value, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 6px;')
+	public static function getInputWidget(string $name, string $value, string $description = '', string $class = 'form-control', string $style = 'min-width: 200px; padding: 6px;') : string
 	{
 		$html = '<input class="'.$class.'" type="text" id="'.$name.'" name="'.$name.'" value="'.$value.'" style="'.$style.'" />';
 		$html .= self::getFieldDescription($name,$description);
@@ -89,7 +89,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getTextAreaWidget($name, $value, $description = '', $class = 'form-control', $cols = '100', $rows = '10')
+	public static function getTextAreaWidget(string $name, string $value, string $description = '', string $class = 'form-control', string $cols = '100', string $rows = '10') : string
 	{
 		$html = '<textarea class="'.$class.'" name="'.$name.'" cols="'.$cols.'" rows="'.$rows.'">';
 		$html .= $value;
@@ -109,7 +109,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getCheckboxWidget($name, $value, $label, $description = '')
+	public static function getCheckboxWidget(string $name, string $value, string $label, string $description = '') : string
 	{
 		$checked = $value ? 'checked="checked"' : '';
 
@@ -131,7 +131,7 @@ class WpGogodigitalExampleWidgets
      *
      * @see https://jeroensormani.com/how-to-include-the-wordpress-media-selector-in-your-plugin/
 	 */
-	public static function getMediaInput($mediaFieldName, $mediaFieldId, $mediaValue)
+	public static function getMediaInput(string $mediaFieldName, string $mediaFieldId, string $mediaValue) : void
 	{
         self::media_selector_print_scripts($mediaFieldId, $mediaValue);
 		wp_enqueue_media();
@@ -140,7 +140,7 @@ class WpGogodigitalExampleWidgets
 
 		?>
 		<div class='image-preview-wrapper'>
-			<img id='image-preview' src='<?php echo $mediaSource?>' width='100' height='100' style='max-height: 100px; width: 100px;'>
+			<img id='image-preview' src='<?php echo $mediaSource?>' alt="<?php echo $mediaFieldName?>" title="<?php echo $mediaFieldName?>" width='100' height='100' style='max-height: 100px; width: 100px;'>
 		</div>
 		<input id="upload_image_button" type="button" class="button" value="<?php _e( 'Upload image' ); ?>" />
 		<input type='hidden' name='<?php echo $mediaFieldName?>' id='<?php echo $mediaFieldId?>' value='<?php echo $mediaValue ?>'>
@@ -153,11 +153,11 @@ class WpGogodigitalExampleWidgets
      * @param string $mediaFieldId
      * @param string $mediaValue
 	 */
-    public static function media_selector_print_scripts($mediaFieldId, $mediaValue)
-	{
+    public static function media_selector_print_scripts(string $mediaFieldId, string $mediaValue) : void
+    {
 		$my_saved_attachment_post_id = (int)$mediaValue;
-
-		?><script type='text/javascript'>
+		?>
+        <script type='text/javascript'>
 
             jQuery( document ).ready( function( $ ) {
 
@@ -214,22 +214,23 @@ class WpGogodigitalExampleWidgets
                     wp.media.model.settings.post.id = wp_media_post_id;
                 });
             });
-		</script><?php
+		</script>
+        <?php
 	}
 
 	/**
 	 * Get Select Widget
 	 *
 	 * @param string $name
+     * @param array|string $currentValue
 	 * @param array $values
-	 * @param string $currentValue
 	 * @param string $description
 	 * @param string $class
 	 * @param string $style
 	 *
 	 * @return string
 	 */
-	public static function getSelectWidget($name, $currentValue, $values, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 3px;')
+	public static function getSelectWidget(string $name, $currentValue, array $values, string $description = '', string $class = 'form-control', string $style = 'min-width: 200px; padding: 3px;') : string
 	{
 		$html = '<select class="'.$class.'" id="'.$name.'" name="'.$name.'" style="'.$style.'">';
 
@@ -249,8 +250,8 @@ class WpGogodigitalExampleWidgets
 	 * Get Select Multiple by Array Widget
 	 *
 	 * @param string $name
-	 * @param array  $array
-	 * @param array  $currentValue
+	 * @param array $array
+	 * @param array|string $currentValue
 	 * @param string $description
 	 * @param string $class
 	 *
@@ -258,7 +259,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getSelectMultipleFromArrayWidget($name, $array, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 3px 5px')
+	public static function getSelectMultipleFromArrayWidget(string $name, array $array, $currentValue, string $description = '', string $class = 'form-control', string $style = 'min-width: 200px; padding: 3px 5px') : string
 	{
 		$html = '<select multiple class="'.$class.'" id="'.$name.'" name="'.$name.'[]" size="10" style="'.$style.'">';
 
@@ -283,13 +284,13 @@ class WpGogodigitalExampleWidgets
 	 * Get Radio Widget
 	 *
 	 * @param string $name
+     * @param string $currentValue
 	 * @param array $values
-	 * @param string $currentValue
 	 * @param string $description
 	 *
 	 * @return string
 	 */
-	public static function getRadioWidget($name, $currentValue, $values, $description = '')
+	public static function getRadioWidget(string $name, string $currentValue, array $values, string $description = '') : string
 	{
 		$html = '';
 
@@ -318,7 +319,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getSelectPagesWidget($name, $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], $description = '', $class = 'form-control')
+	public static function getSelectPagesWidget(string $name, string $currentValue, array $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], string $description = '', string $class = 'form-control') : string
 	{
 		$args = [
 			'class' => $class,
@@ -354,7 +355,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getSelectMultiplePagesWidget($name, $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], $description = '', $class = 'form-control')
+	public static function getSelectMultiplePagesWidget(string $name, string $currentValue, array $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], string $description = '', string $class = 'form-control') : string
 	{
 		$args = [
 			'class' => $class,
@@ -382,15 +383,15 @@ class WpGogodigitalExampleWidgets
 	/**
 	 * Get Select Categories Widget
 	 *
-	 * @param string|array $options
 	 * @param string $name
 	 * @param string $currentValue
+     * @param string|array $options
 	 * @param string $description
 	 * @param string $class
 	 *
 	 * @return string
 	 */
-	public static function getSelectCategoriesWidget($name, $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], $description = '', $class = 'form-control')
+	public static function getSelectCategoriesWidget(string $name, string $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], string $description = '', string $class = 'form-control') : string
 	{
 		$args = [
 			'class' => $class,
