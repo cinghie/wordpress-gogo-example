@@ -421,15 +421,15 @@ class WpGogodigitalExampleWidgets
 	/**
 	 * Get Select Categories Widget
 	 *
-	 * @param string|array $options
 	 * @param string $name
 	 * @param string $currentValue
+     * @param string|array $options
 	 * @param string $description
 	 * @param string $class
 	 *
 	 * @return string
 	 */
-	public static function getSelectMultipleCategoriesWidget($name, $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], $description = '', $class = 'form-control')
+	public static function getSelectMultipleCategoriesWidget(string $name, string $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], string $description = '', string $class = 'form-control') : string
 	{
 		$args = [
 			'class' => $class,
@@ -468,7 +468,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getSelectPostTypesWidget($name, $currentValue, $addAll = false, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 3px;')
+	public static function getSelectPostTypesWidget(string $name, string $currentValue, bool $addAll = false, string $description = '', string $class = 'form-control', string $style = 'min-width: 200px; padding: 3px;') : string
 	{
 		$values = [];
 
@@ -486,15 +486,15 @@ class WpGogodigitalExampleWidgets
 	/**
 	 * Get Select Categories Widget
 	 *
-	 * @param string|array $options
 	 * @param string $name
 	 * @param string $currentValue
+     * @param string|array $options
 	 * @param string $description
 	 * @param string $class
 	 *
 	 * @return string
 	 */
-	public static function getSelectMultipleTypesWidget($name, $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], $description = '', $class = 'form-control')
+	public static function getSelectMultipleTypesWidget(string $name, string $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], string $description = '', string $class = 'form-control') : string
 	{
 		$args = [
 			'class' => $class,
@@ -532,7 +532,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getSelectUserRoles($name, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 3px;')
+	public static function getSelectUserRoles(string $name, string $currentValue, string $description = '', string $class = 'form-control', string $style = 'min-width: 200px; padding: 3px;') : string
 	{
 		global $wp_roles;
 
@@ -561,7 +561,7 @@ class WpGogodigitalExampleWidgets
 	 *
 	 * @return string
 	 */
-	public static function getSelectMultipleUserRoles($name, $currentValue, $description = '', $class = 'form-control', $style = 'min-width: 200px; padding: 3px;')
+	public static function getSelectMultipleUserRoles(string $name, array $currentValue, string $description = '', string $class = 'form-control', string $style = 'min-width: 200px; padding: 3px;') : string
 	{
 		global $wp_roles;
 
@@ -585,21 +585,19 @@ class WpGogodigitalExampleWidgets
 	 */
 	public static function dropdown_style_filter( $output )
 	{
-		$output = preg_replace( '/<select /', '<select style="min-width: 200px; padding: 3px 5px;" ', $output);
-
-		return $output;
+		return preg_replace( '/<select /', '<select style="min-width: 200px; padding: 3px 5px;" ', $output);
 	}
 
 	/**
 	 * Set Dropdown Widget as Multiple
 	 *
 	 * @param string $output
-	 * @param array $r
+	 * @param array  $r
 	 *
 	 * @return string|string[]|null
 	 * @see https://wordpress.stackexchange.com/questions/216070/wp-dropdown-categories-with-multiple-select
 	 */
-	public static function dropdown_multiple_filter( $output, $r )
+	public static function dropdown_multiple_filter(string $output, array $r )
 	{
 		if( isset( $r['multiple'] ) && $r['multiple'] )
 		{
