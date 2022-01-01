@@ -422,14 +422,14 @@ class WpGogodigitalExampleWidgets
 	 * Get Select Categories Widget
 	 *
 	 * @param string $name
-	 * @param array $currentValue
-     * @param array|string $options
+	 * @param array|string $currentValue
+     * @param array $options
 	 * @param string $description
 	 * @param string $class
 	 *
 	 * @return string
 	 */
-	public static function getSelectMultipleCategoriesWidget(string $name, array $currentValue, $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], string $description = '', string $class = 'form-control') : string
+	public static function getSelectMultipleCategoriesWidget(string $name, $currentValue, array $options = ['hide_empty' => 0, 'hierarchical' => true, 'order' => 'ASC', 'orderby' => 'NAME', 'required' => false,'taxonomy' => 'category'], string $description = '', string $class = 'form-control') : string
 	{
 		$args = [
 			'class' => $class,
@@ -602,8 +602,7 @@ class WpGogodigitalExampleWidgets
 		if( isset( $r['multiple'] ) && $r['multiple'] )
 		{
 			$output = preg_replace( '/^<select/i', '<select size="6" style="min-width: 200px; padding: 3px 5px;" multiple', $output );
-			$output = str_replace( "name='{$r['getSelectMultiplePagesWidgetname']}'", "name='{$r['name']}[]'", $output );
-
+			//$output = str_replace( "name='{$r['getSelectMultiplePagesWidgetname']}'", "name='{$r['name']}[]'", $output );
 			$selected = is_array($r['selected']) ? $r['selected'] : explode( ',', $r['selected'] );
 
 			foreach ( array_map( 'trim', $selected ) as $value ) {
