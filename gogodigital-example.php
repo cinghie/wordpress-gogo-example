@@ -47,7 +47,7 @@ $exampleDescription = __( 'Gogodigital Example plugin just a simple example to d
 if( is_admin() ) {
 
 	/** Add Plugin Page Menu */
-	add_action('admin_menu', 'add_example_plugin_page');
+	add_action('admin_menu', 'gogodigital_example_plugin_page');
 
 	/** Add Plugin Settings Link on Plugin Page  */
 	add_filter('plugin_action_links', 'gogodigital_example_action_links', 10, 2);
@@ -65,7 +65,7 @@ if( is_admin() ) {
 /**
  * Load translations
  */
-if( !function_exists('gogodigital_example_plugin_page') )
+if( !function_exists('gogodigital_example_load_textdomain') )
 {
 	function gogodigital_example_load_textdomain() {
 		load_plugin_textdomain('gogodigital-example', false, dirname( GOGODIGITAL_EXAMPLE_BASENAME ).'/languages/' );
