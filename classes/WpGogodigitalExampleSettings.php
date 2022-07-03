@@ -148,18 +148,18 @@ class WpGogodigitalExampleSettings
         $this->widgetClass = new WpGogodigitalExampleWidgets();
 
 		/** Set Settings values */
-		$this->inputExample = isset($this->settingsOptions['gogodigital-example-input']) ? $this->settingsOptions['gogodigital-example-input'] : '';
-		$this->radioExample = isset($this->settingsOptions['gogodigital-example-radio']) ? $this->settingsOptions['gogodigital-example-radio'] : '';
-		$this->selectExample = isset($this->settingsOptions['gogodigital-example-select']) ? $this->settingsOptions['gogodigital-example-select'] : '';
-		$this->checkboxExample = isset($this->settingsOptions['gogodigital-example-checkbox']) ? $this->settingsOptions['gogodigital-example-checkbox'] : '';
-		$this->mediaExample = isset($this->settingsOptions['gogodigital-example-media']) ? $this->settingsOptions['gogodigital-example-media'] : 0;
+		$this->inputExample = $this->settingsOptions['gogodigital-example-input'] ?? '';
+		$this->radioExample = $this->settingsOptions['gogodigital-example-radio'] ?? '';
+		$this->selectExample = $this->settingsOptions['gogodigital-example-select'] ?? '';
+		$this->checkboxExample = $this->settingsOptions['gogodigital-example-checkbox'] ?? '';
+		$this->mediaExample = $this->settingsOptions['gogodigital-example-media'] ?? 0;
 
-		$this->selectPagesExample = isset($this->postsOptions['gogodigital-example-select-pages']) ? $this->postsOptions['gogodigital-example-select-pages'] : '';
-		$this->selectMultiplePagesExample = isset($this->postsOptions['gogodigital-example-select-multiple-pages']) ? $this->postsOptions['gogodigital-example-select-multiple-pages'] : '';
-		$this->selectPostTypesExample = isset($this->postsOptions['gogodigital-example-select-post-type']) ? $this->postsOptions['gogodigital-example-select-post-type'] : '';
-		$this->selectMultiplePostTypesExample = isset($this->postsOptions['gogodigital-example-select-multiple-post-type']) ? $this->postsOptions['gogodigital-example-select-multiple-post-type'] : '';
-		$this->selectCategoriesExample = isset($this->postsOptions['gogodigital-example-select-category']) ? $this->postsOptions['gogodigital-example-select-category'] : '';
-		$this->selectMultipleCategoriesExample = isset($this->postsOptions['gogodigital-example-select-multiple-category']) ? $this->postsOptions['gogodigital-example-select-multiple-category'] : '';
+		$this->selectPagesExample = $this->postsOptions['gogodigital-example-select-pages'] ?? '';
+		$this->selectMultiplePagesExample = $this->postsOptions['gogodigital-example-select-multiple-pages'] ?? '';
+		$this->selectPostTypesExample = $this->postsOptions['gogodigital-example-select-post-type'] ?? '';
+		$this->selectMultiplePostTypesExample = $this->postsOptions['gogodigital-example-select-multiple-post-type'] ?? '';
+		$this->selectCategoriesExample = $this->postsOptions['gogodigital-example-select-category'] ?? '';
+		$this->selectMultipleCategoriesExample = $this->postsOptions['gogodigital-example-select-multiple-category'] ?? '';
 
 		/** Set Users values */
 		$this->selectUserRolesExample = isset($this->usersOptions['gogodigital-example-select-user-roles']) ? $this->postsOptions['gogodigital-example-select-user-roles'] : '';
@@ -180,7 +180,7 @@ class WpGogodigitalExampleSettings
         register_setting(
             'gogodigital_example_settings_options',
             'gogodigital_example_settings_options',
-            'gogodigital_example_settings_sanitize'
+	        array($this,'gogodigital_example_settings_sanitize')
         );
 
         add_settings_section(
@@ -236,7 +236,7 @@ class WpGogodigitalExampleSettings
 		register_setting(
 			'gogodigital_example_post_fields_options',
 			'gogodigital_example_post_fields_options',
-			'gogodigital_example_post_fields_sanitize'
+			array($this,'gogodigital_example_post_fields_sanitize')
 		);
 
 		add_settings_section(
@@ -300,7 +300,7 @@ class WpGogodigitalExampleSettings
 		register_setting(
 			'gogodigital_example_user_roles_options',
 			'gogodigital_example_user_roles_options',
-			'gogodigital_example_user_roles_sanitize'
+			array($this,'gogodigital_example_user_roles_sanitize')
 		);
 
 		add_settings_section(
@@ -410,7 +410,7 @@ class WpGogodigitalExampleSettings
 		$output = array();
 
 		if( isset( $input['gogodigital-example-input'] ) ) {
-			$new_input['gogodigital-example-input'] = sanitize_text_field( $input['gogodigital-example-input'] );
+			$output['gogodigital-example-input'] = sanitize_text_field( $input['gogodigital-example-input'] );
 		}
 
 		return $output;
@@ -494,7 +494,7 @@ class WpGogodigitalExampleSettings
 		$output = array();
 
 		if( isset( $input['gogodigital-example-input'] ) ) {
-			$new_input['gogodigital-example-input'] = sanitize_text_field( $input['gogodigital-example-input'] );
+			$output['gogodigital-example-input'] = sanitize_text_field( $input['gogodigital-example-input'] );
 		}
 
 		return $output;
@@ -534,11 +534,11 @@ class WpGogodigitalExampleSettings
 		$output = array();
 
 		if( isset( $input['gogodigital-example-select-user-roles'] ) ) {
-			$new_input['gogodigital-example-select-user-roles'] = sanitize_text_field( $input['gogodigital-example-select-user-roles'] );
+			$output['gogodigital-example-select-user-roles'] = sanitize_text_field( $input['gogodigital-example-select-user-roles'] );
 		}
 
 		if( isset( $input['gogodigital-example-select-multiple-user-roles'] ) ) {
-			$new_input['gogodigital-example-select-multiple-user-roles'] = sanitize_text_field( $input['gogodigital-example-select-multiple-user-roles'] );
+			$output['gogodigital-example-select-multiple-user-roles'] = sanitize_text_field( $input['gogodigital-example-select-multiple-user-roles'] );
 		}
 
 		return $output;
@@ -549,7 +549,7 @@ class WpGogodigitalExampleSettings
 	 */
 	public function create_admin_page()
 	{
-		$active_tab  = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'inputs';
+		$active_tab  = $_GET['tab'] ?? 'inputs';
 	?>
 
         <style>

@@ -65,34 +65,40 @@ if( is_admin() ) {
 /**
  * Load translations
  */
-function gogodigital_example_load_textdomain() {
-	load_plugin_textdomain('gogodigital-example', false, dirname( GOGODIGITAL_EXAMPLE_BASENAME ).'/languages/' );
+if( !function_exists('gogodigital_example_plugin_page') )
+{
+	function gogodigital_example_load_textdomain() {
+		load_plugin_textdomain('gogodigital-example', false, dirname( GOGODIGITAL_EXAMPLE_BASENAME ).'/languages/' );
+	}
 }
 
 /**
  * Add Sidebar Menu options page
  */
-function add_example_plugin_page()
+if( !function_exists('gogodigital_example_plugin_page') )
 {
-	global $admin_page_hooks, $examplePageTitle, $exampleMenuSlug, $exampleMenuTitle, $exampleDescription;
-
-	if ( !isset( $admin_page_hooks[ 'gogodigital_plugin_panel' ] ) )
+	function gogodigital_example_plugin_page()
 	{
-		add_menu_page(
-			$examplePageTitle,
-			'Gogodigital',
-			'nosuchcapability',
-			'gogodigital-panel',
-			null,
-			gogodigital_plugin_get_logo(),
-			apply_filters( 'gogodigital_plugins_menu_item_position', '62' )
-		);
+		global $admin_page_hooks, $examplePageTitle, $exampleMenuSlug, $exampleMenuTitle, $exampleDescription;
 
-		$admin_page_hooks[ 'gogodigital_plugin_panel' ] = 'gogodigital-plugins';
+		if ( !isset( $admin_page_hooks[ 'gogodigital_plugin_panel' ] ) )
+		{
+			add_menu_page(
+				$examplePageTitle,
+				'Gogodigital',
+				'nosuchcapability',
+				'gogodigital-panel',
+				null,
+				gogodigital_plugin_get_logo(),
+				apply_filters( 'gogodigital_plugins_menu_item_position', '62' )
+			);
+
+			$admin_page_hooks[ 'gogodigital_plugin_panel' ] = 'gogodigital-plugins';
+		}
+
+		add_submenu_page( 'gogodigital-panel', $examplePageTitle, $exampleMenuTitle, 'manage_options', $exampleMenuSlug, array( new WpGogodigitalExampleSettings($exampleMenuSlug,$exampleMenuTitle,$examplePageTitle,$exampleDescription), 'create_admin_page' ) );
+		remove_submenu_page( 'gogodigital-panel', 'gogodigital-panel' );
 	}
-
-	add_submenu_page( 'gogodigital-panel', $examplePageTitle, $exampleMenuTitle, 'manage_options', $exampleMenuSlug, array( new WpGogodigitalExampleSettings($exampleMenuSlug,$exampleMenuTitle,$examplePageTitle,$exampleDescription), 'create_admin_page' ) );
-	remove_submenu_page( 'gogodigital-panel', 'gogodigital-panel' );
 }
 
 /**
@@ -103,16 +109,19 @@ function add_example_plugin_page()
  *
  * @return string
  */
-function gogodigital_example_action_links($links, $file)
+if( !function_exists('gogodigital_example_action_links') )
 {
-    global $exampleMenuSlug;
+	function gogodigital_example_action_links($links, $file)
+	{
+		global $exampleMenuSlug;
 
-	if ($file === GOGODIGITAL_EXAMPLE_BASENAME) {
-		$settings_link = '<a href="admin.php?page='.$exampleMenuSlug.'">' . __( 'Settings', 'gogodigital-example' ) . '</a>';
-		array_unshift( $links, $settings_link );
+		if ($file === GOGODIGITAL_EXAMPLE_BASENAME) {
+			$settings_link = '<a href="admin.php?page='.$exampleMenuSlug.'">' . __( 'Settings', 'gogodigital-example' ) . '</a>';
+			array_unshift( $links, $settings_link );
+		}
+
+		return $links;
 	}
-
-	return $links;
 }
 
 /**
@@ -120,7 +129,7 @@ function gogodigital_example_action_links($links, $file)
  *
  * @return string
  */
-if(!function_exists('gogodigital_plugin_get_logo'))
+if( !function_exists('gogodigital_plugin_get_logo') )
 {
 	function gogodigital_plugin_get_logo()
 	{
