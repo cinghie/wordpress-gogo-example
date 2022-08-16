@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blank WordPress Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2020-03-01 11:09+0100\n"
+"POT-Creation-Date: 2022-08-16 19:15+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Your Team <translations@example.com>\n"
@@ -21,134 +21,164 @@ msgstr ""
 "_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,"
 "_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/WpGogodigitalExampleSettings.php:135
+#: classes/WpGogodigitalExampleSettings.php:207
 msgid "Example Input"
 msgstr "Input di esempio"
 
-#: classes/WpGogodigitalExampleSettings.php:143
-#: classes/WpGogodigitalExampleSettings.php:159
+#: classes/WpGogodigitalExampleSettings.php:215
+msgid "Example Text Area"
+msgstr "Text Area di esempio"
+
+#: classes/WpGogodigitalExampleSettings.php:223
+#: classes/WpGogodigitalExampleSettings.php:239
 msgid "Example Select"
 msgstr "Select di esempio"
 
-#: classes/WpGogodigitalExampleSettings.php:151
+#: classes/WpGogodigitalExampleSettings.php:231
 msgid "Example Radio"
 msgstr "Radio di esempio"
 
-#: classes/WpGogodigitalExampleSettings.php:183
+#: classes/WpGogodigitalExampleSettings.php:247
+msgid "Toggle Switch"
+msgstr "Toggle Switch"
+
+#: classes/WpGogodigitalExampleSettings.php:255
+msgid "Example Media"
+msgstr "Media di esempio"
+
+#: classes/WpGogodigitalExampleSettings.php:279
 msgid "Pages Select"
 msgstr "Select di Pages"
 
-#: classes/WpGogodigitalExampleSettings.php:191
+#: classes/WpGogodigitalExampleSettings.php:287
 msgid "Pages Multiple Select"
 msgstr "Select Multipla di Pages"
 
-#: classes/WpGogodigitalExampleSettings.php:199
+#: classes/WpGogodigitalExampleSettings.php:295
 msgid "Post Categories Select"
 msgstr "Select di Post Categories"
 
-#: classes/WpGogodigitalExampleSettings.php:207
+#: classes/WpGogodigitalExampleSettings.php:303
 msgid "Post Categories Multiple Select"
 msgstr "Select Multipla di Post Categories"
 
-#: classes/WpGogodigitalExampleSettings.php:215
+#: classes/WpGogodigitalExampleSettings.php:311
 msgid "Post Types Select"
 msgstr "Select di Post Type"
 
-#: classes/WpGogodigitalExampleSettings.php:223
+#: classes/WpGogodigitalExampleSettings.php:319
 msgid "Post Types Multiple Select"
 msgstr "Select Multipla di Post Type"
 
-#: classes/WpGogodigitalExampleSettings.php:238
+#: classes/WpGogodigitalExampleSettings.php:343
+msgid "User Roles Select"
+msgstr "Select di Ruoli Utenti"
+
+#: classes/WpGogodigitalExampleSettings.php:351
+msgid "User Roles Select Multiple"
+msgstr "Select Multipla di Ruoli Utenti"
+
+#: classes/WpGogodigitalExampleSettings.php:366
 msgid "Example Input Description"
 msgstr "Descrizione Input"
 
-#: classes/WpGogodigitalExampleSettings.php:251
+#: classes/WpGogodigitalExampleSettings.php:378
+msgid "Example Text Area Description"
+msgstr "Descrizione TextArea"
+
+#: classes/WpGogodigitalExampleSettings.php:391
 msgid "Radio Value 1"
 msgstr "Valore Radio 1"
 
-#: classes/WpGogodigitalExampleSettings.php:252
+#: classes/WpGogodigitalExampleSettings.php:392
 msgid "Radio Value 2"
 msgstr "Valore Radio 2"
 
-#: classes/WpGogodigitalExampleSettings.php:253
+#: classes/WpGogodigitalExampleSettings.php:393
 msgid "Radio Value 3"
 msgstr "Valore Radio 3"
 
-#: classes/WpGogodigitalExampleSettings.php:255
+#: classes/WpGogodigitalExampleSettings.php:395
 msgid "Example Radio Description"
 msgstr "Descrizione Radio"
 
-#: classes/WpGogodigitalExampleSettings.php:268
+#: classes/WpGogodigitalExampleSettings.php:408
 msgid "Select Value 1"
 msgstr "Valore Select 1"
 
-#: classes/WpGogodigitalExampleSettings.php:269
+#: classes/WpGogodigitalExampleSettings.php:409
 msgid "Select Value 2"
 msgstr "Valore Select 2"
 
-#: classes/WpGogodigitalExampleSettings.php:270
+#: classes/WpGogodigitalExampleSettings.php:410
 msgid "Select Value 3"
 msgstr "Valore Select 3"
 
-#: classes/WpGogodigitalExampleSettings.php:272
+#: classes/WpGogodigitalExampleSettings.php:412
 msgid "Example Select Description"
 msgstr "Descrizione Select"
 
-#: classes/WpGogodigitalExampleSettings.php:284
+#: classes/WpGogodigitalExampleSettings.php:424
 msgid "Example Checkbox"
 msgstr "Checkbox"
 
-#: classes/WpGogodigitalExampleSettings.php:285
+#: classes/WpGogodigitalExampleSettings.php:425
 msgid "Example Checkbox Description"
 msgstr "Descrizione Checkbox"
 
-#: classes/WpGogodigitalExampleSettings.php:410 gogodigital-example.php:42
-msgid ""
-"Gogodigital Example plugin just a simple example to develop a new Wordpress "
-"Plugin"
-msgstr ""
-"Gogodigital Example è un semplice plugin di esempio su come sviluppare un "
-"nuovo Plugin per Wordpress"
+#: classes/WpGogodigitalExampleSettings.php:438
+msgid "Example Toggle Switch Description"
+msgstr "Descrizione Toggle Switch"
 
-#: classes/WpGogodigitalExampleSettings.php:419
+#: classes/WpGogodigitalExampleSettings.php:743
 msgid "Simple Fields"
 msgstr "Campi di Esempio"
 
-#: classes/WpGogodigitalExampleSettings.php:422
+#: classes/WpGogodigitalExampleSettings.php:746
 msgid "Post/Page Fields"
 msgstr "Campi Post/Page"
 
-#: classes/WpGogodigitalExampleSettings.php:425
+#: classes/WpGogodigitalExampleSettings.php:749
 msgid "Woocommerce Fields"
 msgstr "Campi Woocommerce"
 
-#: classes/WpGogodigitalExampleSettings.php:428
+#: classes/WpGogodigitalExampleSettings.php:752
 msgid "Users Fields"
 msgstr "Campi Utente"
 
-#: classes/WpGogodigitalExampleSettings.php:431
-#: classes/WpGogodigitalExampleSettings.php:456
+#: classes/WpGogodigitalExampleSettings.php:755
+#: classes/WpGogodigitalExampleSettings.php:791
+#: classes/WpGogodigitalExampleSettings.php:795
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: classes/WpGogodigitalExampleSettings.php:434
+#: classes/WpGogodigitalExampleSettings.php:758
 msgid "About"
 msgstr "About"
 
-#: classes/WpGogodigitalExampleSettings.php:467
+#: classes/WpGogodigitalExampleSettings.php:806
 msgid "Save"
 msgstr "Salva"
 
-#: classes/WpGogodigitalExampleWidgets.php:197
-#: classes/WpGogodigitalExampleWidgets.php:231
-#: classes/WpGogodigitalExampleWidgets.php:268
-#: classes/WpGogodigitalExampleWidgets.php:306
-#: classes/WpGogodigitalExampleWidgets.php:371
+#: classes/WpGogodigitalExampleWidgets.php:170
+msgid "Upload image"
+msgstr "Carica Immagine"
+
+#: classes/WpGogodigitalExampleWidgets.php:359
+#: classes/WpGogodigitalExampleWidgets.php:395
+#: classes/WpGogodigitalExampleWidgets.php:432
+#: classes/WpGogodigitalExampleWidgets.php:470
+#: classes/WpGogodigitalExampleWidgets.php:535
+#: classes/WpGogodigitalExampleWidgets.php:565
 msgid "None"
 msgstr "Nessuno"
+
+#: classes/WpGogodigitalExampleWidgets.php:593
+msgid "All"
+msgstr ""
 
 #: gogodigital-example.php:40
 msgid "Example"
@@ -158,6 +188,14 @@ msgstr "Esempio"
 msgid "Gogodigital Example"
 msgstr "Gogodigital Example"
 
-#: gogodigital-example.php:111
+#: gogodigital-example.php:42
+msgid ""
+"Gogodigital Example plugin just a simple example to develop a new Wordpress "
+"Plugin"
+msgstr ""
+"Gogodigital Example è un semplice plugin di esempio su come sviluppare un "
+"nuovo Plugin per Wordpress"
+
+#: gogodigital-example.php:119
 msgid "Settings"
 msgstr "Impostazioni"

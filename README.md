@@ -49,4 +49,7 @@ Set at line 23 in gogodigital-example.php
 
 https://developer.wordpress.org/plugins/settings/custom-settings-page/  
 https://code.tutsplus.com/tutorials/the-wordpress-settings-api-part-4-on-theme-options--wp-24902  
-https://code.tutsplus.com/tutorials/the-wordpress-settings-api-part-5-tabbed-navigation-for-settings--wp-24971  
+https://code.tutsplus.com/tutorials/the-wordpress-settings-api-part-5-tabbed-navigation-for-settings--wp-24971
+https://www.tutorialstonight.com/css-toggle-switch-with-text
+https://wordpress.stackexchange.com/questions/216070/wp-dropdown-categories-with-multiple-select
+https://jeroensormani.com/how-to-include-the-wordpress-media-selector-in-your-plugin/

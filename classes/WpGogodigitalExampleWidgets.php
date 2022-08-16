@@ -132,7 +132,7 @@ class WpGogodigitalExampleWidgets
 	 * @return string
 	 * @see https://www.tutorialstonight.com/css-toggle-switch-with-text
 	 */
-	public static function getToggleSwitchWidget($name, $value, $label, $description = '')
+	public static function getToggleSwitchWidget($name, $value, $label = '', $description = '')
 	{
 		$checked = $value ? 'checked="checked"' : '';
 
@@ -167,7 +167,7 @@ class WpGogodigitalExampleWidgets
 		<div class='image-preview-wrapper'>
 			<img id='image-preview' src='<?php echo $mediaSource?>' alt="<?php echo $mediaFieldName?>" title="<?php echo $mediaFieldName?>" width='100' height='100' style='max-height: 100px; width: 100px;'>
 		</div>
-		<input id="upload_image_button" type="button" class="button" value="<?php _e( 'Upload image' ); ?>" />
+		<input id="upload_image_button" type="button" class="button" value="<?php __( 'Upload image', 'gogodigital-example' ); ?>" />
 		<input type='hidden' name='<?php echo $mediaFieldName?>' id='<?php echo $mediaFieldId?>' value='<?php echo $mediaValue ?>'>
 		<?php
 	}

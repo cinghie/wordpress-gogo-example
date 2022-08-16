@@ -46,6 +46,11 @@ class WpGogodigitalExampleSettings
 	/**
      * @var string
      */
+	private $textAreaExample;
+
+	/**
+     * @var string
+     */
 	private $radioExample;
 
 	/**
@@ -154,6 +159,7 @@ class WpGogodigitalExampleSettings
 
 		/** Set Settings values */
 		$this->inputExample = $this->settingsOptions['gogodigital-example-input'] ?? '';
+		$this->textAreaExample = $this->settingsOptions['gogodigital-example-textarea'] ?? '';
 		$this->radioExample = $this->settingsOptions['gogodigital-example-radio'] ?? '';
 		$this->selectExample = $this->settingsOptions['gogodigital-example-select'] ?? '';
 		$this->checkboxExample = $this->settingsOptions['gogodigital-example-checkbox'] ?? '';
@@ -200,6 +206,14 @@ class WpGogodigitalExampleSettings
             'gogodigital-example-input',
             __( 'Example Input', 'gogodigital-example' ),
             array($this,'gogodigital_example_settings_input_callback'),
+            'gogodigital_example_settings_options',
+            'gogodigital_example_settings_section'
+        );
+
+        add_settings_field(
+            'gogodigital-example-textarea',
+            __( 'Example Text Area', 'gogodigital-example' ),
+            array($this,'gogodigital_example_settings_textarea_callback'),
             'gogodigital_example_settings_options',
             'gogodigital_example_settings_section'
         );
@@ -350,6 +364,18 @@ class WpGogodigitalExampleSettings
             'gogodigital_example_settings_options[gogodigital-example-input]',
             $this->inputExample,
             __( 'Example Input Description', 'gogodigital-example' )
+        );
+    }
+
+    /**
+     * TextArea Callback
+     */
+    public function gogodigital_example_settings_textarea_callback()
+    {
+        echo $this->widgetClass::getTextAreaWidget(
+            'gogodigital_example_settings_options[gogodigital-example-textarea]',
+            $this->textAreaExample,
+            __( 'Example Text Area Description', 'gogodigital-example' )
         );
     }
 
