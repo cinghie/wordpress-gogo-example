@@ -48,6 +48,12 @@ class WpGogodigitalExampleSettings
      */
 	private $textAreaExample;
 
+
+	/**
+     * @var string
+     */
+	private $editorExample;
+
 	/**
      * @var string
      */
@@ -160,6 +166,7 @@ class WpGogodigitalExampleSettings
 		/** Set Settings values */
 		$this->inputExample = $this->settingsOptions['gogodigital-example-input'] ?? '';
 		$this->textAreaExample = $this->settingsOptions['gogodigital-example-textarea'] ?? '';
+		$this->editorExample = $this->settingsOptions['gogodigital-example-editor'] ?? '';
 		$this->radioExample = $this->settingsOptions['gogodigital-example-radio'] ?? '';
 		$this->selectExample = $this->settingsOptions['gogodigital-example-select'] ?? '';
 		$this->checkboxExample = $this->settingsOptions['gogodigital-example-checkbox'] ?? '';
@@ -214,6 +221,14 @@ class WpGogodigitalExampleSettings
             'gogodigital-example-textarea',
             __( 'Example Text Area', 'gogodigital-example' ),
             array($this,'gogodigital_example_settings_textarea_callback'),
+            'gogodigital_example_settings_options',
+            'gogodigital_example_settings_section'
+        );
+
+        add_settings_field(
+            'gogodigital-example-editor',
+            __( 'Example Editor', 'gogodigital-example' ),
+            array($this,'gogodigital_example_settings_editor_callback'),
             'gogodigital_example_settings_options',
             'gogodigital_example_settings_section'
         );
@@ -380,6 +395,18 @@ class WpGogodigitalExampleSettings
     }
 
     /**
+     * TextArea Callback
+     */
+    public function gogodigital_example_settings_editor_callback()
+    {
+        $this->widgetClass::getEditorWidget(
+            'gogodigital_example_settings_options[gogodigital-example-editor]',
+            $this->editorExample,
+            __( 'Example Editor Description', 'gogodigital-example' )
+        );
+    }
+
+    /**
      * Radio Callback
      */
     public function gogodigital_example_settings_radio_callback()
@@ -464,6 +491,14 @@ class WpGogodigitalExampleSettings
 
 		if( isset( $input['gogodigital-example-input'] ) ) {
 			$output['gogodigital-example-input'] = sanitize_text_field( $input['gogodigital-example-input'] );
+		}
+
+		if( isset( $input['gogodigital-example-textarea'] ) ) {
+			$output['gogodigital-example-textarea'] = sanitize_text_field( $input['gogodigital-example-textarea'] );
+		}
+
+		if( isset( $input['gogodigital-example-editor'] ) ) {
+			$output['gogodigital-example-editor'] = sanitize_text_field( $input['gogodigital-example-editor'] );
 		}
 
 		if( isset( $input['gogodigital-example-select'] ) ) {

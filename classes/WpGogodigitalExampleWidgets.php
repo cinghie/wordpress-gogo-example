@@ -100,6 +100,33 @@ class WpGogodigitalExampleWidgets
 	}
 
 	/**
+     * Get Editor Widget
+     *
+	 * @param string $name
+	 * @param string $value
+	 * @param string $description
+	 *
+	 * @return string
+     * @see https://wordpress.stackexchange.com/questions/29066/how-to-add-wysiwyg-editor-tinymce-to-plugin-options-page-compatible-with-wordp
+	 */
+	public static function getEditorWidget($name, $value = '', $description = '', $settings = [])
+	{
+        if(!count($settings))
+        {
+            $settings = [
+	            'media_buttons' => false,
+                'tinymce'=> true,
+                'textarea_rows'=> '10'
+            ];
+        }
+
+		$html = wp_editor( $value, $name, $settings );
+		$html .= self::getFieldDescription($name,$description);
+
+		return $html;
+    }
+
+	/**
 	 * Get Checkbox Widget
 	 *
 	 * @param string $name
@@ -165,9 +192,9 @@ class WpGogodigitalExampleWidgets
 
 		?>
 		<div class='image-preview-wrapper'>
-			<img id='image-preview' src='<?php echo $mediaSource?>' alt="<?php echo $mediaFieldName?>" title="<?php echo $mediaFieldName?>" width='100' height='100' style='max-height: 100px; width: 100px;'>
+			<img id='image-preview' src='<?php echo $mediaSource?>' alt="<?php echo $mediaFieldName?>" title="<?php echo $mediaFieldName?>" width='125' height='125' style='max-height: 125px; width: 125px;'>
 		</div>
-		<input id="upload_image_button" type="button" class="button" value="<?php __( 'Upload image', 'gogodigital-example' ); ?>" />
+		<input id="upload_image_button" type="button" class="button" value="<?php _e( 'Upload image', 'gogodigital-example' ); ?>" />
 		<input type='hidden' name='<?php echo $mediaFieldName?>' id='<?php echo $mediaFieldId?>' value='<?php echo $mediaValue ?>'>
 		<?php
 	}
