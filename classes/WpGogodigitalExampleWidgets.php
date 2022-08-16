@@ -161,7 +161,7 @@ class WpGogodigitalExampleWidgets
         self::media_selector_print_scripts($mediaFieldId, $mediaValue);
 		wp_enqueue_media();
 
-        $mediaSource = wp_get_attachment_url((int)$mediaValue) ?? '';
+        $mediaSource = null !== wp_get_attachment_url((int)$mediaValue) && wp_get_attachment_url((int)$mediaValue) ? wp_get_attachment_url((int)$mediaValue) : GOGODIGITAL_EXAMPLE_URL.'assets/img/default.png';
 
 		?>
 		<div class='image-preview-wrapper'>
