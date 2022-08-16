@@ -61,6 +61,11 @@ class WpGogodigitalExampleSettings
 	/**
      * @var string
      */
+	private $toggleSwitchExample;
+
+	/**
+     * @var string
+     */
 	private $mediaExample;
 
 	/**
@@ -152,6 +157,7 @@ class WpGogodigitalExampleSettings
 		$this->radioExample = $this->settingsOptions['gogodigital-example-radio'] ?? '';
 		$this->selectExample = $this->settingsOptions['gogodigital-example-select'] ?? '';
 		$this->checkboxExample = $this->settingsOptions['gogodigital-example-checkbox'] ?? '';
+		$this->toggleSwitchExample = $this->settingsOptions['gogodigital-example-toggleswitch'] ?? '';
 		$this->mediaExample = $this->settingsOptions['gogodigital-example-media'] ?? 0;
 
 		$this->selectPagesExample = $this->postsOptions['gogodigital-example-select-pages'] ?? '';
@@ -218,6 +224,14 @@ class WpGogodigitalExampleSettings
             'gogodigital-example-checkbox',
             __( 'Example Select', 'gogodigital-example' ),
             array($this,'gogodigital_example_settings_checkbox_callback'),
+            'gogodigital_example_settings_options',
+            'gogodigital_example_settings_section'
+        );
+
+        add_settings_field(
+            'gogodigital-example-toggleswitch',
+            __( 'Toggle Switch', 'gogodigital-example' ),
+            array($this,'gogodigital_example_settings_toggleswitch_callback'),
             'gogodigital_example_settings_options',
             'gogodigital_example_settings_section'
         );
@@ -387,6 +401,19 @@ class WpGogodigitalExampleSettings
     }
 
     /**
+     * ToggleSwitch Callback
+     */
+    public function gogodigital_example_settings_toggleswitch_callback()
+    {
+        echo $this->widgetClass::getToggleSwitchWidget(
+            'gogodigital_example_settings_options[gogodigital-example-toggleswitch]',
+            $this->toggleSwitchExample,
+            '',
+            __( 'Example Toggle Switch Description', 'gogodigital-example' )
+        );
+    }
+
+    /**
      * Media Callback
      */
     public function gogodigital_example_settings_media_callback()
@@ -411,6 +438,26 @@ class WpGogodigitalExampleSettings
 
 		if( isset( $input['gogodigital-example-input'] ) ) {
 			$output['gogodigital-example-input'] = sanitize_text_field( $input['gogodigital-example-input'] );
+		}
+
+		if( isset( $input['gogodigital-example-select'] ) ) {
+			$output['gogodigital-example-select'] = sanitize_text_field( $input['gogodigital-example-select'] );
+		}
+
+		if( isset( $input['gogodigital-example-radio'] ) ) {
+			$output['gogodigital-example-radio'] = sanitize_text_field( $input['gogodigital-example-radio'] );
+		}
+
+		if( isset( $input['gogodigital-example-checkbox'] ) ) {
+			$output['gogodigital-example-checkbox'] = sanitize_text_field( $input['gogodigital-example-checkbox'] );
+		}
+
+		if( isset( $input['gogodigital-example-toggleswitch'] ) ) {
+			$output['gogodigital-example-toggleswitch'] = sanitize_text_field( $input['gogodigital-example-toggleswitch'] );
+		}
+
+		if( isset( $input['gogodigital-example-media'] ) ) {
+			$output['gogodigital-example-media'] = sanitize_text_field( $input['gogodigital-example-media'] );
 		}
 
 		return $output;
