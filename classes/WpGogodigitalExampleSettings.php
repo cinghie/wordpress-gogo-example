@@ -601,8 +601,28 @@ class WpGogodigitalExampleSettings
 	{
 		$output = array();
 
-		if( isset( $input['gogodigital-example-input'] ) ) {
-			$output['gogodigital-example-input'] = sanitize_text_field( $input['gogodigital-example-input'] );
+		if( isset( $input['gogodigital-example-select-pages'] ) ) {
+			$output['gogodigital-example-select-pages'] = sanitize_text_field( $input['gogodigital-example-select-pages'] );
+		}
+
+		if( isset( $input['gogodigital-example-select-multiple-pages'] ) ) {
+			$output['gogodigital-example-select-multiple-pages'] = sanitize_text_field( $input['gogodigital-example-select-multiple-pages'] );
+		}
+
+		if( isset( $input['gogodigital-example-select-category'] ) ) {
+			$output['gogodigital-example-select-category'] = sanitize_text_field( $input['gogodigital-example-select-category'] );
+		}
+
+		if( isset( $input['gogodigital-example-select-multiple-category'] ) ) {
+			$output['gogodigital-example-select-multiple-category'] = sanitize_text_field( $input['gogodigital-example-select-multiple-category'] );
+		}
+
+		if( isset( $input['gogodigital-example-select-post-type'] ) ) {
+			$output['gogodigital-example-select-post-type'] = sanitize_text_field( $input['gogodigital-example-select-post-type'] );
+		}
+
+		if( isset( $input['gogodigital-example-select-multiple-post-type'] ) ) {
+			$output['gogodigital-example-select-multiple-post-type'] = sanitize_text_field( $input['gogodigital-example-select-multiple-post-type'] );
 		}
 
 		return $output;
