@@ -657,7 +657,7 @@ class WpGogodigitalExampleWidgets
 		if( isset( $r['multiple'] ) && $r['multiple'] )
 		{
 			$output = preg_replace( '/^<select/i', '<select size="6" style="min-width: 200px; padding: 3px 5px;" multiple', $output );
-			//$output = str_replace( "name='{$r['getSelectMultiplePagesWidgetname']}'", "name='{$r['name']}[]'", $output );
+			$output = str_replace( "name='{$r['getSelectMultiplePagesWidgetname']}'", "name='{$r['name']}[]'", $output );
 			$selected = is_array($r['selected']) ? $r['selected'] : explode( ',', $r['selected'] );
 
 			foreach ( array_map( 'trim', $selected ) as $value ) {
@@ -688,14 +688,18 @@ class WpGogodigitalExampleWidgets
 	 */
 	function recursive_sanitize_text_field($array)
 	{
-		foreach ( $array as $key => &$value )
-		{
-			if ( is_array( $value ) ) {
-				$value = $this->recursive_sanitize_text_field( $value );
-			} else {
-				$value = sanitize_text_field( $value );
+		if( is_string($array) ){
+			$array = sanitize_text_field($array);
+		} elseif( is_array($array) ) {
+			foreach ( $array as $key => &$value )
+			{
+				if ( is_array( $value ) ) {
+					$value = $this->recursive_sanitize_text_field( $value );
+				} else {
+					$value = sanitize_text_field( $value );
+				}
 			}
-		}
+        }
 
 		return $array;
 	}
