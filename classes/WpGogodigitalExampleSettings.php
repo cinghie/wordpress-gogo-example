@@ -39,6 +39,13 @@ class WpGogodigitalExampleSettings
 	private $examplePageTitle;
 
 	/**
+     * Fields Examples
+	 *
+	 * @var array
+	 */
+	private $settingsOptions;
+
+	/**
      * @var string
      */
 	private $inputExample;
@@ -80,6 +87,13 @@ class WpGogodigitalExampleSettings
 	private $mediaExample;
 
 	/**
+     * Post Fields Examples
+	 *
+	 * @var array
+	 */
+	private $postsOptions;
+
+	/**
      * @var string
      */
 	private $selectPagesExample;
@@ -110,6 +124,13 @@ class WpGogodigitalExampleSettings
 	private $selectMultiplePostTypesExample;
 
 	/**
+     * User Fields Examples
+     *
+	 * @var array
+	 */
+	private $usersOptions;
+
+	/**
      * @var string
      */
 	private $selectUserRolesExample;
@@ -118,21 +139,6 @@ class WpGogodigitalExampleSettings
      * @var string
      */
 	private $selectMultipleUserRolesExample;
-
-    /**
-     * @var array
-     */
-    private $settingsOptions;
-
-    /**
-     * @var array
-     */
-    private $postsOptions;
-
-    /**
-     * @var array
-     */
-    private $usersOptions;
 
     /**
      * @var WpGogodigitalExampleWidgets
@@ -163,7 +169,7 @@ class WpGogodigitalExampleSettings
         /** Set WidgetClass */
         $this->widgetClass = new WpGogodigitalExampleWidgets();
 
-		/** Set Settings values */
+		/** Set Settings Examples values */
 		$this->inputExample = $this->settingsOptions['gogodigital-example-input'] ?? '';
 		$this->textAreaExample = $this->settingsOptions['gogodigital-example-textarea'] ?? '';
 		$this->editorExample = $this->settingsOptions['gogodigital-example-editor'] ?? '';
@@ -173,16 +179,17 @@ class WpGogodigitalExampleSettings
 		$this->toggleSwitchExample = $this->settingsOptions['gogodigital-example-toggleswitch'] ?? '';
 		$this->mediaExample = $this->settingsOptions['gogodigital-example-media'] ?? 0;
 
+		/** Set Post Examples values */
 		$this->selectPagesExample = $this->postsOptions['gogodigital-example-select-pages'] ?? '';
-		$this->selectMultiplePagesExample = $this->postsOptions['gogodigital-example-select-multiple-pages'] ?? '';
+		$this->selectMultiplePagesExample = $this->postsOptions['gogodigital-example-select-multiple-pages'] ?? [];
 		$this->selectPostTypesExample = $this->postsOptions['gogodigital-example-select-post-type'] ?? '';
-		$this->selectMultiplePostTypesExample = $this->postsOptions['gogodigital-example-select-multiple-post-type'] ?? '';
+		$this->selectMultiplePostTypesExample = $this->postsOptions['gogodigital-example-select-multiple-post-type'] ?? [];
 		$this->selectCategoriesExample = $this->postsOptions['gogodigital-example-select-category'] ?? '';
-		$this->selectMultipleCategoriesExample = $this->postsOptions['gogodigital-example-select-multiple-category'] ?? '';
+		$this->selectMultipleCategoriesExample = $this->postsOptions['gogodigital-example-select-multiple-category'] ?? [];
 
-		/** Set Users values */
-		$this->selectUserRolesExample = isset($this->usersOptions['gogodigital-example-select-user-roles']) ? $this->postsOptions['gogodigital-example-select-user-roles'] : '';
-		$this->selectMultipleUserRolesExample = isset($this->usersOptions['gogodigital-example-select-multiple-user-roles']) ? $this->postsOptions['gogodigital-example-select-multiple-user-roles'] : '';
+		/** Set Users Examples values */
+		$this->selectUserRolesExample = $this->usersOptions['gogodigital-example-select-user-roles'] ?? '';
+		$this->selectMultipleUserRolesExample = $this->usersOptions['gogodigital-example-select-multiple-user-roles'] ?? [];
 
 		/** Register Settings */
 		add_action( 'admin_init', array($this,'gogodigital_example_register_settings') );
@@ -498,7 +505,7 @@ class WpGogodigitalExampleSettings
 		}
 
 		if( isset( $input['gogodigital-example-editor'] ) ) {
-			$output['gogodigital-example-editor'] = wp_kses( $input['gogodigital-example-editor'], 'strong,em,del,ul,ol,li,block,close' );
+			$output['gogodigital-example-editor'] = $this->widgetClass->sanitize_editor_field( $input['gogodigital-example-textarea'] );
 		}
 
 		if( isset( $input['gogodigital-example-select'] ) ) {
@@ -606,7 +613,7 @@ class WpGogodigitalExampleSettings
 		}
 
 		if( isset( $input['gogodigital-example-select-multiple-pages'] ) ) {
-			$output['gogodigital-example-select-multiple-pages'] = sanitize_text_field( $input['gogodigital-example-select-multiple-pages'] );
+			$output['gogodigital-example-select-multiple-pages'] = $this->widgetClass->recursive_sanitize_text_field( $input['gogodigital-example-select-multiple-pages'] );
 		}
 
 		if( isset( $input['gogodigital-example-select-category'] ) ) {
@@ -614,7 +621,7 @@ class WpGogodigitalExampleSettings
 		}
 
 		if( isset( $input['gogodigital-example-select-multiple-category'] ) ) {
-			$output['gogodigital-example-select-multiple-category'] = sanitize_text_field( $input['gogodigital-example-select-multiple-category'] );
+			$output['gogodigital-example-select-multiple-category'] = $this->widgetClass->recursive_sanitize_text_field( $input['gogodigital-example-select-multiple-category'] );
 		}
 
 		if( isset( $input['gogodigital-example-select-post-type'] ) ) {
@@ -622,7 +629,7 @@ class WpGogodigitalExampleSettings
 		}
 
 		if( isset( $input['gogodigital-example-select-multiple-post-type'] ) ) {
-			$output['gogodigital-example-select-multiple-post-type'] = sanitize_text_field( $input['gogodigital-example-select-multiple-post-type'] );
+			$output['gogodigital-example-select-multiple-post-type'] = $this->widgetClass->recursive_sanitize_text_field( $input['gogodigital-example-select-multiple-post-type'] );
 		}
 
 		return $output;
@@ -666,7 +673,7 @@ class WpGogodigitalExampleSettings
 		}
 
 		if( isset( $input['gogodigital-example-select-multiple-user-roles'] ) ) {
-			$output['gogodigital-example-select-multiple-user-roles'] = sanitize_text_field( $input['gogodigital-example-select-multiple-user-roles'] );
+			$output['gogodigital-example-select-multiple-user-roles'] = $this->widgetClass->recursive_sanitize_text_field( $input['gogodigital-example-select-multiple-user-roles'] );
 		}
 
 		return $output;

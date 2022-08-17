@@ -667,4 +667,36 @@ class WpGogodigitalExampleWidgets
 
 		return $output;
 	}
+
+	/**
+	 * WYSIWYG Editor sanitation
+     *
+     * @param string $input
+     * @param string $allowed_html
+	 */
+    function sanitize_editor_field( $input, $allowed_html = 'strong,em,del,ul,ol,li,block,close')
+    {
+        return wp_kses( $input, $allowed_html );
+    }
+
+	/**
+	 * Recursive sanitation for an array
+	 *
+	 * @param $array
+	 *
+	 * @return array|string
+	 */
+	function recursive_sanitize_text_field($array)
+	{
+		foreach ( $array as $key => &$value )
+		{
+			if ( is_array( $value ) ) {
+				$value = $this->recursive_sanitize_text_field( $value );
+			} else {
+				$value = sanitize_text_field( $value );
+			}
+		}
+
+		return $array;
+	}
 }
