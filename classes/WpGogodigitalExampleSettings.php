@@ -494,11 +494,11 @@ class WpGogodigitalExampleSettings
 		}
 
 		if( isset( $input['gogodigital-example-textarea'] ) ) {
-			$output['gogodigital-example-textarea'] = sanitize_text_field( $input['gogodigital-example-textarea'] );
+			$output['gogodigital-example-textarea'] = sanitize_textarea_field( $input['gogodigital-example-textarea'] );
 		}
 
 		if( isset( $input['gogodigital-example-editor'] ) ) {
-			$output['gogodigital-example-editor'] = sanitize_text_field( $input['gogodigital-example-editor'] );
+			$output['gogodigital-example-editor'] = wp_kses( $input['gogodigital-example-editor'], 'strong,em,del,ul,ol,li,block,close' );
 		}
 
 		if( isset( $input['gogodigital-example-select'] ) ) {

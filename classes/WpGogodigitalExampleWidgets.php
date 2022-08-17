@@ -116,7 +116,10 @@ class WpGogodigitalExampleWidgets
             $settings = [
 	            'media_buttons' => false,
                 'tinymce'=> true,
-                'textarea_rows'=> '10'
+                'textarea_rows'=> '10',
+	            'quicktags' => array(
+		            'buttons' => 'strong,em,del,ul,ol,li,block,close'
+	            ),
             ];
         }
 
