@@ -4,12 +4,14 @@
  * Plugin Name: Gogodigital Example
  * Plugin URI: https://www.gogodigital.it
  * Description: Gogodigital Example plugin just a simple example to develop a new Wordpress Plugin
+ * Version: 1.0.0
  * Author: Gogodigital S.r.l.s.
  * Author URI: https://www.gogodigital.it
- * License: GPL3
- * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * Version: 1.0.0
+ * License: GPLv2 or later
+ * License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Text Domain: gogodigital-example
+ * Requires at least: 6.1
+ * Requires PHP: 7.4
  **/
 
 if ( !defined( 'ABSPATH' ) ) {

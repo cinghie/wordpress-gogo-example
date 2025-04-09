@@ -195,10 +195,10 @@ class WpGogodigitalExampleWidgets
 
 		?>
 		<div class='image-preview-wrapper'>
-			<img id='image-preview' src='<?php echo $mediaSource?>' alt="<?php echo $mediaFieldName?>" title="<?php echo $mediaFieldName?>" width='125' height='125' style='max-height: 125px; width: 125px;'>
+			<img id='image-preview' src='<?php echo esc_url($mediaSource) ?>' alt="<?php echo esc_html($mediaFieldName) ?>" title="<?php echo esc_html($mediaFieldName) ?>" width='125' height='125' style='max-height: 125px; width: 125px;'>
 		</div>
-		<input id="upload_image_button" type="button" class="button" value="<?php _e( 'Upload image', 'gogodigital-example' ); ?>" />
-		<input type='hidden' name='<?php echo $mediaFieldName?>' id='<?php echo $mediaFieldId?>' value='<?php echo $mediaValue ?>'>
+		<input id="upload_image_button" type="button" class="button" value="<?php esc_html_e( 'Upload image', 'gogodigital-example' ) ?>" />
+		<input type='hidden' name='<?php echo esc_html($mediaFieldName) ?>' id='<?php echo esc_html($mediaFieldId) ?>' value='<?php echo esc_html($mediaValue) ?>'>
 		<?php
 	}
 
@@ -220,7 +220,7 @@ class WpGogodigitalExampleWidgets
                 let attachment;
                 let file_frame;
                 let wp_media_post_id = wp.media.model.settings.post.id; // Store the old id
-                let set_to_post_id = <?php echo $my_saved_attachment_post_id; ?>; // Set this
+                let set_to_post_id = <?php echo esc_html($my_saved_attachment_post_id) ?>; // Set this
 
                 jQuery('#upload_image_button').on('click', function( event )
                 {
@@ -254,7 +254,7 @@ class WpGogodigitalExampleWidgets
 
                         // Do something with attachment.id and/or attachment.url here
                         $( '#image-preview' ).attr( 'src', attachment.url ).css( 'width', 'auto' );
-                        $( '#<?php echo $mediaFieldId ?>' ).val( attachment.id );
+                        $( '#<?php echo esc_html($mediaFieldId) ?>' ).val( attachment.id );
 
                         // Restore the main post ID
                         wp.media.model.settings.post.id = wp_media_post_id;
@@ -386,12 +386,12 @@ class WpGogodigitalExampleWidgets
 			'orderby' => $options['orderby'],
 			'required' => $options['required'],
 			'selected' => $currentValue,
-			'show_option_none' => __('None','wordpress')
+			'show_option_none' => __( 'None', 'gogodigital-example' )
 		];
 
 		add_filter( 'wp_dropdown_cats', array( __CLASS__, 'dropdown_style_filter'), 10, 2 );
 
-		$html = wp_dropdown_pages($args);
+		$html = wp_kses_post(wp_dropdown_pages($args));
 		$html .= self::getFieldDescription($name,$description);
 
 		remove_filter('wp_dropdown_pages', array( __CLASS__, 'dropdown_style_filter'));
@@ -422,12 +422,12 @@ class WpGogodigitalExampleWidgets
 			'orderby' => $options['orderby'],
 			'required' => $options['required'],
 			'selected' => $currentValue,
-			'show_option_none' => __('None','wordpress')
+			'show_option_none' => __( 'None', 'gogodigital-example' )
 		];
 
 		add_filter( 'wp_dropdown_pages', array( __CLASS__, 'dropdown_multiple_filter'), 10, 2 );
 
-		$html = wp_dropdown_pages($args);
+		$html = wp_kses_post(wp_dropdown_pages($args));
 		$html .= self::getFieldDescription($name,$description);
 
 		remove_filter('wp_dropdown_pages', array( __CLASS__, 'dropdown_multiple_filter'));
@@ -459,7 +459,7 @@ class WpGogodigitalExampleWidgets
 			'orderby' => $options['orderby'],
 			'required' => $options['required'],
 			'selected' => $currentValue,
-			'show_option_none' => __('None','wordpress'),
+			'show_option_none' => __( 'None', 'gogodigital-example' ),
 			'taxonomy' => $options['taxonomy']
 		];
 
@@ -497,7 +497,7 @@ class WpGogodigitalExampleWidgets
 			'orderby' => $options['orderby'],
 			'required' => $options['required'],
 			'selected' => $currentValue,
-			'show_option_none' => __('None','wordpress'),
+			'show_option_none' => __( 'None', 'gogodigital-example' ),
 			'taxonomy' => $options['taxonomy']
 		];
 
@@ -562,7 +562,7 @@ class WpGogodigitalExampleWidgets
 			'orderby' => $options['orderby'],
 			'required' => $options['required'],
 			'selected' => $currentValue,
-			'show_option_none' => __('None','wordpress'),
+			'show_option_none' => __( 'None', 'gogodigital-example' ),
 			'taxonomy' => $options['taxonomy']
 		];
 
@@ -592,7 +592,7 @@ class WpGogodigitalExampleWidgets
 		global $wp_roles;
 
 		$values = [
-			__('None') => 'none'
+			__('None', 'gogodigital-example' ) => 'none'
 		];
 
 		$roles = $wp_roles->roles;
@@ -620,7 +620,9 @@ class WpGogodigitalExampleWidgets
 	{
 		global $wp_roles;
 
-		$array = [__('All') => 'all'];
+		$array = [
+                __('All', 'gogodigital-example' ) => 'all'
+        ];
 		$roles = $wp_roles->roles;
 		ksort($roles);
 

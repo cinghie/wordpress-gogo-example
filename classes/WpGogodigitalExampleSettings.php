@@ -684,7 +684,7 @@ class WpGogodigitalExampleSettings
 	 */
 	public function create_admin_page()
 	{
-		$active_tab  = $_GET['tab'] ?? 'inputs';
+		$active_tab = isset($_GET['tab']) && esc_html($_GET['tab']) ? esc_html($_GET['tab']) : 'inputs';
 	?>
 
         <style>
