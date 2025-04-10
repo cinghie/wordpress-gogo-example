@@ -184,9 +184,11 @@ class WpGogodigitalExampleWidgets
 	 * @param string $mediaFieldId
 	 * @param string $mediaValue
      *
+     * @return string
+     *
      * @see https://jeroensormani.com/how-to-include-the-wordpress-media-selector-in-your-plugin/
 	 */
-	public static function getMediaInput(string $mediaFieldName, string $mediaFieldId, string $mediaValue) : void
+	public static function getMediaInput(string $mediaFieldName, string $mediaFieldId, string $mediaValue)
 	{
         self::media_selector_print_scripts($mediaFieldId, $mediaValue);
 		wp_enqueue_media();
@@ -207,8 +209,10 @@ class WpGogodigitalExampleWidgets
      *
      * @param string $mediaFieldId
      * @param string $mediaValue
+     *
+     * @return string
 	 */
-    public static function media_selector_print_scripts(string $mediaFieldId, string $mediaValue) : void
+    public static function media_selector_print_scripts(string $mediaFieldId, string $mediaValue)
     {
 		$my_saved_attachment_post_id = (int)$mediaValue;
 		?>
@@ -391,7 +395,7 @@ class WpGogodigitalExampleWidgets
 
 		add_filter( 'wp_dropdown_cats', array( __CLASS__, 'dropdown_style_filter'), 10, 2 );
 
-		$html = wp_kses_post(wp_dropdown_pages($args));
+		$html = wp_kses_post(wp_dropdown_pages(esc_html($args)));
 		$html .= self::getFieldDescription($name,$description);
 
 		remove_filter('wp_dropdown_pages', array( __CLASS__, 'dropdown_style_filter'));
@@ -427,7 +431,7 @@ class WpGogodigitalExampleWidgets
 
 		add_filter( 'wp_dropdown_pages', array( __CLASS__, 'dropdown_multiple_filter'), 10, 2 );
 
-		$html = wp_kses_post(wp_dropdown_pages($args));
+		$html = wp_kses_post(wp_dropdown_pages(esc_html($args)));
 		$html .= self::getFieldDescription($name,$description);
 
 		remove_filter('wp_dropdown_pages', array( __CLASS__, 'dropdown_multiple_filter'));

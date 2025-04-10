@@ -39,8 +39,6 @@ class WpGogodigitalExampleSettings
 	private $examplePageTitle;
 
 	/**
-     * Fields Examples
-	 *
 	 * @var array
 	 */
 	private $settingsOptions;
@@ -382,11 +380,15 @@ class WpGogodigitalExampleSettings
      */
     public function gogodigital_example_settings_input_callback()
     {
-        echo $this->widgetClass::getInputWidget(
+        echo wp_kses($this->widgetClass::getInputWidget(
             'gogodigital_example_settings_options[gogodigital-example-input]',
             $this->inputExample,
             __( 'Example Input Description', 'gogodigital-example' )
-        );
+        ), [
+	        'label' => ['class' => true, 'id' => true, 'style' => true],
+            'input' => ['type' => 'text', 'class' => true, 'id' => true, 'name' => true, 'value' => true, 'style' => true],
+            'p' => ['class' => true, 'id' => true, 'style' => true]
+        ]);
     }
 
     /**
@@ -394,11 +396,15 @@ class WpGogodigitalExampleSettings
      */
     public function gogodigital_example_settings_textarea_callback()
     {
-        echo $this->widgetClass::getTextAreaWidget(
+        echo wp_kses($this->widgetClass::getTextAreaWidget(
             'gogodigital_example_settings_options[gogodigital-example-textarea]',
             $this->textAreaExample,
             __( 'Example Text Area Description', 'gogodigital-example' )
-        );
+        ), [
+	        'label' => ['class' => true, 'id' => true, 'style' => true],
+            'textarea' => ['class' => true, 'id' => true, 'name' => true, 'value' => true, 'cols' => true, 'rows' => true, 'style' => true],
+            'p' => ['class' => true, 'id' => true, 'style' => true]
+        ]);
     }
 
     /**
@@ -413,12 +419,34 @@ class WpGogodigitalExampleSettings
         );
     }
 
+	/**
+	 * Select Callback
+	 */
+	public function gogodigital_example_settings_select_callback()
+	{
+		echo wp_kses($this->widgetClass::getSelectWidget(
+			'gogodigital_example_settings_options[gogodigital-example-select]',
+			$this->selectExample,
+			[
+				__( 'Select Value 1', 'gogodigital-example' ) => 'selectvalue1',
+				__( 'Select Value 2', 'gogodigital-example' ) => 'selectvalue2',
+				__( 'Select Value 3', 'gogodigital-example' ) => 'selectvalue3'
+			],
+			__( 'Example Select Description', 'gogodigital-example' )
+		), [
+			'label' => ['class' => true, 'id' => true, 'style' => true],
+            'select' => ['class' => true, 'id' => true, 'name' => true, 'style' => true],
+            'option' => ['value' => true, 'selected' => true, 'style' => true],
+            'p' => ['class' => true, 'id' => true, 'style' => true]
+        ]);
+	}
+
     /**
      * Radio Callback
      */
     public function gogodigital_example_settings_radio_callback()
     {
-        echo $this->widgetClass::getRadioWidget(
+        echo wp_kses($this->widgetClass::getRadioWidget(
             'gogodigital_example_settings_options[gogodigital-example-radio]',
             $this->radioExample,
             [
@@ -427,24 +455,11 @@ class WpGogodigitalExampleSettings
 	            __( 'Radio Value 3', 'gogodigital-example' ) => 'radiovalue3'
             ],
             __( 'Example Radio Description', 'gogodigital-example' )
-        );
-    }
-
-    /**
-     * Select Callback
-     */
-    public function gogodigital_example_settings_select_callback()
-    {
-        echo $this->widgetClass::getSelectWidget(
-            'gogodigital_example_settings_options[gogodigital-example-select]',
-            $this->selectExample,
-            [
-                __( 'Select Value 1', 'gogodigital-example' ) => 'selectvalue1',
-                __( 'Select Value 2', 'gogodigital-example' ) => 'selectvalue2',
-                __( 'Select Value 3', 'gogodigital-example' ) => 'selectvalue3'
-            ],
-            __( 'Example Select Description', 'gogodigital-example' )
-        );
+        ), [
+	        'label' => ['class' => true, 'id' => true, 'style' => true],
+	        'input' => ['type' => 'radio', 'class' => true, 'id' => true, 'name' => true, 'value' => true, 'checked' => true,'style' => true],
+	        'p' => ['class' => true, 'id' => true, 'style' => true]
+        ]);
     }
 
     /**
@@ -452,12 +467,16 @@ class WpGogodigitalExampleSettings
      */
     public function gogodigital_example_settings_checkbox_callback()
     {
-        echo $this->widgetClass::getCheckboxWidget(
+        echo wp_kses($this->widgetClass::getCheckboxWidget(
             'gogodigital_example_settings_options[gogodigital-example-checkbox]',
             $this->checkboxExample,
             __( 'Example Checkbox', 'gogodigital-example' ),
             __( 'Example Checkbox Description', 'gogodigital-example' )
-        );
+        ), [
+	        'label' => ['class' => true, 'id' => true, 'style' => true],
+	        'input' => ['type' => 'checkbox', 'class' => true, 'id' => true, 'name' => true, 'value' => true, 'checked' => true, 'style' => true],
+	        'p' => ['class' => true, 'id' => true, 'style' => true]
+        ]);
     }
 
     /**
@@ -465,12 +484,18 @@ class WpGogodigitalExampleSettings
      */
     public function gogodigital_example_settings_toggleswitch_callback()
     {
-        echo $this->widgetClass::getToggleSwitchWidget(
+        echo wp_kses($this->widgetClass::getToggleSwitchWidget(
             'gogodigital_example_settings_options[gogodigital-example-toggleswitch]',
             $this->toggleSwitchExample,
             '',
             __( 'Example Toggle Switch Description', 'gogodigital-example' )
-        );
+        ), [
+	        'fieldset' => ['class' => true, 'id' => true, 'style' => true],
+	        'label' => ['class' => true, 'id' => true, 'style' => true],
+	        'span' => ['class' => true, 'id' => true, 'data-on' => true, 'data-off' => true, 'style' => true],
+	        'input' => ['type' => 'checkbox', 'class' => true, 'id' => true, 'name' => true, 'value' => true, 'checked' => true, 'style' => true],
+	        'p' => ['class' => true, 'id' => true, 'style' => true]
+        ]);
     }
 
     /**
@@ -478,11 +503,19 @@ class WpGogodigitalExampleSettings
      */
     public function gogodigital_example_settings_media_callback()
     {
-        echo $this->widgetClass::getMediaInput(
+        echo wp_kses($this->widgetClass::getMediaInput(
             'gogodigital_example_settings_options[gogodigital-example-media]',
             'gogodigital-example-media',
             $this->mediaExample
-        );
+        ), [
+	        'script' => ['type' => 'text/javascript', 'id' => true],
+	        'div' => ['class' => true, 'id' => true, 'style' => true],
+	        'img' => ['class' => true, 'id' => true, 'src' => true, 'alt' => true, 'title' => true, 'height' => true, 'width' => true, 'style' => true],
+	        'input' => [
+                ['type' => 'button', 'class' => true, 'id' => true, 'name' => true, 'value' => true, 'style' => true],
+                ['type' => 'hidden', 'class' => true, 'id' => true, 'name' => true, 'value' => true, 'style' => true]
+            ]
+        ]);
     }
 
 	/**
